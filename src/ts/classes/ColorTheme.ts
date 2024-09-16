@@ -1,15 +1,43 @@
 /**
- * @file Module for the class Player.
- * @module src/Player
+ * @file Module for the class ColorTheme.
+ * @module src/ts/classes/ColorTheme
  * @author Karin Silfversparre <ks224ac@student.lnu.se>
  * @version 1.0.0
  */
 
 // import { PlayingCard } from './PlayingCard.js'
 
-// /**
-//  * Represents a player.
-//  */
+/**
+ * Represents a ColorTheme.
+ */
+abstract class ColorTheme {
+  /**
+   * The hue of the color theme.
+   *
+   * @type {number}
+   */
+  protected hue: number
+
+  /**
+   * The saturation of the color theme.
+   */
+  protected saturation: number
+
+  /**
+   * The lowest allowed lightness.
+   *
+   * @type {number}
+   */
+  protected minLightness: number
+
+  /**
+   * The highest allowed lightness.
+   *
+   * @type {number}
+   */
+  protected maxLightness: number
+}
+
 // export class Player {
 //   /**
 //    * Array of the cards a player has.
