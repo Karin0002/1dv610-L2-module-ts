@@ -5,8 +5,6 @@
  * @version 1.0.0
  */
 
-// import { PlayingCard } from './PlayingCard.js'
-
 /**
  * Represents a ColorTheme.
  */
@@ -36,129 +34,130 @@ abstract class ColorTheme {
    * @type {number}
    */
   protected maxLightness: number
+
+  /**
+   * Creates a new ColorTheme object.
+   *
+   * @param {number} [saturationMaxValue=90] - The maximum value saturation can be set to.
+   * @param {number} [saturationMinValue=30] - The minimum value saturation can be set to.
+   * @param {number} [hueMaxValue=360] - The maximum value hue can be set to.
+   * @param {number} [hueMinValue=0] - The minimum value hue can be set to.
+   * @param {number} [minLightness=20] - The lightness value of the darkest color in the color theme.
+   * @param {number} [maxLightness=80] - The lightness value of the lightest color in the color theme.
+   * @class
+   */
+  constructor (saturationMaxValue:number = 90, saturationMinValue:number = 30, hueMaxValue:number = 360, hueMinValue:number = 0,maxLightness:number = 80, minLightness:number = 20) {
+    this.#setHue(hueMaxValue, hueMinValue)
+    this.#setSaturation(saturationMaxValue, saturationMinValue)
+    this.#setMaxLightness(maxLightness)
+    this.#setMinLightness(minLightness)
+  }
+
+  /**
+   * Sets the hue.
+   *
+   * @param {number} [maxValue] - The maximum value hue can be set to.
+   * @param {number} [minValue] - The minimum value hue can be set to.
+   * @throws {Error} The max value of hue cannot be greater than 360 and cannot be less than min value of hue.
+   * @throws {Error} The min value of hue cannot be less than 0.
+   */
+  #setHue (maxValue:number, minValue:number) {
+    let error
+    if (maxValue > 360 || maxValue < minValue) {
+      error = new Error('The max value of hue cannot be greater than 360 and cannot be less than min value of hue.')
+    } else if (minValue < 0) {
+      error = new Error('The min value of hue cannot be less than 0.')
+    }
+    if (error) {
+      // error.status = 400
+      throw error
+    }
+    this.hue = this.#generateRandomNumber(maxValue, minValue)
+  }
+
+  /**
+   * Sets the saturation.
+   *
+   * @param {number} [maxValue] - The maximum value saturation can be set to.
+   * @param {number} [minValue] - The minimum value saturation can be set to.
+   * @throws {Error} The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.
+   * @throws {Error} The min value of saturation cannot be less than 30.
+   */
+  #setSaturation (maxValue:number, minValue:number) {
+    let error
+    if (maxValue > 90 || maxValue < minValue) {
+      error = new Error('The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.')
+    } else if (minValue < 30) {
+      error = new Error('The min value of saturation cannot be less than 30.')
+    }
+    if (error) {
+      // error.status = 400
+      throw error
+    }
+
+    this.saturation = this.#generateRandomNumber(maxValue, minValue)
+  }
+
+  /**
+   * Sets the minLightness.
+   *
+   * @param {number} [value] - The value to set minLightness to.
+   * @throws {Error} The value of minLightness must be less than 50 and greater or equal to 20.
+   */
+  #setMinLightness (value:number) {
+    let error
+    if (value < 20 || value >= 50) {
+      error = new Error('The value of minLightness must be less than 50 and greater or equal to 20.')
+    }
+    if (error) {
+      // error.status = 400
+      throw error
+    }
+
+    this.minLightness = value
+  }
+
+  /**
+   * Sets the maxLightness.
+   *
+   * @param {number} [value] - The value to set maxLightness to.
+   * @throws {Error} The value of maxLightness must be greater than 50, and less or equal to 80.
+   */
+  #setMaxLightness (value:number) {
+    let error
+    if (value > 80 || value <= 50) {
+      error = new Error('The value of maxLightness must be greater than 50, and less or equal to 80.')
+    }
+    if (error) {
+      // error.status = 400
+      throw error
+    }
+
+    this.maxLightness = value
+  }
+
+  /**
+   * Generates a random number between the given arguments.
+   *
+   * @param {number} max - The maximum value the generated number can be.
+   * @param {number} min - The minimum value the generated number can be.
+   * @returns {number} The newly generated number.
+   */
+  #generateRandomNumber (max:number, min:number): number {
+    return Math.round(Math.random() * (max - min) + min)
+  }
+
+  /**
+   * Varies a number by generating a new random number that is inside the given deviation.
+   If number was 40 and the deviation was 10, the newly generated number would be between 30 and 50.
+   *
+   * @param {number} number - The number that is used a refrence for the new number.
+   * @param {number} deviation - The value of the deviation to allow.
+   * @returns {number} The newly generated number that is inside the deviation.
+   */
+  protected adjustNumber (number:number, deviation:number): number {
+    return this.#generateRandomNumber(number + deviation, number - deviation)
+  }
+
+  abstract generateColorTheme (numberOfColors:number): object
 }
-
-// export class Player {
-//   /**
-//    * Array of the cards a player has.
-//    *
-//    * @type {PlayingCard[]}
-//    */
-//   #hand
-//   /**
-//    * The nickname of the player.
-//    *
-//    * @type {string}
-//    */
-//   #nickname
-//   /**
-//    * The total value a player chooses to draw cards up to.
-//    *
-//    * @type {number}
-//    */
-//   #standValue
-
-//   /**
-//    * Creates a new Player object.
-//    *
-//    * @param {string} nickname - The nickname of the player.
-//    * @param {number} [standValue=14] - The total value a player chooses to draw cards up to.
-//    * @class
-//    */
-//   constructor (nickname, standValue = 14) {
-//     this.#hand = []
-
-//     this.#nickname = nickname
-
-//     this.#standValue = standValue
-//   }
-
-//   /**
-//    * Determines if a player wants to draw another card.
-//    *
-//    * @returns {boolean} True if a player wants to draw antoher card, otherwise false.
-//    */
-//   get canHit () {
-//     return this.#hand.length < 2 || (this.valueOf() < this.#standValue && this.#hand.length < 5)
-//   }
-
-//   /**
-//    * Determines if a player is busted.
-//    *
-//    * @returns {boolean} True if a player is busted, otherwise false.
-//    */
-//   get isBusted () {
-//     return this.valueOf() > 21
-//   }
-
-//   /**
-//    * Determines if a player is a natural winner.
-//    *
-//    * @returns {boolean} True if a player is a natural winner, otherwise false.
-//    */
-//   get isNaturalWinner () {
-//     return this.valueOf() === 21 || (this.#hand.length === 5 && this.valueOf() < 21)
-//   }
-
-//   /**
-//    * Returns the nickname of the player.
-//    *
-//    * @returns {string} The nickname of the player.
-//    */
-//   get nickname () {
-//     return this.#nickname
-//   }
-
-//   /**
-//    * Adds one card to the players hand.
-//    *
-//    * @param {PlayingCard} playingCard - The card to add to the players hand.
-//    */
-//   addToHand (playingCard) {
-//     this.#hand.push(playingCard)
-//   }
-
-//   /**
-//    * Removes all cards from a players hand and returns them.
-//    *
-//    * @returns {PlayingCard[]} All the cards the player had.
-//    */
-//   discardHand () {
-//     return this.#hand.splice(0)
-//   }
-
-//   /**
-//    * Returns a string representing the object.
-//    *
-//    * @returns {string} A string that represents the current object.
-//    */
-//   toString () {
-//     if (this.#hand.length < 1) {
-//       return `${this.#nickname}: -`
-//     } else if (this.valueOf() > 21) {
-//       return `${this.#nickname}: ${this.#hand.join(' ')} (${this.valueOf()}) BUSTED!`
-//     } else {
-//       return `${this.#nickname}: ${this.#hand.join(' ')} (${this.valueOf()})`
-//     }
-//   }
-
-//   /**
-//    * Returns a number representing the value of the players hand.
-//    *
-//    * @returns {number} The value of the players hand.
-//    */
-//   valueOf () {
-//     // Some returns immediately after first hit of an ace.
-//     if (!this.#hand.some((card) => card.valueOf() === 1)) {
-//       return this.#hand.reduce((a, b) => a + b.valueOf(), 0)
-//     } else {
-//       const sumWith1 = this.#hand.reduce((a, b) => a + b.valueOf(), 0)
-//       const sumWith14 = sumWith1 - 1 + 14
-//       if (sumWith14 > 21) {
-//         return sumWith1
-//       } else {
-//         return sumWith14
-//       }
-//     }
-//   }
-// }
