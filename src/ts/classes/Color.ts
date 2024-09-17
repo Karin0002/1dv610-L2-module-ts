@@ -19,7 +19,7 @@ abstract class Color {
   /**
    * The saturation of the color.
    */
-  #aturation: number
+  #saturation: number
 
   /**
    * The lightness of the color.
@@ -33,7 +33,7 @@ abstract class Color {
    *
    * @type {string}
    */
-  hsl: string
+  #hsl: string
 
   /**
    * Creates a new Color object.
@@ -54,108 +54,57 @@ abstract class Color {
   /**
    * Sets the hue.
    *
-   * @param {number} [maxValue] - The maximum value hue can be set to.
-   * @param {number} [minValue] - The minimum value hue can be set to.
-   * @throws {Error} The max value of hue cannot be greater than 360 and cannot be less than min value of hue.
-   * @throws {Error} The min value of hue cannot be less than 0.
+   * @param {number} value - The value to set hue to.
+   * @throws {Error} The value of hue cannot be greater than 360, nor be less than 0.
    */
-  #setHue (maxValue:number, minValue:number) {
-    let error
-    if (maxValue > 360 || maxValue < minValue) {
-      error = new Error('The max value of hue cannot be greater than 360 and cannot be less than min value of hue.')
-    } else if (minValue < 0) {
-      error = new Error('The min value of hue cannot be less than 0.')
-    }
-    if (error) {
+  #setHue (value:number) {
+    if (value > 360 || value < 0) {
+      const error = new Error('The value of hue cannot be greater than 360, nor be less than 0.')
       // error.status = 400
       throw error
     }
-    this.hue = this.#generateRandomNumber(maxValue, minValue)
+
+    this.#hue = value
   }
 
   /**
    * Sets the saturation.
    *
-   * @param {number} [maxValue] - The maximum value saturation can be set to.
-   * @param {number} [minValue] - The minimum value saturation can be set to.
-   * @throws {Error} The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.
-   * @throws {Error} The min value of saturation cannot be less than 30.
+   * @param {number} value - The value to set saturation to.
+   * @throws {Error} The value of saturation cannot be greater than 100, nor be less than 0.
    */
-  #setSaturation (maxValue:number, minValue:number) {
-    let error
-    if (maxValue > 90 || maxValue < minValue) {
-      error = new Error('The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.')
-    } else if (minValue < 30) {
-      error = new Error('The min value of saturation cannot be less than 30.')
-    }
-    if (error) {
+  #setSaturation (value:number) {
+    if (value > 100 || value < 0) {
+      const error = new Error('The value of saturation cannot be greater than 100, nor be less than 0.')
       // error.status = 400
       throw error
     }
 
-    this.saturation = this.#generateRandomNumber(maxValue, minValue)
+    this.#saturation = value
   }
 
   /**
-   * Sets the minLightness.
+   * Sets the lightness.
    *
-   * @param {number} [value] - The value to set minLightness to.
-   * @throws {Error} The value of minLightness must be less than 50 and greater or equal to 20.
+   * @param {number} value - The value to set lightness to.
+   * @throws {Error} The value of lightness cannot be greater than 100, nor be less than 0.
    */
-  #setMinLightness (value:number) {
-    let error
-    if (value < 20 || value >= 50) {
-      error = new Error('The value of minLightness must be less than 50 and greater or equal to 20.')
-    }
-    if (error) {
+  #setLightness (value:number) {
+    if (value > 100 || value < 0) {
+      const error = new Error('The value of lightness cannot be greater than 100, nor be less than 0.')
       // error.status = 400
       throw error
     }
 
-    this.minLightness = value
+    this.#lightness = value
   }
 
   /**
-   * Sets the maxLightness.
+   * Sets the hsl.
    *
-   * @param {number} [value] - The value to set maxLightness to.
-   * @throws {Error} The value of maxLightness must be greater than 50, and less or equal to 80.
+   * @param {string} value - The value to set hsl to.
    */
-  #setMaxLightness (value:number) {
-    let error
-    if (value > 80 || value <= 50) {
-      error = new Error('The value of maxLightness must be greater than 50, and less or equal to 80.')
-    }
-    if (error) {
-      // error.status = 400
-      throw error
-    }
-
-    this.maxLightness = value
+  #setHSL (value:string) {
+    this.#hsl = value
   }
-
-  /**
-   * Generates a random number between the given arguments.
-   *
-   * @param {number} max - The maximum value the generated number can be.
-   * @param {number} min - The minimum value the generated number can be.
-   * @returns {number} The newly generated number.
-   */
-  #generateRandomNumber (max:number, min:number): number {
-    return Math.round(Math.random() * (max - min) + min)
-  }
-
-  /**
-   * Varies a number by generating a new random number that is inside the given deviation.
-   If number was 40 and the deviation was 10, the newly generated number would be between 30 and 50.
-   *
-   * @param {number} number - The number that is used a refrence for the new number.
-   * @param {number} deviation - The value of the deviation to allow.
-   * @returns {number} The newly generated number that is inside the deviation.
-   */
-  protected adjustNumber (number:number, deviation:number): number {
-    return this.#generateRandomNumber(number + deviation, number - deviation)
-  }
-
-  abstract generateColorTheme (numberOfColors:number): object
 }
