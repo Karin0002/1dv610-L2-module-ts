@@ -5,6 +5,9 @@
  * @version 1.0.0
  */
 
+import { ColorSchemes } from "./ColorSchemes.js"
+import { Color } from "./Color.js"
+
 /**
  * Represents a color theme.
  */
@@ -72,7 +75,7 @@ export abstract class ColorTheme {
       // error.status = 400
       throw error
     }
-    this.hue = this.#generateRandomNumber(maxValue, minValue)
+    this.hue = this.generateRandomNumber(maxValue, minValue)
   }
 
   /**
@@ -95,7 +98,7 @@ export abstract class ColorTheme {
       throw error
     }
 
-    this.saturation = this.#generateRandomNumber(maxValue, minValue)
+    this.saturation = this.generateRandomNumber(maxValue, minValue)
   }
 
   /**
@@ -143,7 +146,7 @@ export abstract class ColorTheme {
    * @param {number} min - The minimum value the generated number can be.
    * @returns {number} The newly generated number.
    */
-  #generateRandomNumber (max:number, min:number): number {
+  protected generateRandomNumber (max:number, min:number): number {
     return Math.round(Math.random() * (max - min) + min)
   }
 
@@ -156,8 +159,8 @@ export abstract class ColorTheme {
    * @returns {number} The newly generated number that is inside the deviation.
    */
   protected adjustNumber (number:number, deviation:number): number {
-    return this.#generateRandomNumber(number + deviation, number - deviation)
+    return this.generateRandomNumber(number + deviation, number - deviation)
   }
 
-  abstract generateColorTheme (numberOfColors:number): object
+  abstract generateColorTheme (numberOfColors:number): {numberOfColors: number, colorScheme: ColorSchemes, colors: Color[]}
 }
