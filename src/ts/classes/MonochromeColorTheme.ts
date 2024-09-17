@@ -5,6 +5,8 @@
  * @version 1.0.0
  */
 
+import { ColorThemes } from './colorThemes'
+
 /**
  * Represents a monochrome color theme.
  */
@@ -37,17 +39,17 @@ class Monochrome extends ColorTheme {
 
     const colorTheme = {
       numberOfColors,
-      colorScheme: 'monochrome',
+      colorScheme: ColorThemes.Monochrome,
       colors: []
     }
 
     for (let i = 0; i < numberOfColors; i++) {
       // MAGIC NUMBER
-      const lightnessIncrement = (this.maxLightness - this.minLightness) / (numberOfColors - 1)
+      const lightnessIncrement = (this.maxLightness - this.minLightness) / (numberOfColors - 1) // 1 since the number of increments is one less than number of colors.
       const calculatedLightness = this.minLightness + (lightnessIncrement * i)
-      const saturation = this.adjustNumber(this.saturation, 10)
+      const saturation = this.adjustNumber(this.saturation, 10) // 10 for slight variation.
 
-      const color = new Color(this.hue, this.saturation, calculatedLightness)
+      const color = new Color(this.hue, saturation, calculatedLightness)
 
       colorTheme.colors.push(color)
     }
