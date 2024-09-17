@@ -6,6 +6,7 @@
  */
 
 import { ColorThemes } from './colorThemes'
+import { Color } from './Color'
 
 /**
  * Represents a monochrome color theme.
@@ -37,10 +38,11 @@ class Monochrome extends ColorTheme {
       throw error
     }
 
+    const colors: Color[] = []
     const colorTheme = {
       numberOfColors,
       colorScheme: ColorThemes.Monochrome,
-      colors: []
+      colors
     }
 
     for (let i = 0; i < numberOfColors; i++) {

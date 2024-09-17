@@ -8,7 +8,7 @@
 /**
  * Represents a color.
  */
-abstract class Color {
+export class Color {
   /**
    * The hue of the color.
    *
