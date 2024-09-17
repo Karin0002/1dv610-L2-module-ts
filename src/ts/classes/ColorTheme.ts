@@ -8,7 +8,7 @@
 /**
  * Represents a color theme.
  */
-abstract class ColorTheme {
+export abstract class ColorTheme {
   /**
    * The hue of the color theme.
    *

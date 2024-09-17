@@ -5,33 +5,29 @@
  * @version 1.0.0
  */
 
-import { ColorThemes } from './colorThemes'
-import { Color } from './Color'
+import { ColorTheme } from './ColorTheme.js'
+import { ColorThemes } from './colorThemes.js'
+import { Color } from './Color.js'
 
 /**
  * Represents a monochrome color theme.
  */
-class Monochrome extends ColorTheme {
+export class Monochrome extends ColorTheme {
   /**
    * Creates a new ColorTheme object.
-   *
-   * @param {number} [saturationMaxValue=90] - The maximum value saturation can be set to.
-   * @param {number} [saturationMinValue=30] - The minimum value saturation can be set to.
-   * @param {number} [hueMaxValue=360] - The maximum value hue can be set to.
-   * @param {number} [hueMinValue=0] - The minimum value hue can be set to.
-   * @param {number} [minLightness=20] - The lightness value of the darkest color in the color theme.
-   * @param {number} [maxLightness=80] - The lightness value of the lightest color in the color theme.
-   * @class
    */
-  constructor (saturationMaxValue:number = 90, saturationMinValue:number = 30, hueMaxValue:number = 360, hueMinValue:number = 0,maxLightness:number = 80, minLightness:number = 20) {
+  constructor () {
     super()
   }
 
   /**
-   * 
-   * @param numberOfColors 
+   * Generates a color theme.
+   *
+   * @param {number} numberOfColors - The number of colors to include ranging from 2 to 5.
+   * @throws {Error} The number of colors must be between 2 and 5.
+   * @returns {object} An object containing data about the generated color theme.
    */
-  generateColorTheme (numberOfColors:number): object {
+  generateColorTheme (numberOfColors:number): {numberOfColors: number, colorScheme: ColorThemes, colors: Color[]} {
     if (numberOfColors < 2 || numberOfColors > 5) {
       const error = new Error('The number of colors must be between 2 and 5.')
       // error.status = 400
