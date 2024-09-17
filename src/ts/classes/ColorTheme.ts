@@ -6,7 +6,7 @@
  */
 
 /**
- * Represents a ColorTheme.
+ * Represents a color theme.
  */
 abstract class ColorTheme {
   /**
