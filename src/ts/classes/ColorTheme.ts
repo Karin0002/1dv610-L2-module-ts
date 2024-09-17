@@ -1,5 +1,8 @@
 /**
- * Module for the class ColorTheme.
+ * @file Module for the class ColorTheme.
+ * @module src/ts/classes/ColorTheme
+ * @author Karin Silfversparre <ks224ac@student.lnu.se>
+ * @version 1.0.0
  */
 
 /**
@@ -8,6 +11,8 @@
 abstract class ColorTheme {
   /**
    * The hue of the color theme.
+   *
+   * @type {number}
    */
   protected hue: number
 
@@ -18,23 +23,28 @@ abstract class ColorTheme {
 
   /**
    * The lowest allowed lightness.
+   *
+   * @type {number}
    */
   protected minLightness: number
 
   /**
    * The highest allowed lightness.
+   *
+   * @type {number}
    */
   protected maxLightness: number
 
   /**
    * Creates a new ColorTheme object.
    *
-   * @param saturationMaxValue - The maximum value saturation can be set to.
-   * @param saturationMinValue - The minimum value saturation can be set to.
-   * @param hueMaxValue - The maximum value hue can be set to.
-   * @param hueMinValue - The minimum value hue can be set to.
-   * @param minLightness - The lightness value of the darkest color in the color theme.
-   * @param maxLightness - The lightness value of the lightest color in the color theme.
+   * @param {number} [saturationMaxValue=90] - The maximum value saturation can be set to.
+   * @param {number} [saturationMinValue=30] - The minimum value saturation can be set to.
+   * @param {number} [hueMaxValue=360] - The maximum value hue can be set to.
+   * @param {number} [hueMinValue=0] - The minimum value hue can be set to.
+   * @param {number} [minLightness=20] - The lightness value of the darkest color in the color theme.
+   * @param {number} [maxLightness=80] - The lightness value of the lightest color in the color theme.
+   * @class
    */
   constructor (saturationMaxValue:number = 90, saturationMinValue:number = 30, hueMaxValue:number = 360, hueMinValue:number = 0,maxLightness:number = 80, minLightness:number = 20) {
     this.#setHue(hueMaxValue, hueMinValue)
@@ -46,10 +56,10 @@ abstract class ColorTheme {
   /**
    * Sets the hue.
    *
-   * @param maxValue - The maximum value hue can be set to.
-   * @param number - The minimum value hue can be set to.
-   * @throws The max value of hue cannot be greater than 360 and cannot be less than min value of hue.
-   * @throws The min value of hue cannot be less than 0.
+   * @param {number} [maxValue] - The maximum value hue can be set to.
+   * @param {number} [minValue] - The minimum value hue can be set to.
+   * @throws {Error} The max value of hue cannot be greater than 360 and cannot be less than min value of hue.
+   * @throws {Error} The min value of hue cannot be less than 0.
    */
   #setHue (maxValue:number, minValue:number) {
     let error
@@ -68,10 +78,10 @@ abstract class ColorTheme {
   /**
    * Sets the saturation.
    *
-   * @param maxValue - The maximum value saturation can be set to.
-   * @param minValue - The minimum value saturation can be set to.
-   * @throws The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.
-   * @throws The min value of saturation cannot be less than 30.
+   * @param {number} [maxValue] - The maximum value saturation can be set to.
+   * @param {number} [minValue] - The minimum value saturation can be set to.
+   * @throws {Error} The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.
+   * @throws {Error} The min value of saturation cannot be less than 30.
    */
   #setSaturation (maxValue:number, minValue:number) {
     let error
@@ -91,8 +101,8 @@ abstract class ColorTheme {
   /**
    * Sets the minLightness.
    *
-   * @param value - The value to set minLightness to.
-   * @throws The value of minLightness must be less than 50 and greater or equal to 20.
+   * @param {number} [value] - The value to set minLightness to.
+   * @throws {Error} The value of minLightness must be less than 50 and greater or equal to 20.
    */
   #setMinLightness (value:number) {
     let error
@@ -110,8 +120,8 @@ abstract class ColorTheme {
   /**
    * Sets the maxLightness.
    *
-   * @param value - The value to set maxLightness to.
-   * @throws The value of maxLightness must be greater than 50, and less or equal to 80.
+   * @param {number} [value] - The value to set maxLightness to.
+   * @throws {Error} The value of maxLightness must be greater than 50, and less or equal to 80.
    */
   #setMaxLightness (value:number) {
     let error
@@ -129,11 +139,11 @@ abstract class ColorTheme {
   /**
    * Generates a random number between the given arguments.
    *
-   * @param max - The maximum value the generated number can be.
-   * @param min - The minimum value the generated number can be.
-   * @returns The newly generated number.
+   * @param {number} max - The maximum value the generated number can be.
+   * @param {number} min - The minimum value the generated number can be.
+   * @returns {number} The newly generated number.
    */
-  #generateRandomNumber (max:number, min:number):number {
+  #generateRandomNumber (max:number, min:number): number {
     return Math.round(Math.random() * (max - min) + min)
   }
 
@@ -141,9 +151,9 @@ abstract class ColorTheme {
    * Varies a number by generating a new random number that is inside the given deviation.
    If number was 40 and the deviation was 10, the newly generated number would be between 30 and 50.
    *
-   * @param number - The number that is used a refrence for the new number.
-   * @param deviation - The value of the deviation to allow.
-   * @returns The newly generated number that is inside the deviation.
+   * @param {number} number - The number that is used a refrence for the new number.
+   * @param {number} deviation - The value of the deviation to allow.
+   * @returns {number} The newly generated number that is inside the deviation.
    */
   protected adjustNumber (number:number, deviation:number): number {
     return this.#generateRandomNumber(number + deviation, number - deviation)
