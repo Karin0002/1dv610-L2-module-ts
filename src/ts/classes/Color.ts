@@ -116,4 +116,40 @@ abstract class Color {
   #generateHSLString (): string {
     return `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`
   }
+
+  /**
+   * Gets the hue of the object.
+   *
+   * @returns {number} The hue.
+   */
+  get hue ():number {
+    return this.#hue
+  }
+  
+  /**
+   * Gets the saturation of the object.
+   *
+   * @returns {number} The saturation.
+   */
+  get saturation ():number {
+    return this.#saturation
+  }
+
+  /**
+   * Gets the lightness of the object.
+   *
+   * @returns {number} The lightness.
+   */
+  get lightness ():number {
+    return this.#lightness
+  }
+
+  /**
+   * Gets the hsl of the object.
+   *
+   * @returns {string} The hsl.
+   */
+  get hsl ():string {
+    return this.#hsl
+  }
 }
