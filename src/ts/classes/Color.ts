@@ -107,4 +107,13 @@ abstract class Color {
   #setHSL (value:string) {
     this.#hsl = value
   }
+
+  /**
+   * Generates a HSL string from the fields of the object.
+   *
+   * @returns {string} A string formatted as a HSL color.
+   */
+  #generateHSLString (): string {
+    return `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`
+  }
 }
