@@ -1,6 +1,6 @@
 /**
- * @file Module for the class MonochromeColorTheme.
- * @module src/ts/classes/MonochromeColorTheme
+ * @file Module for the class Monochrome.
+ * @module src/ts/classes/Monochrome
  * @author Karin Silfversparre <ks224ac@student.lnu.se>
  * @version 1.0.0
  */
@@ -14,7 +14,7 @@ import { Color } from './Color.js'
  */
 export class Monochrome extends ColorTheme {
   /**
-   * Creates a new ColorTheme object.
+   * Creates a new Monochrome object.
    */
   constructor () {
     super()

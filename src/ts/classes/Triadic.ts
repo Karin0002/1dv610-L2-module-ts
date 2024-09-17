@@ -5,7 +5,6 @@
  * @version 1.0.0
  */
 
-// import { ColorTheme } from './ColorTheme.js'
 import { ColorSchemes } from './ColorSchemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
