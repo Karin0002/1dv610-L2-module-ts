@@ -54,14 +54,20 @@ export class Triadic extends MultiHueColorTheme {
     const numberOfColors = 3
     const numberOfHues = 360
     const hueInterval = numberOfHues / numberOfColors
-    const hues: Color[] = []
+    const colors: Color[] = []
 
     for (let i = 0; i < numberOfColors; i++) {
       const hue = (((this.hue + (hueInterval * i)) % numberOfHues) === 0) ? this.hue + (hueInterval * i) : (this.hue + (hueInterval * i)) % numberOfHues
-      const color = new Color(this.hue, this.adjustNumber(this.saturation, 10), this.lightness)
-      hues.push(color)
+      this.hues.push(hue)
+
+      const color = new Color(hue, this.adjustNumber(this.saturation, 10), this.lightness)
+      colors.push(color)
     }
 
-    return hues
+    return colors
+  }
+
+  #generateDarkColor (): Color {
+    
   }
 }

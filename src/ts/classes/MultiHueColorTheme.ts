@@ -7,6 +7,7 @@
 
 import { ColorTheme } from "./ColorTheme.js"
 import { ColorValues } from "./ColorValues.js"
+import { Color } from "./Color.js"
 
 /**
  * Represents a multi hue color theme.
@@ -47,15 +48,36 @@ export abstract class MultiHueColorTheme extends ColorTheme {
   }
 
   /**
-   * Picks a random hue from an array.
+   * Picks a random hue from hues.
    *
-   * @param {number[]} hues - An array of numbers representing hues.
    * @returns {number} The hue that was picked.
    */
-  protected pickRandomHue (hues: number[]): number {
+  protected pickRandomHue (): number {
     // Random index between 0, the first index, and hues.length - 1, the last index.
-    const randomIndex = this.generateRandomNumber(hues.length - 1, 0)
-    return hues[randomIndex]
+    const randomIndex = this.generateRandomNumber(this.hues.length - 1, 0)
+    return this.hues[randomIndex]
+    // const randomIndex = this.generateRandomNumber(hues.length - 1, 0)
+    // return hues[randomIndex]
+
   }
 
+  /**
+   * Generates a dark color for the color theme.
+   *
+   * @returns {Color} The generated color.
+   */
+  protected generateDarkColor (): Color {
+    const color = new Color(this.pickRandomHue(), this.adjustNumber(this.saturation, 10), this.minLightness)
+    return color
+  }
+
+  /**
+   * Generates a light color for the color theme.
+   *
+   * @returns {Color} The generated color.
+   */
+  protected generateLightColor (): Color {
+    const color = new Color(this.pickRandomHue(), this.adjustNumber(this.saturation, 10), this.maxLightness)
+    return color
+  }
 }
