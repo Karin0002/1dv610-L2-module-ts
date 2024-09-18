@@ -1,10 +1,10 @@
 // console.log('Hello world you!')
-import { Analogous } from './classes/Analogous.js'
+import { SplitComplementary } from './classes/SplitComplementary.js'
 // import { Monochrome } from './classes/Monochrome.js'
 // import { Triadic } from "./classes/Triadic.js"
 // const colorTheme = new Triadic()
 // const colorTheme = new Monochrome()
-const colorTheme = new Analogous()
+const colorTheme = new SplitComplementary()
 
 const theme = colorTheme.generateColorTheme(5)
 console.log(theme)
@@ -25,7 +25,7 @@ const color5 = theme.colors[4]
 console.log(color5.hsl)
 
 // const colorTheme2 = new Triadic()
-const colorTheme2 = new Analogous()
+const colorTheme2 = new SplitComplementary()
 
 const theme2 = colorTheme2.generateColorTheme(4)
 console.log(theme2)
