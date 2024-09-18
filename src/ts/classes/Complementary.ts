@@ -13,7 +13,7 @@ import { ColorThemeData } from './ColorThemeData.js'
 /**
  * Represents a complementary color theme.
  */
-export class SplitComplementary extends MultiHueColorTheme {
+export class Complementary extends MultiHueColorTheme {
   /**
    * Creates a new Complementary object.
    */
