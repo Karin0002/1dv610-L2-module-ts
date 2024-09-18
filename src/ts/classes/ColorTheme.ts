@@ -7,6 +7,8 @@
 
 import { ColorSchemes } from "./ColorSchemes.js"
 import { Color } from "./Color.js"
+import { ColorThemeData } from "./ColorThemeData.js"
+import { ColorValues } from "./ColorValues.js"
 
 /**
  * Represents a color theme.
@@ -41,19 +43,13 @@ export abstract class ColorTheme {
   /**
    * Creates a new ColorTheme object.
    *
-   * @param {number} [saturationMaxValue=90] - The maximum value saturation can be set to.
-   * @param {number} [saturationMinValue=30] - The minimum value saturation can be set to.
-   * @param {number} [hueMaxValue=360] - The maximum value hue can be set to.
-   * @param {number} [hueMinValue=0] - The minimum value hue can be set to.
-   * @param {number} [minLightness=20] - The lightness value of the darkest color in the color theme.
-   * @param {number} [maxLightness=80] - The lightness value of the lightest color in the color theme.
    * @class
    */
-  constructor (saturationMaxValue:number = 90, saturationMinValue:number = 30, hueMaxValue:number = 360, hueMinValue:number = 0,maxLightness:number = 80, minLightness:number = 20) {
-    this.#setHue(hueMaxValue, hueMinValue)
-    this.#setSaturation(saturationMaxValue, saturationMinValue)
-    this.#setMaxLightness(maxLightness)
-    this.#setMinLightness(minLightness)
+  constructor () {
+    this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
+    this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
+    this.#setMaxLightness(ColorValues.MaxLightness)
+    this.#setMinLightness(ColorValues.MinLightness)
   }
 
   /**
@@ -61,20 +57,8 @@ export abstract class ColorTheme {
    *
    * @param {number} [maxValue] - The maximum value hue can be set to.
    * @param {number} [minValue] - The minimum value hue can be set to.
-   * @throws {Error} The max value of hue cannot be greater than 360 and cannot be less than min value of hue.
-   * @throws {Error} The min value of hue cannot be less than 0.
    */
   #setHue (maxValue:number, minValue:number) {
-    let error
-    if (maxValue > 360 || maxValue < minValue) {
-      error = new Error('The max value of hue cannot be greater than 360 and cannot be less than min value of hue.')
-    } else if (minValue < 0) {
-      error = new Error('The min value of hue cannot be less than 0.')
-    }
-    if (error) {
-      // error.status = 400
-      throw error
-    }
     this.hue = this.generateRandomNumber(maxValue, minValue)
   }
 
@@ -83,21 +67,8 @@ export abstract class ColorTheme {
    *
    * @param {number} [maxValue] - The maximum value saturation can be set to.
    * @param {number} [minValue] - The minimum value saturation can be set to.
-   * @throws {Error} The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.
-   * @throws {Error} The min value of saturation cannot be less than 30.
    */
   #setSaturation (maxValue:number, minValue:number) {
-    let error
-    if (maxValue > 90 || maxValue < minValue) {
-      error = new Error('The max value of saturation cannot be greater than 90 and cannot be less than min value of saturation.')
-    } else if (minValue < 30) {
-      error = new Error('The min value of saturation cannot be less than 30.')
-    }
-    if (error) {
-      // error.status = 400
-      throw error
-    }
-
     this.saturation = this.generateRandomNumber(maxValue, minValue)
   }
 
@@ -105,18 +76,8 @@ export abstract class ColorTheme {
    * Sets the minLightness.
    *
    * @param {number} [value] - The value to set minLightness to.
-   * @throws {Error} The value of minLightness must be less than 50 and greater or equal to 20.
    */
   #setMinLightness (value:number) {
-    let error
-    if (value < 20 || value >= 50) {
-      error = new Error('The value of minLightness must be less than 50 and greater or equal to 20.')
-    }
-    if (error) {
-      // error.status = 400
-      throw error
-    }
-
     this.minLightness = value
   }
 
@@ -124,18 +85,8 @@ export abstract class ColorTheme {
    * Sets the maxLightness.
    *
    * @param {number} [value] - The value to set maxLightness to.
-   * @throws {Error} The value of maxLightness must be greater than 50, and less or equal to 80.
    */
   #setMaxLightness (value:number) {
-    let error
-    if (value > 80 || value <= 50) {
-      error = new Error('The value of maxLightness must be greater than 50, and less or equal to 80.')
-    }
-    if (error) {
-      // error.status = 400
-      throw error
-    }
-
     this.maxLightness = value
   }
 
@@ -162,5 +113,5 @@ export abstract class ColorTheme {
     return this.generateRandomNumber(number + deviation, number - deviation)
   }
 
-  abstract generateColorTheme (numberOfColors:number): {numberOfColors: number, colorScheme: ColorSchemes, colors: Color[]}
+  abstract generateColorTheme (numberOfColors:number): ColorThemeData
 }

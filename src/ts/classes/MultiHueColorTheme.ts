@@ -6,6 +6,8 @@
  */
 
 import { ColorTheme } from "./ColorTheme.js"
+import { ColorValues } from "./ColorValues.js"
+import { Color } from "./Color.js"
 
 /**
  * Represents a multi hue color theme.
@@ -19,15 +21,64 @@ export abstract class MultiHueColorTheme extends ColorTheme {
   protected hues: number[]
 
   /**
-   * Picks a random hue from an array.
+   * The lightness of the color theme.
    *
-   * @param {number[]} hues - An array of numbers representing hues.
-   * @returns {number} The hue that was picked.
+   * @type {number}
    */
-  protected pickRandomHue (hues: number[]): number {
-    // Random index between 0, the first index, and hues.length - 1, the last index.
-    const randomIndex = this.generateRandomNumber(hues.length - 1, 0)
-    return hues[randomIndex]
+  protected lightness: number
+
+  /**
+   * Creates a new MultiHueColorTheme object.
+   *
+   * @class
+   */
+  constructor () {
+    super()
+    this.hues = []
+    this.#setLightness(ColorValues.LightnessMax, ColorValues.LightnessMin)
   }
 
+  /**
+   * Sets the lightness.
+   *
+   * @param {number} maxValue - The maximum value lightness can be set to.
+   * @param {number} minValue - The minimum value lightness can be set to.
+   */
+  #setLightness (maxValue:number, minValue:number) {
+    this.lightness = this.generateRandomNumber(maxValue, minValue)
+  }
+
+  /**
+   * Picks a random hue from hues.
+   *
+   * @returns {number} The hue that was picked.
+   */
+  protected pickRandomHue (): number {
+    // Random index between 0, the first index, and hues.length - 1, the last index.
+    const randomIndex = this.generateRandomNumber(this.hues.length - 1, 0)
+    return this.hues[randomIndex]
+    // const randomIndex = this.generateRandomNumber(hues.length - 1, 0)
+    // return hues[randomIndex]
+
+  }
+
+  /**
+   * Generates a dark color for the color theme.
+   *
+   * @returns {Color} The generated color.
+   */
+  protected generateDarkColor (): Color {
+    const color = new Color(this.pickRandomHue(), this.adjustNumber(this.saturation, 10), this.minLightness)
+    return color
+  }
+
+  /**
+   * Generates a light color for the color theme.
+   *
+   * @returns {Color} The generated color.
+   */
+  protected generateLightColor (): Color {
+    const color = new Color(this.pickRandomHue(), this.adjustNumber(this.saturation, 10), this.maxLightness)
+    return color
+  }
 }
