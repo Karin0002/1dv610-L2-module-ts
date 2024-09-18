@@ -8,6 +8,7 @@
 import { ColorTheme } from './ColorTheme.js'
 import { ColorSchemes } from './ColorSchemes.js'
 import { Color } from './Color.js'
+import { ColorThemeData } from './ColorThemeData.js'
 
 /**
  * Represents a monochrome color theme.
@@ -25,9 +26,9 @@ export class Monochrome extends ColorTheme {
    *
    * @param {number} numberOfColors - The number of colors to include ranging from 2 to 5.
    * @throws {Error} The number of colors must be between 2 and 5.
-   * @returns {object} An object containing data about the generated color theme.
+   * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
-  generateColorTheme (numberOfColors:number): {numberOfColors: number, colorScheme: ColorSchemes, colors: Color[]} {
+  generateColorTheme (numberOfColors:number): ColorThemeData {
     if (numberOfColors < 2 || numberOfColors > 5) {
       const error = new Error('The number of colors must be between 2 and 5.')
       // error.status = 400

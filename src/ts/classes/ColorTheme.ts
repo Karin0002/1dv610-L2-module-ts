@@ -7,6 +7,7 @@
 
 import { ColorSchemes } from "./ColorSchemes.js"
 import { Color } from "./Color.js"
+import { ColorThemeData } from "./ColorThemeData.js"
 
 /**
  * Represents a color theme.
@@ -162,5 +163,5 @@ export abstract class ColorTheme {
     return this.generateRandomNumber(number + deviation, number - deviation)
   }
 
-  abstract generateColorTheme (numberOfColors:number): {numberOfColors: number, colorScheme: ColorSchemes, colors: Color[]}
+  abstract generateColorTheme (numberOfColors:number): ColorThemeData
 }
