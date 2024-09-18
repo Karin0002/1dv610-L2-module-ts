@@ -36,23 +36,34 @@ export class Monochrome extends ColorTheme {
     }
 
     const colors: Color[] = []
-    const colorTheme = {
-      numberOfColors,
-      colorScheme: ColorSchemes.Monochrome,
-      colors
-    }
+
+    colors.push(...this.#generateColors(numberOfColors))
+
+    // Prehaps ColorTheme can be the object that is returned??? 
+    // So it has the fields numberOfColors, colorScheme and colors.
+    const data = new ColorThemeData(numberOfColors, ColorSchemes.Monochrome, colors)
+    return data
+  }
+
+  /**
+   * Generates monochrome colors.
+   *
+   * @param {number} numberOfColors - The number of colors to generate.
+   * @returns {Color[]} The generated colors.
+   */
+  #generateColors (numberOfColors:number): Color[] {
+    const colors: Color[] = []
+    const increments = numberOfColors - 1  // 1 since the number of increments is one less than number of colors.
 
     for (let i = 0; i < numberOfColors; i++) {
-      // MAGIC NUMBER
-      const lightnessIncrement = (this.maxLightness - this.minLightness) / (numberOfColors - 1) // 1 since the number of increments is one less than number of colors.
+      const lightnessIncrement = (this.maxLightness - this.minLightness) / (increments)
       const calculatedLightness = this.minLightness + (lightnessIncrement * i)
       const saturation = this.adjustNumber(this.saturation, 10) // 10 for slight variation.
 
       const color = new Color(this.hue, saturation, calculatedLightness)
-
-      colorTheme.colors.push(color)
+      colors.push(color)
     }
 
-    return colorTheme
+    return colors
   }
 }
