@@ -35,24 +35,33 @@ export class Triadic extends MultiHueColorTheme {
       throw error
     }
 
-    // const colors: Color[] = []
+    const colors: Color[] = []
     // const colorTheme = {
     //   numberOfColors,
     //   colorScheme: ColorSchemes.Monochrome,
     //   colors
     // }
 
+    colors.push(...this.#generate3Colors())
+  }
+
+  /**
+   * Generates three triadic colors.
+   *
+   * @returns {Color[]} The three generated colors.
+   */
+  #generate3Colors (): Color[] {
+    const numberOfColors = 3
+    const numberOfHues = 360
+    const hueInterval = numberOfHues / numberOfColors
+    const hues: Color[] = []
+
     for (let i = 0; i < numberOfColors; i++) {
-      // MAGIC NUMBER
-      const lightnessIncrement = (this.maxLightness - this.minLightness) / (numberOfColors - 1) // 1 since the number of increments is one less than number of colors.
-      const calculatedLightness = this.minLightness + (lightnessIncrement * i)
-      const saturation = this.adjustNumber(this.saturation, 10) // 10 for slight variation.
-
-      const color = new Color(this.hue, saturation, calculatedLightness)
-
-      colorTheme.colors.push(color)
+      const hue = (((this.hue + (hueInterval * i)) % numberOfHues) === 0) ? this.hue + (hueInterval * i) : (this.hue + (hueInterval * i)) % numberOfHues
+      const color = new Color(this.hue, this.adjustNumber(this.saturation, 10), this.lightness)
+      hues.push(color)
     }
 
-    return colorTheme
+    return hues
   }
 }
