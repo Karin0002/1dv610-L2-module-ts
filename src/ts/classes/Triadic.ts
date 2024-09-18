@@ -36,13 +36,24 @@ export class Triadic extends MultiHueColorTheme {
     }
 
     const colors: Color[] = []
-    // const colorTheme = {
-    //   numberOfColors,
-    //   colorScheme: ColorSchemes.Monochrome,
-    //   colors
-    // }
 
     colors.push(...this.#generate3Colors())
+    // Nested control statments and magic numbers.
+    if (numberOfColors === 4) {
+      if (this.lightness > 50) {
+        colors.push(this.generateDarkColor())
+      } else {
+        colors.push(this.generateLightColor())
+      }
+    } else if (numberOfColors === 5) {
+      colors.push(this.generateDarkColor())
+      colors.push(this.generateLightColor())
+    }
+
+    // Prehaps ColorTheme can be the object that is returned??? 
+    // So it has the fields numberOfColors, colorScheme and colors.
+    const data = new ColorThemeData(numberOfColors, ColorSchemes.Triadic, colors)
+    return data
   }
 
   /**
@@ -65,9 +76,5 @@ export class Triadic extends MultiHueColorTheme {
     }
 
     return colors
-  }
-
-  #generateDarkColor (): Color {
-    
   }
 }

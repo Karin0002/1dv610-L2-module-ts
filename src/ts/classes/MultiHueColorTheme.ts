@@ -34,6 +34,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
    */
   constructor () {
     super()
+    this.hues = []
     this.#setLightness(ColorValues.LightnessMax, ColorValues.LightnessMin)
   }
 
