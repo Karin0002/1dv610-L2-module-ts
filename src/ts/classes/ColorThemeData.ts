@@ -73,4 +73,26 @@ export class ColorThemeData {
   get colors ():Color[] {
     return this.#colors
   }
+
+  /**
+   * Sorts the colors by hue.
+   *
+   * @returns {Color[]} The sorted array of Color objects.
+   */
+  sortColorsByHue (): Color[] {}
+
+  /**
+   * Sorts the colors by saturation.
+   *
+   * @returns {Color[]} The sorted array of Color objects.
+   */
+  sortColorsBySaturation (): Color[] {}
+  // SHOULD THEY MANIPULATE THE COLORS ARRAY OR LEAVE IT AND RETURN A COPY OF IT INSTEAD.
+
+  /**
+   * Sorts the colors by lightness.
+   *
+   * @returns {Color[]} The sorted array of Color objects.
+   */
+  sortColorsByLightness (): Color[] {}
 }
