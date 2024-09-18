@@ -65,14 +65,14 @@ export class Analogous extends MultiHueColorTheme {
     const numberOfColors = 3
     const numberOfHues = 360
     // Only difference between Analogous and Triadic is hueInterval and ColorSchemes, otherwise identical.
-    const hueInterval = 30 // 30 because each section of the colorwheel is 30 degrees.
+    const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
     const colors: Color[] = []
 
     for (let i = 0; i < numberOfColors; i++) {
-      const hue = (((this.hue + (hueInterval * i)) % numberOfHues) === 0) ? this.hue + (hueInterval * i) : (this.hue + (hueInterval * i)) % numberOfHues
-      this.hues.push(hue)
+      const calculatedHue = (((this.hue + (hueIncrement * i)) % numberOfHues) === 0) ? this.hue + (hueIncrement * i) : (this.hue + (hueIncrement * i)) % numberOfHues
+      this.hues.push(calculatedHue)
 
-      const color = new Color(hue, this.adjustNumber(this.saturation, 10), this.lightness) // 10 for slight variation.
+      const color = new Color(calculatedHue, this.adjustNumber(this.saturation, 10), this.lightness) // 10 for slight variation.
       colors.push(color)
     }
 

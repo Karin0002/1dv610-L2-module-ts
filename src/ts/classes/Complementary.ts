@@ -1,6 +1,6 @@
 /**
- * @file Module for the class Triadic.
- * @module src/ts/classes/Triadic
+ * @file Module for the class Complementary.
+ * @module src/ts/classes/Complementary
  * @author Karin Silfversparre <ks224ac@student.lnu.se>
  * @version 1.0.0
  */
@@ -11,11 +11,11 @@ import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 
 /**
- * Represents a triadic color theme.
+ * Represents a complementary color theme.
  */
-export class Triadic extends MultiHueColorTheme {
+export class Complementary extends MultiHueColorTheme {
   /**
-   * Creates a new Triadic object.
+   * Creates a new Complementary object.
    */
   constructor () {
     super()
@@ -24,45 +24,45 @@ export class Triadic extends MultiHueColorTheme {
   /**
    * Generates a color theme.
    *
-   * @param {number} numberOfColors - The number of colors to include ranging from 3 to 5.
-   * @throws {Error} The number of colors must be between 3 and 5.
+   * @param {number} numberOfColors - The number of colors to include ranging from 2 to 4.
+   * @throws {Error} The number of colors must be between 2 and 4.
    * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
-    if (numberOfColors < 3 || numberOfColors > 5) {
-      const error = new Error('The number of colors must be between 3 and 5.')
+    if (numberOfColors < 2 || numberOfColors > 4) {
+      const error = new Error('The number of colors must be between 2 and 4.')
       // error.status = 400
       throw error
     }
 
     const colors: Color[] = []
 
-    colors.push(...this.#generate3Colors())
+    colors.push(...this.#generate2Colors())
     // Nested control statments and magic numbers.
-    if (numberOfColors === 4) {
+    if (numberOfColors === 3) {
       if (this.lightness > 50) {
         colors.push(this.generateDarkColor())
       } else {
         colors.push(this.generateLightColor())
       }
-    } else if (numberOfColors === 5) {
+    } else if (numberOfColors === 4) {
       colors.push(this.generateDarkColor())
       colors.push(this.generateLightColor())
     }
 
     // Prehaps ColorTheme can be the object that is returned??? 
     // So it has the fields numberOfColors, colorScheme and colors.
-    const data = new ColorThemeData(numberOfColors, ColorSchemes.Triadic, colors)
+    const data = new ColorThemeData(numberOfColors, ColorSchemes.Complementary, colors)
     return data
   }
 
   /**
-   * Generates three triadic colors.
+   * Generates two complementary colors.
    *
-   * @returns {Color[]} The three generated colors.
+   * @returns {Color[]} The two generated colors.
    */
-  #generate3Colors (): Color[] {
-    const numberOfColors = 3
+  #generate2Colors (): Color[] {
+    const numberOfColors = 2
     const numberOfHues = 360
     const hueIncrement = numberOfHues / numberOfColors
     const colors: Color[] = []
