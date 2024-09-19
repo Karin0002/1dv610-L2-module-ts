@@ -28,8 +28,9 @@ export abstract class CSSColorSetter {
 
   /**
    * Sets the CSS property color on the recieved HTMLElement with the recieved color.
+   If the property is not visible it might be because it does not have an effect on the element.
    *
-   * @param {HTMLElement} HTMLElement - The HTML element to set the property on.
+   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
    */
   setCSSColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
@@ -39,8 +40,9 @@ export abstract class CSSColorSetter {
 
   /**
    * Sets the CSS property background-color on the recieved HTMLElement with the recieved color.
+   If the property is not visible it might be because it does not have an effect on the element.
    *
-   * @param {HTMLElement} HTMLElement - The HTML element to set the property on.
+   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
    */
   setCSSBackgroundColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
@@ -48,11 +50,13 @@ export abstract class CSSColorSetter {
     // Notes: none
   }
 
+  // To long comments for readability.
   /**
    * Sets the CSS property border on the recieved HTMLElement with the recieved color.
    If the recieved HTMLElement does not have border-style set, the method will set it to solid.
+   If the property is not visible it might be because it does not have an effect on the element.
    *
-   * @param {HTMLElement} HTMLElement - The HTML element to set the property on.
+   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
    */
   setCSSBorderPropertyOn (HTMLElement:HTMLElement, color:Color) {
@@ -63,8 +67,9 @@ export abstract class CSSColorSetter {
   /**
    * Sets the CSS property Outline on the recieved HTMLElement with the recieved color.
    If the recieved HTMLElement does not have outline-style set, the method will set it to solid.
+   If the property is not visible it might be because it does not have an effect on the element.
    *
-   * @param {HTMLElement} HTMLElement - The HTML element to set the property on.
+   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
    */
   setCSSOutlinePropertyOn (HTMLElement:HTMLElement, color:Color) {
@@ -75,12 +80,22 @@ export abstract class CSSColorSetter {
   /**
    * Sets the CSS property text-decoration on the recieved HTMLElement with the recieved color.
    If the recieved HTMLElement does not have text-decoration-line set, the method will set it to underline.
+   If the property is not visible it might be because it does not have an effect on the element.
    *
-   * @param {HTMLElement} HTMLElement - The HTML element to set the property on.
+   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
    */
   setCSSTextDecorationPropertyOn (HTMLElement:HTMLElement, color:Color) {
     // Set text-decoration
     // Notes: check if text-decoration-line is on HTMLElement, if yes text-decoration: color;, else text-decoration: underline color;
+  }
+
+  /**
+   * Checks if the argument is a HTMLElement.
+   *
+   * @param {HTMLElement} element - The argument to check.
+   */
+  #isHTMLElement (element:HTMLElement): boolean {
+    return element instanceof HTMLElement
   }
 }
