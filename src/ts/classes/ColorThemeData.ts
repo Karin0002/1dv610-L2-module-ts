@@ -71,7 +71,12 @@ export class ColorThemeData {
    * @returns {Color[]} A copy of the colors.
    */
   get colors ():Color[] {
-    return JSON.parse(JSON.stringify(this.#colors))
+    const copyOfColors = []
+    for (let i = 0; i < this.#colors.length; i++) {
+      const copyOfColor = new Color(this.#colors[i].hue, this.#colors[i].saturation, this.#colors[i].lightness)
+      copyOfColors.push(copyOfColor)
+    }
+    return copyOfColors
   }
 
   /**
