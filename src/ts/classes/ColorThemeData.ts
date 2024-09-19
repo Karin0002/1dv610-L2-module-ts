@@ -68,14 +68,14 @@ export class ColorThemeData {
   /**
    * Gets the colors of the object.
    *
-   * @returns {Color[]} The colors.
+   * @returns {Color[]} A copy of the colors.
    */
   get colors ():Color[] {
-    return Array.from(this.#colors)
+    return JSON.parse(JSON.stringify(this.#colors))
   }
 
   /**
-   * Sorts the colors by hue.
+   * Sorts the colors by hue in ascending order.
    */
   sortColorsByHue () {
     // Does not return colors because of command query separation.
@@ -83,18 +83,18 @@ export class ColorThemeData {
   }
 
   /**
-   * Sorts the colors by saturation.
+   * Sorts the colors by saturation in ascending order.
    */
   sortColorsBySaturation () {
     // Does not return colors because of command query separation.
     this.colors.sort((a, b) => a.saturation - b.saturation)
   }
-  // SHOULD THEY MANIPULATE THE COLORS ARRAY OR LEAVE IT AND RETURN A COPY OF IT INSTEAD.
 
   /**
-   * Sorts the colors by lightness.
-   *
-   * @returns {Color[]} The sorted array of Color objects.
+   * Sorts the colors by lightness in ascending order.
    */
-  sortColorsByLightness (): Color[] {}
+  sortColorsByLightness () {
+    // Does not return colors because of command query separation.
+    this.colors.sort((a, b) => a.lightness - b.lightness)
+  }
 }
