@@ -1,49 +1,50 @@
 // console.log('Hello world you!')
-import { Analogous } from './classes/Analogous.js'
+// import { Analogous } from './classes/Analogous.js'
 // import { Monochrome } from './classes/Monochrome.js'
 // import { Triadic } from "./classes/Triadic.js"
 // const colorTheme = new Triadic()
 // const colorTheme = new Monochrome()
-const colorTheme = new Analogous()
+// const colorTheme = new Analogous()
 
-const theme = colorTheme.generateColorTheme(5)
-console.log('Unsorted:')
-console.log(theme)
 
-const color1 = theme.colors[0]
-console.log(color1.hsl)
+// const theme = colorTheme.generateColorTheme(5)
+// console.log('Unsorted:')
+// console.log(theme)
 
-const color2 = theme.colors[1]
-console.log(color2.hsl)
+// const color1 = theme.colors[0]
+// console.log(color1.hsl)
 
-const color3 = theme.colors[2]
-console.log(color3.hsl)
+// const color2 = theme.colors[1]
+// console.log(color2.hsl)
 
-const color4 = theme.colors[3]
-console.log(color4.hsl)
+// const color3 = theme.colors[2]
+// console.log(color3.hsl)
 
-const color5 = theme.colors[4]
-console.log(color5.hsl)
+// const color4 = theme.colors[3]
+// console.log(color4.hsl)
 
-console.log()
+// const color5 = theme.colors[4]
+// console.log(color5.hsl)
 
-console.log('sort by light:')
-theme.sortColorsBySaturation()
+// console.log()
 
-const sortedColor1 = theme.colors[0]
-console.log(sortedColor1.hsl)
+// console.log('sort by light:')
+// theme.sortColorsBySaturation()
 
-const sortedColor2 = theme.colors[1]
-console.log(sortedColor2.hsl)
+// const sortedColor1 = theme.colors[0]
+// console.log(sortedColor1.hsl)
 
-const sortedColor3 = theme.colors[2]
-console.log(sortedColor3.hsl)
+// const sortedColor2 = theme.colors[1]
+// console.log(sortedColor2.hsl)
 
-const sortedColor4 = theme.colors[3]
-console.log(sortedColor4.hsl)
+// const sortedColor3 = theme.colors[2]
+// console.log(sortedColor3.hsl)
 
-const sortedColor5 = theme.colors[4]
-console.log(sortedColor5.hsl)
+// const sortedColor4 = theme.colors[3]
+// console.log(sortedColor4.hsl)
+
+// const sortedColor5 = theme.colors[4]
+// console.log(sortedColor5.hsl)
 
 // const colorTheme2 = new Triadic()
 // const colorTheme2 = new Complementary()
