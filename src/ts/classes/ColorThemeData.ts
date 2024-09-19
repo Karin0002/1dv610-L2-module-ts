@@ -84,7 +84,7 @@ export class ColorThemeData {
    */
   sortColorsByHue () {
     // Does not return colors because of command query separation.
-    this.colors.sort((a, b) => a.hue - b.hue)
+    this.#colors.sort((a, b) => a.hue - b.hue)
   }
 
   /**
@@ -92,7 +92,7 @@ export class ColorThemeData {
    */
   sortColorsBySaturation () {
     // Does not return colors because of command query separation.
-    this.colors.sort((a, b) => a.saturation - b.saturation)
+    this.#colors.sort((a, b) => a.saturation - b.saturation)
   }
 
   /**
@@ -100,6 +100,6 @@ export class ColorThemeData {
    */
   sortColorsByLightness () {
     // Does not return colors because of command query separation.
-    this.colors.sort((a, b) => a.lightness - b.lightness)
+    this.#colors.sort((a, b) => a.lightness - b.lightness)
   }
 }
