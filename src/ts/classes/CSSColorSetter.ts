@@ -34,6 +34,8 @@ export abstract class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
+    this.#validateHTMLElement(HTMLElement)
+    this.#validateColor(color)
     // Set color
     // Notes: none
   }
@@ -46,6 +48,8 @@ export abstract class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSBackgroundColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
+    this.#validateHTMLElement(HTMLElement)
+    this.#validateColor(color)
     // Set background-color
     // Notes: none
   }
@@ -60,6 +64,8 @@ export abstract class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSBorderPropertyOn (HTMLElement:HTMLElement, color:Color) {
+    this.#validateHTMLElement(HTMLElement)
+    this.#validateColor(color)
     // Set border
     // Notes: check if border-style is on HTMLElement, if yes border: color;, else border: solid color;
   }
@@ -73,6 +79,8 @@ export abstract class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSOutlinePropertyOn (HTMLElement:HTMLElement, color:Color) {
+    this.#validateHTMLElement(HTMLElement)
+    this.#validateColor(color)
     // Set outline
     // Notes: check if outline-style is on HTMLElement, if yes outline: color;, else outline: solid color;
   }
@@ -86,16 +94,35 @@ export abstract class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSTextDecorationPropertyOn (HTMLElement:HTMLElement, color:Color) {
+    this.#validateHTMLElement(HTMLElement)
+    this.#validateColor(color)
     // Set text-decoration
     // Notes: check if text-decoration-line is on HTMLElement, if yes text-decoration: color;, else text-decoration: underline color;
   }
 
   /**
-   * Checks if the argument is a HTMLElement.
+   * Validates the argument.
    *
-   * @param {HTMLElement} element - The argument to check.
+   * @param {HTMLElement} element - The argument to validate.
+   * @throws {Error} The argument HTMLElement must be an instance of HTMLElement.
    */
-  #isHTMLElement (element:HTMLElement): boolean {
-    return element instanceof HTMLElement
+  #validateHTMLElement (element:HTMLElement) {
+    if (!(element instanceof HTMLElement)) {
+      const error = new Error('The argument HTMLElement must be an instance of HTMLElement.')
+      throw error
+    }
+  }
+
+  /**
+   * Validates the argument.
+   *
+   * @param {HTMLElement} color - The argument to validate.
+   * @throws {Error} The argument color must be an instance of Color.
+   */
+  #validateColor (color:Color) {
+    if (!(color instanceof Color)) {
+      const error = new Error('The argument color must be an instance of Color.')
+      throw error
+    }
   }
 }
