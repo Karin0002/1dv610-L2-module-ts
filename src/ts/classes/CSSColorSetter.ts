@@ -5,30 +5,23 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from "./ColorSchemes.js"
 import { Color } from "./Color.js"
-import { ColorThemeData } from "./ColorThemeData.js"
-import { ColorValues } from "./ColorValues.js"
 
 /**
  * Represents a CSS color setter.
  */
-export abstract class CSSColorSetter {
+export class CSSColorSetter {
   /**
    * Creates a new CSSColorSetter object.
    *
    * @class
    */
   constructor () {
-    // this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
-    // this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
-    // this.#setMaxLightness(ColorValues.MaxLightness)
-    // this.#setMinLightness(ColorValues.MinLightness)
+    // If it was to write to file instead of using style attribute the constructor could take the path to css file as argument.
   }
 
   /**
-   * Sets the CSS property color on the recieved HTMLElement with the recieved color.
-   If the property is not visible it might be because it does not have an effect on the element.
+   * Sets the CSS property color on the recieved HTMLElement with the recieved color using style attribute.
    *
    * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
@@ -36,13 +29,14 @@ export abstract class CSSColorSetter {
   setCSSColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#validateHTMLElement(HTMLElement)
     this.#validateColor(color)
+
+    HTMLElement.style.backgroundColor = color.hsl
     // Set color
     // Notes: none
   }
 
   /**
-   * Sets the CSS property background-color on the recieved HTMLElement with the recieved color.
-   If the property is not visible it might be because it does not have an effect on the element.
+   * Sets the CSS property background-color on the recieved HTMLElement with the recieved color using style attribute.
    *
    * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
@@ -50,15 +44,14 @@ export abstract class CSSColorSetter {
   setCSSBackgroundColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#validateHTMLElement(HTMLElement)
     this.#validateColor(color)
+
+    HTMLElement.style.color = color.hsl
     // Set background-color
     // Notes: none
   }
 
-  // To long comments for readability.
   /**
-   * Sets the CSS property border on the recieved HTMLElement with the recieved color.
-   If the recieved HTMLElement does not have border-style set, the method will set it to solid.
-   If the property is not visible it might be because it does not have an effect on the element.
+   * Sets the CSS property border-color on the recieved HTMLElement with the recieved color and border-style to solid using style attribute.
    *
    * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
@@ -66,14 +59,14 @@ export abstract class CSSColorSetter {
   setCSSBorderPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#validateHTMLElement(HTMLElement)
     this.#validateColor(color)
+
+    HTMLElement.style.border = `solid ${color.hsl}`
     // Set border
     // Notes: check if border-style is on HTMLElement, if yes border: color;, else border: solid color;
   }
 
   /**
-   * Sets the CSS property Outline on the recieved HTMLElement with the recieved color.
-   If the recieved HTMLElement does not have outline-style set, the method will set it to solid.
-   If the property is not visible it might be because it does not have an effect on the element.
+   * Sets the CSS property outline-color on the recieved HTMLElement with the recieved color and outline-style to solid using style attribute.
    *
    * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
@@ -81,14 +74,14 @@ export abstract class CSSColorSetter {
   setCSSOutlinePropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#validateHTMLElement(HTMLElement)
     this.#validateColor(color)
+
+    HTMLElement.style.outline = `solid ${color.hsl}`
     // Set outline
     // Notes: check if outline-style is on HTMLElement, if yes outline: color;, else outline: solid color;
   }
 
   /**
-   * Sets the CSS property text-decoration on the recieved HTMLElement with the recieved color.
-   If the recieved HTMLElement does not have text-decoration-line set, the method will set it to underline.
-   If the property is not visible it might be because it does not have an effect on the element.
+   * Sets the CSS property text-decoration-color on the recieved HTMLElement with the recieved color and text-decoration-line to underline using style attribute.
    *
    * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
    * @param {Color} color - The color to set the property to.
@@ -96,6 +89,8 @@ export abstract class CSSColorSetter {
   setCSSTextDecorationPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#validateHTMLElement(HTMLElement)
     this.#validateColor(color)
+
+    HTMLElement.style.textDecoration = `underline ${color.hsl}`
     // Set text-decoration
     // Notes: check if text-decoration-line is on HTMLElement, if yes text-decoration: color;, else text-decoration: underline color;
   }
