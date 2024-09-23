@@ -11,6 +11,7 @@ import { Complementary } from "./Complementary.js"
 import { SplitComplementary } from "./SplitComplementary.js"
 import { Monochrome } from "./Monochrome.js"
 import { ColorTheme } from "./ColorTheme.js"
+import { ColorThemeData } from "./ColorThemeData.js"
 
 /**
  * Represents a random color theme.
@@ -62,6 +63,24 @@ export class RandomColorTheme {
     this.#monochrome = new Monochrome()
     this.#splitComplementary = new SplitComplementary()
     this.#triadic = new Triadic()
+  }
+
+  generateColorTheme (numberOfColors?:number): ColorThemeData {
+    // NOTES, MAYBE EVERY COLORTHEME SHOULD HAVE A GETTER THAT GETS WHAT ARGUMENTS GENERATECOLORTHEME CAN TAKE
+    // 1. Check if number of colors is not undefined
+    // 2a. If true:
+    // 3. getThemeWith5Colors
+    // 4. Pick random element from array
+    // 5. Choose random number that is within the limits of the themes argument
+    // 6. Call generateColorTheme() with the number
+    // 7. Return ColorThemeData
+
+    // 2b. If false:
+    // 3. getThemeWithXColors() X should be the numberOfColors
+    // 4. Pick random element from array
+    // 5. Call generateColorTheme() with the numberOfColors
+    // 6. Return ColorThemeData
+
   }
 
   #getThemesWith2Colors ():ColorTheme[] {
