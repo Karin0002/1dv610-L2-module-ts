@@ -9,7 +9,7 @@ import { Color } from "./Color.js"
 import { CSSColorSetter } from "./CSSColorSetter.js"
 
 /**
- * Represents a color swatch generator setter.
+ * Represents a color swatch generator.
  */
 export class ColorSwatchGenerator {
   /**
