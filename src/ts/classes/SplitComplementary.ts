@@ -9,7 +9,6 @@ import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
-import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 /**
