@@ -1,5 +1,5 @@
 // Very long name.
-export enum GenerateColorThemeArgumentLimits {
+export enum ArgumentLimits {
   AnalogousMax = 5,
   AnalogousMin = 3,
   ComplementaryMax = 4,
@@ -9,5 +9,11 @@ export enum GenerateColorThemeArgumentLimits {
   SplitComplementaryMax = 5,
   SplitComplementaryMin = 3,
   TriadicMax = 5,
-  TriadicMin = 3
+  TriadicMin = 3,
+  HueMax = 360,
+  HueMin = 0,
+  SaturationMax = 100,
+  SaturationMin = 0,
+  LightnessMax = 100,
+  LightnessMin = 0
 }

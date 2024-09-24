@@ -9,6 +9,8 @@ import { ColorSchemes } from '../enums/ColorSchemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { Guard } from './Guard.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 /**
  * Represents a split complementary color theme.
@@ -29,11 +31,11 @@ export class SplitComplementary extends MultiHueColorTheme {
    * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
-    if (numberOfColors < 3 || numberOfColors > 5) {
-      const error = new Error('The number of colors must be between 3 and 5.')
-      // error.status = 400
-      throw error
-    }
+    this.argumentGuard.validateNumberArgument({
+      maxValue: ArgumentLimits.SplitComplementaryMax,
+      minValue: ArgumentLimits.SplitComplementaryMin,
+      recievedArgument: numberOfColors      
+    })
 
     const colors: Color[] = []
 

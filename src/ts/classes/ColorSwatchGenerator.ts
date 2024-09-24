@@ -7,6 +7,7 @@
 
 import { Color } from "./Color.js"
 import { CSSColorSetter } from "./CSSColorSetter.js"
+import { Guard } from "./Guard.js"
 
 /**
  * Represents a color swatch generator.
@@ -59,6 +60,9 @@ export class ColorSwatchGenerator {
    * @returns {HTMLDivElement} The generated element.
    */
   generateColorSwatchElement (color: Color): HTMLDivElement {
+    const argumentGuard = new Guard()
+    argumentGuard.validateColorArgument(color)
+
     const swatch = this.#createDivElement()
 
     this.#styler.setCSSBackgroundColorPropertyOn(swatch, color)

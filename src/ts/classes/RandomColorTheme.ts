@@ -12,11 +12,19 @@ import { SplitComplementary } from "./SplitComplementary.js"
 import { Monochrome } from "./Monochrome.js"
 import { ColorTheme } from "./ColorTheme.js"
 import { ColorThemeData } from "./ColorThemeData.js"
+import { Guard } from "./Guard.js"
 
 /**
  * Represents a random color theme.
  */
 export class RandomColorTheme {
+  /**
+   * The guard to validate arguments.
+   *
+   * @type {Guard}
+   */
+  #argumentGuard: Guard
+
   /**
    * The object to use for generating triadic color themes.
    *
@@ -58,6 +66,7 @@ export class RandomColorTheme {
    * @class
    */
   constructor () {
+    this.#argumentGuard = new Guard()
     this.#analogous = new Analogous()
     this.#complementary = new Complementary()
     this.#monochrome = new Monochrome()
@@ -66,6 +75,26 @@ export class RandomColorTheme {
   }
 
   generateColorTheme (numberOfColors?:number): ColorThemeData {
+    if (numberOfColors !== undefined) {
+      this.#argumentGuard.validateNumberArgument({
+        maxValue: 5,
+        minValue: 2,
+        recievedArgument: numberOfColors
+      })
+
+      // Specific numberOfColors:
+      // getThemesWithNColors(numberOfColors)
+      // Pick random element from array
+      // generateColorTheme(numberOfColors)
+    } else {
+      // Random:
+      // Pick random number
+      // getThemesWithNColors(randomNumber)
+      // Pick random element form array
+      // generateColorTheme(randomNumber)
+    }
+
+
     // NOTES, MAYBE EVERY COLORTHEME SHOULD HAVE A GETTER THAT GETS WHAT ARGUMENTS GENERATECOLORTHEME CAN TAKE
     // 1. Check if number of colors is not undefined
     // 2a. If true:
@@ -80,17 +109,6 @@ export class RandomColorTheme {
     // 4. Pick random element from array
     // 5. Call generateColorTheme() with the numberOfColors
     // 6. Return ColorThemeData
-
-    // Random:
-    // Pick random number
-    // getThemesWithNColors(randomNumber)
-    // Pick random element form array
-    // generateColorTheme(randomNumber)
-
-    // Specific numberOfColors:
-    // getThemesWithNColors(numberOfColors)
-    // Pick random element from array
-    // generateColorTheme(numberOfColors)
   }
 
   #getThemesWithNColors (numberOfColors:number): ColorTheme[] {

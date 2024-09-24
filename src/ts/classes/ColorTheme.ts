@@ -9,11 +9,19 @@ import { ColorSchemes } from "../enums/ColorSchemes.js"
 import { Color } from "./Color.js"
 import { ColorThemeData } from "./ColorThemeData.js"
 import { ColorValues } from "../enums/ColorValues.js"
+import { Guard } from "./Guard.js"
 
 /**
  * Represents a color theme.
  */
 export abstract class ColorTheme {
+  /**
+   * The guard to validate arguments.
+   *
+   * @type {Guard}
+   */
+  protected argumentGuard: Guard
+
   /**
    * The hue of the color theme.
    *
@@ -46,6 +54,7 @@ export abstract class ColorTheme {
    * @class
    */
   constructor () {
+    this.argumentGuard = new Guard()
     this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
     this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
     this.#setMaxLightness(ColorValues.MaxLightness)

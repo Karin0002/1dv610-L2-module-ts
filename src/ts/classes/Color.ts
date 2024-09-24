@@ -4,11 +4,20 @@
  * @author Karin Silfversparre <ks224ac@student.lnu.se>
  * @version 1.0.0
  */
+import { ArgumentLimits } from "../enums/ArgumentLimits.js"
+import { Guard } from "./Guard.js"
 
 /**
  * Represents a color.
  */
 export class Color {
+  /**
+   * The guard to validate arguments.
+   *
+   * @type {Guard}
+   */
+  #argumentGuard: Guard
+
   /**
    * The hue of the color.
    *
@@ -44,6 +53,8 @@ export class Color {
    * @class
    */
   constructor (hue: number, saturation: number, lightness: number) {
+    this.#argumentGuard = new Guard()
+
     this.#setHue(hue)
     this.#setSaturation(saturation)
     this.#setLightness(lightness)
@@ -58,11 +69,12 @@ export class Color {
    * @throws {Error} The value of hue cannot be greater than 360, nor be less than 0.
    */
   #setHue (value:number) {
-    if (value > 360 || value < 0) {
-      const error = new Error('The value of hue cannot be greater than 360, nor be less than 0.')
-      // error.status = 400
-      throw error
+    const argumentValues = {
+      maxValue: ArgumentLimits.HueMax,
+      minValue: ArgumentLimits.HueMin,
+      recievedArgument: value
     }
+    this.#argumentGuard.validateNumberArgument(argumentValues)
 
     this.#hue = value
   }
@@ -74,11 +86,12 @@ export class Color {
    * @throws {Error} The value of saturation cannot be greater than 100, nor be less than 0.
    */
   #setSaturation (value:number) {
-    if (value > 100 || value < 0) {
-      const error = new Error('The value of saturation cannot be greater than 100, nor be less than 0.')
-      // error.status = 400
-      throw error
+    const argumentValues = {
+      maxValue: ArgumentLimits.SaturationMax,
+      minValue: ArgumentLimits.SaturationMin,
+      recievedArgument: value
     }
+    this.#argumentGuard.validateNumberArgument(argumentValues)
 
     this.#saturation = value
   }
@@ -90,11 +103,12 @@ export class Color {
    * @throws {Error} The value of lightness cannot be greater than 100, nor be less than 0.
    */
   #setLightness (value:number) {
-    if (value > 100 || value < 0) {
-      const error = new Error('The value of lightness cannot be greater than 100, nor be less than 0.')
-      // error.status = 400
-      throw error
+    const argumentValues = {
+      maxValue: ArgumentLimits.LightnessMax,
+      minValue: ArgumentLimits.LightnessMin,
+      recievedArgument: value
     }
+    this.#argumentGuard.validateNumberArgument(argumentValues)
 
     this.#lightness = value
   }

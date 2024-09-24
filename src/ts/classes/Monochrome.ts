@@ -9,6 +9,7 @@ import { ColorTheme } from './ColorTheme.js'
 import { ColorSchemes } from '../enums/ColorSchemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 /**
  * Represents a monochrome color theme.
@@ -29,11 +30,11 @@ export class Monochrome extends ColorTheme {
    * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
-    if (numberOfColors < 2 || numberOfColors > 5) {
-      const error = new Error('The number of colors must be between 2 and 5.')
-      // error.status = 400
-      throw error
-    }
+    this.argumentGuard.validateNumberArgument({
+      maxValue: ArgumentLimits.MonochromeMax,
+      minValue: ArgumentLimits.MonochromeMin,
+      recievedArgument: numberOfColors      
+    })
 
     const colors: Color[] = []
 

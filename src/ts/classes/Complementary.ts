@@ -9,11 +9,13 @@ import { ColorSchemes } from '../enums/ColorSchemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 /**
  * Represents a complementary color theme.
  */
 export class Complementary extends MultiHueColorTheme {
+ 
   /**
    * Creates a new Complementary object.
    */
@@ -29,11 +31,11 @@ export class Complementary extends MultiHueColorTheme {
    * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
-    if (numberOfColors < 2 || numberOfColors > 4) {
-      const error = new Error('The number of colors must be between 2 and 4.')
-      // error.status = 400
-      throw error
-    }
+    this.argumentGuard.validateNumberArgument({
+      maxValue: ArgumentLimits.ComplementaryMax,
+      minValue: ArgumentLimits.ComplementaryMin,
+      recievedArgument: numberOfColors
+    })
 
     const colors: Color[] = []
 
