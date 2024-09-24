@@ -6,7 +6,7 @@
  */
 
 import { ColorTheme } from "./ColorTheme.js"
-import { ColorValues } from "./ColorValues.js"
+import { ColorValues } from "../enums/ColorValues.js"
 import { Color } from "./Color.js"
 
 /**

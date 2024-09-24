@@ -6,7 +6,7 @@
  */
 
 import { ColorTheme } from './ColorTheme.js'
-import { ColorSchemes } from './ColorSchemes.js'
+import { ColorSchemes } from '../enums/ColorSchemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
 

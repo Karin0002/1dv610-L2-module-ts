@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from './ColorSchemes.js'
+import { ColorSchemes } from '../enums/ColorSchemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'

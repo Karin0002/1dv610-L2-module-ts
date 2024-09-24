@@ -81,6 +81,38 @@ export class RandomColorTheme {
     // 5. Call generateColorTheme() with the numberOfColors
     // 6. Return ColorThemeData
 
+    // Random:
+    // Pick random number
+    // getThemesWithNColors(randomNumber)
+    // Pick random element form array
+    // generateColorTheme(randomNumber)
+
+    // Specific numberOfColors:
+    // getThemesWithNColors(numberOfColors)
+    // Pick random element from array
+    // generateColorTheme(numberOfColors)
+  }
+
+  #getThemesWithNColors (numberOfColors:number): ColorTheme[] {
+    // Breaks open/close rule.
+    let themes
+    switch (numberOfColors) {
+      case 2:
+        themes = [this.#complementary, this.#monochrome]
+        break
+      case 3:
+        themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
+        break
+      case 4:
+        themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
+        break
+      case 5:
+        themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
+        break
+      default:
+        throw new Error('The number of colors must be between 2 and 5.')
+    }
+    return themes
   }
 
   #getThemesWith2Colors ():ColorTheme[] {

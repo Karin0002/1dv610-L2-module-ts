@@ -5,10 +5,10 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from "./ColorSchemes.js"
+import { ColorSchemes } from "../enums/ColorSchemes.js"
 import { Color } from "./Color.js"
 import { ColorThemeData } from "./ColorThemeData.js"
-import { ColorValues } from "./ColorValues.js"
+import { ColorValues } from "../enums/ColorValues.js"
 
 /**
  * Represents a color theme.
