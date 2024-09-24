@@ -16,13 +16,6 @@ import { ArgumentLimits } from '../enums/ArgumentLimits.js'
  */
 export class Analogous extends MultiHueColorTheme {
   /**
-   * Creates a new Analogous object.
-   */
-  constructor () {
-    super()
-  }
-
-  /**
    * Generates a color theme.
    *
    * @param {number} numberOfColors - The number of colors to include ranging from 3 to 5.

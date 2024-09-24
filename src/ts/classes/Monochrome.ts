@@ -16,13 +16,6 @@ import { ArgumentLimits } from '../enums/ArgumentLimits.js'
  */
 export class Monochrome extends ColorTheme {
   /**
-   * Creates a new Monochrome object.
-   */
-  constructor () {
-    super()
-  }
-
-  /**
    * Generates a color theme.
    *
    * @param {number} numberOfColors - The number of colors to include ranging from 2 to 5.

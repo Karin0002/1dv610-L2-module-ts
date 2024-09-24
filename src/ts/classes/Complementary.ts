@@ -15,14 +15,6 @@ import { ArgumentLimits } from '../enums/ArgumentLimits.js'
  * Represents a complementary color theme.
  */
 export class Complementary extends MultiHueColorTheme {
- 
-  /**
-   * Creates a new Complementary object.
-   */
-  constructor () {
-    super()
-  }
-
   /**
    * Generates a color theme.
    *

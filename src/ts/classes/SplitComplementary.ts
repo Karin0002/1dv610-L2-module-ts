@@ -17,13 +17,6 @@ import { ArgumentLimits } from '../enums/ArgumentLimits.js'
  */
 export class SplitComplementary extends MultiHueColorTheme {
   /**
-   * Creates a new SplitComplementary object.
-   */
-  constructor () {
-    super()
-  }
-
-  /**
    * Generates a color theme.
    *
    * @param {number} numberOfColors - The number of colors to include ranging from 3 to 5.
