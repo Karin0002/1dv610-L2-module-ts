@@ -1,8 +1,5 @@
 /**
- * @file Module for the class Complementary.
- * @module src/ts/classes/Complementary
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class Complementary.
  */
 
 import { ColorThemes } from '../enums/ColorThemes.js'
@@ -18,9 +15,9 @@ export class Complementary extends MultiHueColorTheme {
   /**
    * Generates a color theme.
    *
-   * @param {number} numberOfColors - The number of colors to include ranging from 2 to 4.
-   * @throws {Error} The number of colors must be between 2 and 4.
-   * @returns {ColorThemeData} An object containing data about the generated color theme.
+   * @param numberOfColors - The number of colors to include ranging from 2 to 4.
+   * @returns An object containing data about the generated color theme.
+   * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
@@ -51,7 +48,7 @@ export class Complementary extends MultiHueColorTheme {
   /**
    * Generates two complementary colors.
    *
-   * @returns {Color[]} The two generated colors.
+   * @returns The two generated colors.
    */
   #generate2Colors (): Color[] {
     const numberOfColors = 2

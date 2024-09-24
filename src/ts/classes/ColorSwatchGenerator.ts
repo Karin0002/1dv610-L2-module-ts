@@ -1,8 +1,5 @@
 /**
- * @file Module for the class ColorSwatchGenerator.
- * @module src/ts/classes/ColorSwatchGenerator
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class ColorSwatchGenerator.
  */
 
 import { Color } from "./Color.js"
@@ -15,36 +12,26 @@ import { Guard } from "./Guard.js"
 export class ColorSwatchGenerator {
   /**
    * The object to use for setting CSS background-color property.
-   *
-   * @type {CSSColorSetter}
    */
   #styler: CSSColorSetter
 
   /**
    * The value to set the CSS property width to.
-   *
-   * @type {string}
    */
   #swatchCSSWidth: string
 
   /**
    * The value to set the CSS property height to.
-   *
-   * @type {string}
    */
   #swatchCSSHeight: string
 
   /**
    * The value to set the CSS property border-radius to.
-   *
-   * @type {string}
    */
   #swatchCSSBorderRadius: string
 
   /**
    * Creates a new ColorSwatchGenerator object.
-   *
-   * @class
    */
   constructor () {
     this.#styler = new CSSColorSetter()
@@ -56,8 +43,8 @@ export class ColorSwatchGenerator {
   /**
    * Generates a div element representing a color swtach.
    *
-   * @param {Color} color - The color to set the element to.
-   * @returns {HTMLDivElement} The generated element.
+   * @param color - The color to set the element to.
+   * @returns The generated element.
    */
   generateColorSwatchElement (color: Color): HTMLDivElement {
     const argumentGuard = new Guard()
@@ -85,8 +72,8 @@ export class ColorSwatchGenerator {
   /**
    * Sets the CSS width property on an element.
    *
-   * @param {string} element - Refrence to the HTML element to set the property on.
-   * @param {string} CSSValue - The value to set the property to.
+   * @param element - Refrence to the HTML element to set the property on.
+   * @param CSSValue - The value to set the property to.
    */
   #setCSSWidth (element:HTMLElement, CSSValue:string) {
     element.style.width = CSSValue
@@ -95,8 +82,8 @@ export class ColorSwatchGenerator {
   /**
    * Sets the CSS height property on an element.
    *
-   * @param {string} element - Refrence to the HTML element to set the property on.
-   * @param {string} CSSValue - The value to set the property to.
+   * @param element - Refrence to the HTML element to set the property on.
+   * @param CSSValue - The value to set the property to.
    */
   #setCSSHeight (element:HTMLElement, CSSValue:string) {
     element.style.height = CSSValue
@@ -105,8 +92,8 @@ export class ColorSwatchGenerator {
   /**
    * Sets the CSS border-radius property on an element.
    *
-   * @param {string} element - Refrence to the HTML element to set the property on.
-   * @param {string} CSSValue - The value to set the property to.
+   * @param element - Refrence to the HTML element to set the property on.
+   * @param CSSValue - The value to set the property to.
    */
   #setCSSBorderRadius (element:HTMLElement, CSSValue:string) {
     element.style.borderRadius = CSSValue

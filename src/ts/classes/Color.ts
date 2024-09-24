@@ -1,8 +1,5 @@
 /**
- * @file Module for the class Color.
- * @module src/ts/classes/Color
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class Color.
  */
 import { ArgumentLimits } from "../enums/ArgumentLimits.js"
 import { Guard } from "./Guard.js"
@@ -13,15 +10,11 @@ import { Guard } from "./Guard.js"
 export class Color {
   /**
    * The guard to validate arguments.
-   *
-   * @type {Guard}
    */
   #argumentGuard: Guard
 
   /**
    * The hue of the color.
-   *
-   * @type {number}
    */
   #hue: number
 
@@ -32,25 +25,20 @@ export class Color {
 
   /**
    * The lightness of the color.
-   *
-   * @type {number}
    */
   #lightness: number
 
   /**
    * The hsl string that represents the color.
-   *
-   * @type {string}
    */
   #hsl: string
 
   /**
    * Creates a new Color object.
    *
-   * @param {number} hue - The hue of the color.
-   * @param {number} saturation - The saturation of the color.
-   * @param {number} lightness - The lightness of the color.
-   * @class
+   * @param hue - The hue of the color.
+   * @param saturation - The saturation of the color.
+   * @param lightness - The lightness of the color.
    */
   constructor (hue: number, saturation: number, lightness: number) {
     this.#argumentGuard = new Guard()
@@ -65,8 +53,7 @@ export class Color {
   /**
    * Sets the hue.
    *
-   * @param {number} value - The value to set hue to.
-   * @throws {Error} The value of hue cannot be greater than 360, nor be less than 0.
+   * @param value - The value to set hue to.
    */
   #setHue (value:number) {
     const argumentValues = {
@@ -82,8 +69,8 @@ export class Color {
   /**
    * Sets the saturation.
    *
-   * @param {number} value - The value to set saturation to.
-   * @throws {Error} The value of saturation cannot be greater than 100, nor be less than 0.
+   * @param value - The value to set saturation to.
+   * @throws Error if the arguments does not pass the validation.
    */
   #setSaturation (value:number) {
     const argumentValues = {
@@ -99,8 +86,8 @@ export class Color {
   /**
    * Sets the lightness.
    *
-   * @param {number} value - The value to set lightness to.
-   * @throws {Error} The value of lightness cannot be greater than 100, nor be less than 0.
+   * @param value - The value to set lightness to.
+   * @throws Error if the arguments does not pass the validation.
    */
   #setLightness (value:number) {
     const argumentValues = {
@@ -116,7 +103,7 @@ export class Color {
   /**
    * Sets the hsl.
    *
-   * @param {string} value - The value to set hsl to.
+   * @param value - The value to set hsl to.
    */
   #setHSL (value:string) {
     this.#hsl = value
@@ -125,7 +112,7 @@ export class Color {
   /**
    * Generates a HSL string from the fields of the object.
    *
-   * @returns {string} A string formatted as a HSL color.
+   * @returns A string formatted as a HSL color.
    */
   #generateHSLString (): string {
     return `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`
@@ -134,7 +121,7 @@ export class Color {
   /**
    * Gets the hue of the object.
    *
-   * @returns {number} The hue.
+   * @returns The hue.
    */
   get hue ():number {
     return this.#hue
@@ -143,7 +130,7 @@ export class Color {
   /**
    * Gets the saturation of the object.
    *
-   * @returns {number} The saturation.
+   * @returns The saturation.
    */
   get saturation ():number {
     return this.#saturation
@@ -152,7 +139,7 @@ export class Color {
   /**
    * Gets the lightness of the object.
    *
-   * @returns {number} The lightness.
+   * @returns The lightness.
    */
   get lightness ():number {
     return this.#lightness
@@ -161,7 +148,7 @@ export class Color {
   /**
    * Gets the hsl of the object.
    *
-   * @returns {string} The hsl.
+   * @returns The hsl.
    */
   get hsl ():string {
     return this.#hsl

@@ -1,8 +1,5 @@
 /**
- * @file Module for the class ColorTheme.
- * @module src/ts/classes/ColorTheme
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class ColorTheme.
  */
 
 import { ColorThemeData } from "./ColorThemeData.js"
@@ -16,22 +13,16 @@ import { Calculator } from "./Calculator.js"
 export abstract class ColorTheme {
   /**
    * The guard to validate arguments.
-   *
-   * @type {Guard}
    */
   protected argumentGuard: Guard
 
   /**
    * The object to use for math calculations.
-   *
-   * @type {Calculator}
    */
   protected numberCalculator: Calculator
 
   /**
    * The hue of the color theme.
-   *
-   * @type {number}
    */
   protected hue: number
 
@@ -42,22 +33,16 @@ export abstract class ColorTheme {
 
   /**
    * The lowest allowed lightness.
-   *
-   * @type {number}
    */
   protected minLightness: number
 
   /**
    * The highest allowed lightness.
-   *
-   * @type {number}
    */
   protected maxLightness: number
 
   /**
    * Creates a new ColorTheme object.
-   *
-   * @class
    */
   constructor () {
     this.argumentGuard = new Guard()
@@ -71,8 +56,8 @@ export abstract class ColorTheme {
   /**
    * Sets the hue.
    *
-   * @param {number} [maxValue] - The maximum value hue can be set to.
-   * @param {number} [minValue] - The minimum value hue can be set to.
+   * @param maxValue - The maximum value hue can be set to.
+   * @param minValue - The minimum value hue can be set to.
    */
   #setHue (maxValue:number, minValue:number) {
     this.hue = this.numberCalculator.generateRandomNumber(maxValue, minValue)
@@ -81,8 +66,8 @@ export abstract class ColorTheme {
   /**
    * Sets the saturation.
    *
-   * @param {number} [maxValue] - The maximum value saturation can be set to.
-   * @param {number} [minValue] - The minimum value saturation can be set to.
+   * @param maxValue - The maximum value saturation can be set to.
+   * @param minValue - The minimum value saturation can be set to.
    */
   #setSaturation (maxValue:number, minValue:number) {
     this.saturation = this.numberCalculator.generateRandomNumber(maxValue, minValue)
@@ -91,7 +76,7 @@ export abstract class ColorTheme {
   /**
    * Sets the minLightness.
    *
-   * @param {number} [value] - The value to set minLightness to.
+   * @param value - The value to set minLightness to.
    */
   #setMinLightness (value:number) {
     this.minLightness = value
@@ -100,7 +85,7 @@ export abstract class ColorTheme {
   /**
    * Sets the maxLightness.
    *
-   * @param {number} [value] - The value to set maxLightness to.
+   * @param value - The value to set maxLightness to.
    */
   #setMaxLightness (value:number) {
     this.maxLightness = value

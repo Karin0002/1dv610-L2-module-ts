@@ -1,8 +1,5 @@
 /**
- * @file Module for the class CSSColorSetter.
- * @module src/ts/classes/CSSColorSetter
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class CSSColorSetter.
  */
 
 import { Color } from "./Color.js"
@@ -14,15 +11,11 @@ import { Guard } from "./Guard.js"
 export class CSSColorSetter {
   /**
    * The guard to validate arguments.
-   *
-   * @type {Guard}
    */
   #argumentGuard: Guard
 
   /**
    * Creates a new CSSColorSetter object.
-   *
-   * @class
    */
   constructor () {
     this.#argumentGuard = new Guard()
@@ -32,8 +25,9 @@ export class CSSColorSetter {
   /**
    * Sets the CSS property color on the recieved HTMLElement with the recieved color using style attribute.
    *
-   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
-   * @param {Color} color - The color to set the property to.
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
    */
   setCSSColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
@@ -47,8 +41,9 @@ export class CSSColorSetter {
   /**
    * Sets the CSS property background-color on the recieved HTMLElement with the recieved color using style attribute.
    *
-   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
-   * @param {Color} color - The color to set the property to.
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
    */
   setCSSBackgroundColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
@@ -62,8 +57,9 @@ export class CSSColorSetter {
   /**
    * Sets the CSS property border-color on the recieved HTMLElement with the recieved color and border-style to solid using style attribute.
    *
-   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
-   * @param {Color} color - The color to set the property to.
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
    */
   setCSSBorderPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
@@ -77,8 +73,9 @@ export class CSSColorSetter {
   /**
    * Sets the CSS property outline-color on the recieved HTMLElement with the recieved color and outline-style to solid using style attribute.
    *
-   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
-   * @param {Color} color - The color to set the property to.
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
    */
   setCSSOutlinePropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
@@ -92,8 +89,9 @@ export class CSSColorSetter {
   /**
    * Sets the CSS property text-decoration-color on the recieved HTMLElement with the recieved color and text-decoration-line to underline using style attribute.
    *
-   * @param {HTMLElement} HTMLElement - Refrence to the HTML element to set the property on.
-   * @param {Color} color - The color to set the property to.
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
    */
   setCSSTextDecorationPropertyOn (HTMLElement:HTMLElement, color:Color) {
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)

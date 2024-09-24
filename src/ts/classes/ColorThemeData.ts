@@ -1,8 +1,5 @@
 /**
- * @file Module for the class ColorThemeData.
- * @module src/ts/classes/ColorThemeData
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class ColorThemeData.
  */
 
 import { ColorThemes } from "../enums/ColorThemes.js"
@@ -14,32 +11,25 @@ import { Color } from "./Color.js"
 export class ColorThemeData {
   /**
    * The number of colors in the theme.
-   *
-   * @type {number}
    */
   #numberOfColors: number
 
   /**
-   * The color scheme of the color theme.
-   *
-   * @type {ColorThemes}
+   * The color theme.
    */
   #colorTheme: ColorThemes
 
   /**
    * The colors in the theme.
-   *
-   * @type {Color[]}
    */
   #colors: Color[]
 
   /**
    * Creates a new Color object.
    *
-   * @param {number} numberOfColors - The number of colors in the theme.
-   * @param {ColorThemes} colorTheme - The name of the colorTheme.
-   * @param {Color[]} colors - The colors in the theme.
-   * @class
+   * @param numberOfColors - The number of colors in the theme.
+   * @param colorTheme - The name of the colorTheme.
+   * @param colors - The colors in the theme.
    */
   constructor (numberOfColors: number, colorTheme: ColorThemes, colors: Color[]) {
     this.#numberOfColors = numberOfColors
@@ -50,7 +40,7 @@ export class ColorThemeData {
   /**
    * Gets the numberOfColors of the object.
    *
-   * @returns {number} The numberOfColors.
+   * @returns The numberOfColors.
    */
   get numberOfColors ():number {
     return this.#numberOfColors
@@ -59,7 +49,7 @@ export class ColorThemeData {
   /**
    * Gets the colorTheme of the object.
    *
-   * @returns {ColorThemes} The colorTheme.
+   * @returns The colorTheme.
    */
   get colorTheme ():ColorThemes {
     return this.#colorTheme
@@ -68,7 +58,7 @@ export class ColorThemeData {
   /**
    * Gets the colors of the object.
    *
-   * @returns {Color[]} A copy of the colors.
+   * @returns A copy of the colors.
    */
   get colors ():Color[] {
     const copyOfColors = []

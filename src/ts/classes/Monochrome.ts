@@ -1,8 +1,5 @@
 /**
- * @file Module for the class Monochrome.
- * @module src/ts/classes/Monochrome
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class Monochrome.
  */
 
 import { ColorTheme } from './ColorTheme.js'
@@ -18,9 +15,9 @@ export class Monochrome extends ColorTheme {
   /**
    * Generates a color theme.
    *
-   * @param {number} numberOfColors - The number of colors to include ranging from 2 to 5.
-   * @throws {Error} The number of colors must be between 2 and 5.
-   * @returns {ColorThemeData} An object containing data about the generated color theme.
+   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
+   * @returns An object containing data about the generated color theme.
+   * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
@@ -40,8 +37,8 @@ export class Monochrome extends ColorTheme {
   /**
    * Generates monochrome colors.
    *
-   * @param {number} numberOfColors - The number of colors to generate.
-   * @returns {Color[]} The generated colors.
+   * @param numberOfColors - The number of colors to generate.
+   * @returns The generated colors.
    */
   #generateColors (numberOfColors:number): Color[] {
     const colors: Color[] = []

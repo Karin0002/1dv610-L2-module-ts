@@ -1,8 +1,5 @@
 /**
- * @file Module for the class RandomColorTheme.
- * @module src/ts/classes/RandomColorTheme
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class RandomColorTheme.
  */
 
 import { Triadic } from "./Triadic.js"
@@ -22,57 +19,41 @@ import { Calculator } from "./Calculator.js"
 export class RandomColorTheme {
   /**
    * The guard to validate arguments.
-   *
-   * @type {Guard}
    */
   #argumentGuard: Guard
 
   /**
    * The object to use for math calculations.
-   *
-   * @type {Calculator}
    */
   #numberCalculator: Calculator
 
   /**
    * The object to use for generating triadic color themes.
-   *
-   * @type {Analogous}
    */
   #analogous: Analogous
 
   /**
    * The object to use for generating complementary color themes.
-   *
-   * @type {Complementary}
    */
   #complementary: Complementary
 
   /**
    * The object to use for generating monochrome color themes.
-   *
-   * @type {Monochrome}
    */
   #monochrome: Monochrome
 
   /**
    * The object to use for generating split complementary color themes.
-   *
-   * @type {SplitComplementary}
    */
   #splitComplementary: SplitComplementary
 
   /**
    * The object to use for generating triadic color themes.
-   *
-   * @type {Triadic}
    */
   #triadic: Triadic
 
   /**
    * Creates a new RandomColorTheme object.
-   *
-   * @class
    */
   constructor () {
     this.#argumentGuard = new Guard()
@@ -84,6 +65,13 @@ export class RandomColorTheme {
     this.#triadic = new Triadic()
   }
 
+  /**
+   * Generates a random color theme.
+   *
+   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
+   * @returns An object containing data about the generated color theme.
+   * @throws Error if the arguments does not pass the validation.
+   */
   generateColorTheme (numberOfColors?:number): ColorThemeData {
     if (numberOfColors !== undefined) {
       this.#argumentGuard.validateNumberArgument({
@@ -100,6 +88,12 @@ export class RandomColorTheme {
     }
   }
 
+  /**
+   * Gets a single color theme.
+   *
+   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
+   * @returns An object containing data about the generated color theme.
+   */
   #getColorTheme (numberOfColors:number) {
     const themes = this.#getThemesWithNColors(numberOfColors)
     const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length, 0)
@@ -107,6 +101,12 @@ export class RandomColorTheme {
     return theme.generateColorTheme(numberOfColors)
   }
 
+  /**
+   * Gets an array of themes that can handle a certain amount of colors.
+   *
+   * @param n - The number of colors the theme must be able to handle.
+   * @returns An array of themes.
+   */
   // The name of the argument is only one character which is typically not good,
   // but combined with the name of the method it works in my opinion since it sets it in a context.
   #getThemesWithNColors (n:number): ColorTheme[] {

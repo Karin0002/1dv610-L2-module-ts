@@ -1,8 +1,5 @@
 /**
- * @file Module for the class SplitComplementary.
- * @module src/ts/classes/SplitComplementary
- * @author Karin Silfversparre <ks224ac@student.lnu.se>
- * @version 1.0.0
+ * Module for the class SplitComplementary.
  */
 
 import { ColorThemes } from '../enums/ColorThemes.js'
@@ -18,9 +15,9 @@ export class SplitComplementary extends MultiHueColorTheme {
   /**
    * Generates a color theme.
    *
-   * @param {number} numberOfColors - The number of colors to include ranging from 3 to 5.
-   * @throws {Error} The number of colors must be between 3 and 5.
-   * @returns {ColorThemeData} An object containing data about the generated color theme.
+   * @param numberOfColors - The number of colors to include ranging from 3 to 5.
+   * @returns An object containing data about the generated color theme.
+   * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
@@ -51,8 +48,8 @@ export class SplitComplementary extends MultiHueColorTheme {
   /**
    * Generates three split complementary colors.
    *
-   * @link https://chatgpt.com/share/ef0f277c-e1b3-4859-8f24-430d0fed1bf5
-   * @returns {Color[]} The three generated colors.
+   * {@link https://chatgpt.com/share/ef0f277c-e1b3-4859-8f24-430d0fed1bf5}
+   * @returns The three generated colors.
    */
   #generate3Colors (): Color[] {
     const numberOfColors = 3
