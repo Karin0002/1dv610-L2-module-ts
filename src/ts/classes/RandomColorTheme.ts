@@ -14,6 +14,7 @@ import { ColorTheme } from "./ColorTheme.js"
 import { ColorThemeData } from "./ColorThemeData.js"
 import { Guard } from "./Guard.js"
 import { ArgumentLimits } from "../enums/ArgumentLimits.js"
+import { Calculator } from "./Calculator.js"
 
 /**
  * Represents a random color theme.
@@ -25,6 +26,13 @@ export class RandomColorTheme {
    * @type {Guard}
    */
   #argumentGuard: Guard
+
+  /**
+   * The object to use for math calculations.
+   *
+   * @type {Calculator}
+   */
+  #numberCalculator: Calculator
 
   /**
    * The object to use for generating triadic color themes.
@@ -68,6 +76,7 @@ export class RandomColorTheme {
    */
   constructor () {
     this.#argumentGuard = new Guard()
+    this.#numberCalculator = new Calculator()
     this.#analogous = new Analogous()
     this.#complementary = new Complementary()
     this.#monochrome = new Monochrome()
@@ -83,40 +92,27 @@ export class RandomColorTheme {
         recievedArgument: numberOfColors
       })
 
-      this.#getThemesWithNColors(numberOfColors)
-      // Specific numberOfColors:
-      // getThemesWithNColors(numberOfColors)
-      // Pick random element from array
-      // generateColorTheme(numberOfColors)
+      return this.#getColorTheme(numberOfColors)
     } else {
-      // Random:
-      // Pick random number
-      // getThemesWithNColors(randomNumber)
-      // Pick random element form array
-      // generateColorTheme(randomNumber)
+      const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
+
+      return this.#getColorTheme(randomNumberOfColors)
     }
-
-
-    // NOTES, MAYBE EVERY COLORTHEME SHOULD HAVE A GETTER THAT GETS WHAT ARGUMENTS GENERATECOLORTHEME CAN TAKE
-    // 1. Check if number of colors is not undefined
-    // 2a. If true:
-    // 3. getThemeWith5Colors
-    // 4. Pick random element from array
-    // 5. Choose random number that is within the limits of the themes argument
-    // 6. Call generateColorTheme() with the number
-    // 7. Return ColorThemeData
-
-    // 2b. If false:
-    // 3. getThemeWithXColors() X should be the numberOfColors
-    // 4. Pick random element from array
-    // 5. Call generateColorTheme() with the numberOfColors
-    // 6. Return ColorThemeData
   }
 
-  #getThemesWithNColors (numberOfColors:number): ColorTheme[] {
+  #getColorTheme (numberOfColors:number) {
+    const themes = this.#getThemesWithNColors(numberOfColors)
+    const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length, 0)
+    const theme = themes[randomIndex]
+    return theme.generateColorTheme(numberOfColors)
+  }
+
+  // The name of the argument is only one character which is typically not good,
+  // but combined with the name of the method it works in my opinion since it sets it in a context.
+  #getThemesWithNColors (n:number): ColorTheme[] {
     // Breaks open/close rule.
     let themes
-    switch (numberOfColors) {
+    switch (n) {
       case 2:
         themes = [this.#complementary, this.#monochrome]
         break
@@ -131,22 +127,6 @@ export class RandomColorTheme {
         themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
     }
-    return themes
-  }
-
-  #getThemesWith2Colors ():ColorTheme[] {
-    // Breaks open/close rule.
-    const themes = [this.#complementary, this.#monochrome]
-    return themes
-  }
-  #getThemesWith3or4Colors ():ColorTheme[] {
-    // Breaks open/close rule.
-    const themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]   
-    return themes 
-  }
-  #getThemesWith5Colors ():ColorTheme[] {
-    // Breaks open/close rule.
-    const themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]  
     return themes
   }
 }
