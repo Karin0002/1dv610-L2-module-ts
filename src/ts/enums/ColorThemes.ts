@@ -1,4 +1,4 @@
-export enum ColorSchemes {
+export enum ColorThemes {
   Monochrome = 'MONOCHROME',
   Triadic = 'TRIADIC',
   Analogous = 'ANALOGOUS',

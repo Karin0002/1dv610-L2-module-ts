@@ -5,8 +5,6 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from "../enums/ColorSchemes.js"
-import { Color } from "./Color.js"
 import { ColorThemeData } from "./ColorThemeData.js"
 import { ColorValues } from "../enums/ColorValues.js"
 import { Guard } from "./Guard.js"

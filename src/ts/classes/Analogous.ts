@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from '../enums/ColorSchemes.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
@@ -53,7 +53,7 @@ export class Analogous extends MultiHueColorTheme {
 
     // Prehaps ColorTheme can be the object that is returned??? 
     // So it has the fields numberOfColors, colorScheme and colors.
-    const data = new ColorThemeData(numberOfColors, ColorSchemes.Analogous, colors)
+    const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
     return data
   }
 

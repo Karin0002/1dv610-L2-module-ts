@@ -6,7 +6,7 @@
  */
 
 import { ColorTheme } from './ColorTheme.js'
-import { ColorSchemes } from '../enums/ColorSchemes.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
@@ -40,9 +40,7 @@ export class Monochrome extends ColorTheme {
 
     colors.push(...this.#generateColors(numberOfColors))
 
-    // Prehaps ColorTheme can be the object that is returned??? 
-    // So it has the fields numberOfColors, colorScheme and colors.
-    const data = new ColorThemeData(numberOfColors, ColorSchemes.Monochrome, colors)
+    const data = new ColorThemeData(numberOfColors, ColorThemes.Monochrome, colors)
     return data
   }
 
