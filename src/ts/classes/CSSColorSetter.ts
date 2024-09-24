@@ -6,17 +6,26 @@
  */
 
 import { Color } from "./Color.js"
+import { Guard } from "./Guard.js"
 
 /**
  * Represents a CSS color setter.
  */
 export class CSSColorSetter {
   /**
+   * The guard to validate arguments.
+   *
+   * @type {Guard}
+   */
+  #argumentGuard: Guard
+
+  /**
    * Creates a new CSSColorSetter object.
    *
    * @class
    */
   constructor () {
+    this.#argumentGuard = new Guard()
     // If it was to write to file instead of using style attribute the constructor could take the path to css file as argument.
   }
 
@@ -27,8 +36,8 @@ export class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
-    this.#validateHTMLElement(HTMLElement)
-    this.#validateColor(color)
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.backgroundColor = color.hsl
     // Set color
@@ -42,8 +51,8 @@ export class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSBackgroundColorPropertyOn (HTMLElement:HTMLElement, color:Color) {
-    this.#validateHTMLElement(HTMLElement)
-    this.#validateColor(color)
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.color = color.hsl
     // Set background-color
@@ -57,8 +66,8 @@ export class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSBorderPropertyOn (HTMLElement:HTMLElement, color:Color) {
-    this.#validateHTMLElement(HTMLElement)
-    this.#validateColor(color)
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.border = `solid ${color.hsl}`
     // Set border
@@ -72,8 +81,8 @@ export class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSOutlinePropertyOn (HTMLElement:HTMLElement, color:Color) {
-    this.#validateHTMLElement(HTMLElement)
-    this.#validateColor(color)
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.outline = `solid ${color.hsl}`
     // Set outline
@@ -87,37 +96,11 @@ export class CSSColorSetter {
    * @param {Color} color - The color to set the property to.
    */
   setCSSTextDecorationPropertyOn (HTMLElement:HTMLElement, color:Color) {
-    this.#validateHTMLElement(HTMLElement)
-    this.#validateColor(color)
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.textDecoration = `underline ${color.hsl}`
     // Set text-decoration
     // Notes: check if text-decoration-line is on HTMLElement, if yes text-decoration: color;, else text-decoration: underline color;
-  }
-
-  /**
-   * Validates the argument.
-   *
-   * @param {HTMLElement} element - The argument to validate.
-   * @throws {Error} The argument HTMLElement must be an instance of HTMLElement.
-   */
-  #validateHTMLElement (element:HTMLElement) {
-    if (!(element instanceof HTMLElement)) {
-      const error = new Error('The argument HTMLElement must be an instance of HTMLElement.')
-      throw error
-    }
-  }
-
-  /**
-   * Validates the argument.
-   *
-   * @param {HTMLElement} color - The argument to validate.
-   * @throws {Error} The argument color must be an instance of Color.
-   */
-  #validateColor (color:Color) {
-    if (!(color instanceof Color)) {
-      const error = new Error('The argument color must be an instance of Color.')
-      throw error
-    }
   }
 }

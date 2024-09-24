@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { ColorSchemes } from "./ColorSchemes.js"
+import { ColorThemes } from "../enums/ColorThemes.js"
 import { Color } from "./Color.js"
 
 /**
@@ -22,9 +22,9 @@ export class ColorThemeData {
   /**
    * The color scheme of the color theme.
    *
-   * @type {ColorSchemes}
+   * @type {ColorThemes}
    */
-  #colorScheme: ColorSchemes
+  #colorTheme: ColorThemes
 
   /**
    * The colors in the theme.
@@ -37,13 +37,13 @@ export class ColorThemeData {
    * Creates a new Color object.
    *
    * @param {number} numberOfColors - The number of colors in the theme.
-   * @param {ColorSchemes} colorScheme - The colorScheme of the theme.
+   * @param {ColorThemes} colorTheme - The name of the colorTheme.
    * @param {Color[]} colors - The colors in the theme.
    * @class
    */
-  constructor (numberOfColors: number, colorScheme: ColorSchemes, colors: Color[]) {
+  constructor (numberOfColors: number, colorTheme: ColorThemes, colors: Color[]) {
     this.#numberOfColors = numberOfColors
-    this.#colorScheme = colorScheme
+    this.#colorTheme = colorTheme
     this.#colors = colors
   }
 
@@ -57,12 +57,12 @@ export class ColorThemeData {
   }
   
   /**
-   * Gets the colorScheme of the object.
+   * Gets the colorTheme of the object.
    *
-   * @returns {ColorSchemes} The colorScheme.
+   * @returns {ColorThemes} The colorTheme.
    */
-  get colorScheme ():ColorSchemes {
-    return this.#colorScheme
+  get colorTheme ():ColorThemes {
+    return this.#colorTheme
   }
 
   /**

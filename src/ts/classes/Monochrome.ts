@@ -6,21 +6,15 @@
  */
 
 import { ColorTheme } from './ColorTheme.js'
-import { ColorSchemes } from './ColorSchemes.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 /**
  * Represents a monochrome color theme.
  */
 export class Monochrome extends ColorTheme {
-  /**
-   * Creates a new Monochrome object.
-   */
-  constructor () {
-    super()
-  }
-
   /**
    * Generates a color theme.
    *
@@ -29,19 +23,17 @@ export class Monochrome extends ColorTheme {
    * @returns {ColorThemeData} An object containing data about the generated color theme.
    */
   generateColorTheme (numberOfColors:number): ColorThemeData {
-    if (numberOfColors < 2 || numberOfColors > 5) {
-      const error = new Error('The number of colors must be between 2 and 5.')
-      // error.status = 400
-      throw error
-    }
+    this.argumentGuard.validateNumberArgument({
+      maxValue: ArgumentLimits.MonochromeMax,
+      minValue: ArgumentLimits.MonochromeMin,
+      recievedArgument: numberOfColors      
+    })
 
     const colors: Color[] = []
 
     colors.push(...this.#generateColors(numberOfColors))
 
-    // Prehaps ColorTheme can be the object that is returned??? 
-    // So it has the fields numberOfColors, colorScheme and colors.
-    const data = new ColorThemeData(numberOfColors, ColorSchemes.Monochrome, colors)
+    const data = new ColorThemeData(numberOfColors, ColorThemes.Monochrome, colors)
     return data
   }
 
@@ -58,9 +50,9 @@ export class Monochrome extends ColorTheme {
     for (let i = 0; i < numberOfColors; i++) {
       const lightnessIncrement = (this.maxLightness - this.minLightness) / (increments)
       const calculatedLightness = this.minLightness + (lightnessIncrement * i)
-      const saturation = this.adjustNumber(this.saturation, 10) // 10 for slight variation.
+      const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
 
-      const color = new Color(this.hue, saturation, calculatedLightness)
+      const color = new Color(this.hue, calculatedSaturation, calculatedLightness)
       colors.push(color)
     }
 
