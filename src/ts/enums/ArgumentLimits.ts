@@ -10,6 +10,8 @@ export enum ArgumentLimits {
   SplitComplementaryMin = 3,
   TriadicMax = 5,
   TriadicMin = 3,
+  RandomColorThemeMax = 5,
+  RandomColorThemeMin = 2,
   HueMax = 360,
   HueMin = 0,
   SaturationMax = 100,

@@ -10,6 +10,7 @@ import { Color } from "./Color.js"
 import { ColorThemeData } from "./ColorThemeData.js"
 import { ColorValues } from "../enums/ColorValues.js"
 import { Guard } from "./Guard.js"
+import { Calculator } from "./Calculator.js"
 
 /**
  * Represents a color theme.
@@ -21,6 +22,13 @@ export abstract class ColorTheme {
    * @type {Guard}
    */
   protected argumentGuard: Guard
+
+  /**
+   * The object to use for math calculations.
+   *
+   * @type {Calculator}
+   */
+  protected numberCalculator: Calculator
 
   /**
    * The hue of the color theme.
@@ -55,6 +63,7 @@ export abstract class ColorTheme {
    */
   constructor () {
     this.argumentGuard = new Guard()
+    this.numberCalculator = new Calculator()
     this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
     this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
     this.#setMaxLightness(ColorValues.MaxLightness)
@@ -68,7 +77,7 @@ export abstract class ColorTheme {
    * @param {number} [minValue] - The minimum value hue can be set to.
    */
   #setHue (maxValue:number, minValue:number) {
-    this.hue = this.generateRandomNumber(maxValue, minValue)
+    this.hue = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
   /**
@@ -78,7 +87,7 @@ export abstract class ColorTheme {
    * @param {number} [minValue] - The minimum value saturation can be set to.
    */
   #setSaturation (maxValue:number, minValue:number) {
-    this.saturation = this.generateRandomNumber(maxValue, minValue)
+    this.saturation = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
   /**
@@ -97,29 +106,6 @@ export abstract class ColorTheme {
    */
   #setMaxLightness (value:number) {
     this.maxLightness = value
-  }
-
-  /**
-   * Generates a random number between the given arguments.
-   *
-   * @param {number} max - The maximum value the generated number can be.
-   * @param {number} min - The minimum value the generated number can be.
-   * @returns {number} The newly generated number.
-   */
-  protected generateRandomNumber (max:number, min:number): number {
-    return Math.round(Math.random() * (max - min) + min)
-  }
-
-  /**
-   * Varies a number by generating a new random number that is inside the given deviation.
-   If number was 40 and the deviation was 10, the newly generated number would be between 30 and 50.
-   *
-   * @param {number} number - The number that is used a refrence for the new number.
-   * @param {number} deviation - The value of the deviation to allow.
-   * @returns {number} The newly generated number that is inside the deviation.
-   */
-  protected adjustNumber (number:number, deviation:number): number {
-    return this.generateRandomNumber(number + deviation, number - deviation)
   }
 
   abstract generateColorTheme (numberOfColors:number): ColorThemeData

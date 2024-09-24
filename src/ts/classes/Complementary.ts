@@ -72,8 +72,9 @@ export class Complementary extends MultiHueColorTheme {
     for (let i = 0; i < numberOfColors; i++) {
       const calculatedHue = (((this.hue + (hueIncrement * i)) % numberOfHues) === 0) ? this.hue + (hueIncrement * i) : (this.hue + (hueIncrement * i)) % numberOfHues
       this.hues.push(calculatedHue)
+      const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
 
-      const color = new Color(calculatedHue, this.adjustNumber(this.saturation, 10), this.lightness) // 10 for slight variation.
+      const color = new Color(calculatedHue, calculatedSaturation, this.lightness) // 10 for slight variation.
       colors.push(color)
     }
 

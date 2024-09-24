@@ -13,6 +13,7 @@ import { Monochrome } from "./Monochrome.js"
 import { ColorTheme } from "./ColorTheme.js"
 import { ColorThemeData } from "./ColorThemeData.js"
 import { Guard } from "./Guard.js"
+import { ArgumentLimits } from "../enums/ArgumentLimits.js"
 
 /**
  * Represents a random color theme.
@@ -77,11 +78,12 @@ export class RandomColorTheme {
   generateColorTheme (numberOfColors?:number): ColorThemeData {
     if (numberOfColors !== undefined) {
       this.#argumentGuard.validateNumberArgument({
-        maxValue: 5,
-        minValue: 2,
+        maxValue: ArgumentLimits.RandomColorThemeMax,
+        minValue: ArgumentLimits.RandomColorThemeMin,
         recievedArgument: numberOfColors
       })
 
+      this.#getThemesWithNColors(numberOfColors)
       // Specific numberOfColors:
       // getThemesWithNColors(numberOfColors)
       // Pick random element from array
@@ -124,11 +126,10 @@ export class RandomColorTheme {
       case 4:
         themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
-      case 5:
+      default:
+        // Represents case 5.
         themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
-      default:
-        throw new Error('The number of colors must be between 2 and 5.')
     }
     return themes
   }
