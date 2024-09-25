@@ -1,39 +1,39 @@
-import typescriptEslintEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsdoc from "eslint-plugin-tsdoc";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import globals from "globals"
+import pluginJs from "@eslint/js"
+import eslint from "@eslint/js"
+import tseslint from "typescript-eslint"
+import stylistic from "@stylistic/eslint-plugin"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
 
 export default [
-    ...compat.extends("eslint:recommended", "plugin:@typescript-eslint/recommended"),
-    {
-        files: ["**/*.ts"],
-        plugins: {
-            "@typescript-eslint": typescriptEslintEslintPlugin,
-            tsdoc,
-        },
-
-        languageOptions: {
-            parser: tsParser,
-            ecmaVersion: 2018,
-            sourceType: "module",
-            parserOptions: {
-                project: "./tsconfig.json",
-                tsconfigRootDir: __dirname
-            },
-        },
-        rules: {
-            "tsdoc/syntax": "warn",
-        }
+  eslint.configs.recommended,
+  pluginJs.configs.recommended,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
+  stylistic.configs["recommended-flat"],
+  {
+    ignores: ["node_modules/", "build/", "eslint.config.js"]
+  },
+  {
+    files: ["**/*.js"],
+    languageOptions: {
+      sourceType: "module"
+    }
+  },
+  {
+    files: ["src/**/*.{js,mjs,cjs,ts}"],
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      }
     },
-];
+    rules: {
+      "@typescript-eslint/explicit-function-return-type": ["error"],
+      "@typescript-eslint/explicit-module-boundary-types": ["error"],
+      "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+      "@stylistic/space-before-function-paren": ["error", "always"]
+    }
+  }
+]

@@ -19,11 +19,11 @@ export class Analogous extends MultiHueColorTheme {
    * @returns  An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
-  generateColorTheme (numberOfColors:number): ColorThemeData {
+  generateColorTheme (numberOfColors: number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
-      recievedArgument: numberOfColors
+      recievedArgument: numberOfColors,
     })
 
     const colors: Color[] = []
@@ -41,7 +41,7 @@ export class Analogous extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    // Prehaps ColorTheme can be the object that is returned??? 
+    // Prehaps ColorTheme can be the object that is returned???
     // So it has the fields numberOfColors, colorScheme and colors.
     const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
     return data

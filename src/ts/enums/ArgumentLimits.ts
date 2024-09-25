@@ -1,4 +1,4 @@
-// Very long name.
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 export enum ArgumentLimits {
   AnalogousMax = 5,
   AnalogousMin = 3,

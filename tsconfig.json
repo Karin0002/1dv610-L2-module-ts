@@ -9,6 +9,7 @@
     /* Emit */
     "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
     "outDir": "./build",                                   /* Specify an output folder for all emitted files. */
+    "rootDir": "./src",
     /* Interop Constraints */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
@@ -17,5 +18,7 @@
     "strict": true,                                      /* Enable all strict type-checking options. */
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": ["src/**/*", "eslint.config.js"],
+  "exclude": ["node_modules", "build"]
 }
