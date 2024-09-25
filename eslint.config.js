@@ -3,6 +3,8 @@ import pluginJs from "@eslint/js"
 import eslint from "@eslint/js"
 import tseslint from "typescript-eslint"
 import stylistic from "@stylistic/eslint-plugin"
+import tsdoc from "eslint-plugin-tsdoc"
+import ts from "typescript"
 
 
 export default [
@@ -29,11 +31,15 @@ export default [
         tsconfigRootDir: import.meta.dirname,
       }
     },
+    plugins: {
+      tsdoc
+    },
     rules: {
       "@typescript-eslint/explicit-function-return-type": ["error"],
       "@typescript-eslint/explicit-module-boundary-types": ["error"],
       "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-      "@stylistic/space-before-function-paren": ["error", "always"]
+      "@stylistic/space-before-function-paren": ["error", "always"],
+      "tsdoc/syntax": ["warn"]
     }
   }
 ]
