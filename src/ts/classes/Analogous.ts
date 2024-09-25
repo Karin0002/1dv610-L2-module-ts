@@ -23,7 +23,7 @@ export class Analogous extends MultiHueColorTheme {
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
-      recievedArgument: numberOfColors,
+      recievedArgument: numberOfColors
     })
 
     const colors: Color[] = []

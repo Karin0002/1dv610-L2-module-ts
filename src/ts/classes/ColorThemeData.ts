@@ -2,8 +2,8 @@
  * Module for the class ColorThemeData.
  */
 
-import { ColorThemes } from "../enums/ColorThemes.js"
-import { Color } from "./Color.js"
+import { ColorThemes } from '../enums/ColorThemes.js'
+import { Color } from './Color.js'
 
 /**
  * Represents a color theme data.
@@ -42,16 +42,16 @@ export class ColorThemeData {
    *
    * @returns The numberOfColors.
    */
-  get numberOfColors ():number {
+  get numberOfColors (): number {
     return this.#numberOfColors
   }
-  
+
   /**
    * Gets the colorTheme of the object.
    *
    * @returns The colorTheme.
    */
-  get colorTheme ():ColorThemes {
+  get colorTheme (): ColorThemes {
     return this.#colorTheme
   }
 
@@ -60,19 +60,20 @@ export class ColorThemeData {
    *
    * @returns A copy of the colors.
    */
-  get colors ():Color[] {
+  get colors (): Color[] {
     const copyOfColors = []
-    for (let i = 0; i < this.#colors.length; i++) {
-      const copyOfColor = new Color(this.#colors[i].hue, this.#colors[i].saturation, this.#colors[i].lightness)
+    for (const color of this.#colors) {
+      const copyOfColor = new Color(color.hue, color.saturation, color.lightness)
       copyOfColors.push(copyOfColor)
     }
+
     return copyOfColors
   }
 
   /**
    * Sorts the colors by hue in ascending order.
    */
-  sortColorsByHue () {
+  sortColorsByHue (): void {
     // Does not return colors because of command query separation.
     this.#colors.sort((a, b) => a.hue - b.hue)
   }
@@ -80,7 +81,7 @@ export class ColorThemeData {
   /**
    * Sorts the colors by saturation in ascending order.
    */
-  sortColorsBySaturation () {
+  sortColorsBySaturation (): void {
     // Does not return colors because of command query separation.
     this.#colors.sort((a, b) => a.saturation - b.saturation)
   }
@@ -88,7 +89,7 @@ export class ColorThemeData {
   /**
    * Sorts the colors by lightness in ascending order.
    */
-  sortColorsByLightness () {
+  sortColorsByLightness (): void {
     // Does not return colors because of command query separation.
     this.#colors.sort((a, b) => a.lightness - b.lightness)
   }

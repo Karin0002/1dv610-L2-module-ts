@@ -19,11 +19,11 @@ export class Monochrome extends ColorTheme {
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
-  generateColorTheme (numberOfColors:number): ColorThemeData {
+  generateColorTheme (numberOfColors: number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.MonochromeMax,
       minValue: ArgumentLimits.MonochromeMin,
-      recievedArgument: numberOfColors      
+      recievedArgument: numberOfColors
     })
 
     const colors: Color[] = []
@@ -40,9 +40,9 @@ export class Monochrome extends ColorTheme {
    * @param numberOfColors - The number of colors to generate.
    * @returns The generated colors.
    */
-  #generateColors (numberOfColors:number): Color[] {
+  #generateColors (numberOfColors: number): Color[] {
     const colors: Color[] = []
-    const increments = numberOfColors - 1  // 1 since the number of increments is one less than number of colors.
+    const increments = numberOfColors - 1 // 1 since the number of increments is one less than number of colors.
 
     for (let i = 0; i < numberOfColors; i++) {
       const lightnessIncrement = (this.maxLightness - this.minLightness) / (increments)

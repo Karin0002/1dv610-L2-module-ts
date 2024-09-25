@@ -2,9 +2,9 @@
  * Module for the class ColorSwatchGenerator.
  */
 
-import { Color } from "./Color.js"
-import { CSSColorSetter } from "./CSSColorSetter.js"
-import { Guard } from "./Guard.js"
+import { Color } from './Color.js'
+import { CSSColorSetter } from './CSSColorSetter.js'
+import { Guard } from './Guard.js'
 
 /**
  * Represents a color swatch generator.
@@ -63,7 +63,7 @@ export class ColorSwatchGenerator {
   /**
    * Creates a HTMLDivElement.
    */
-  #createDivElement ():HTMLDivElement {
+  #createDivElement (): HTMLDivElement {
     const element = document.createElement('div')
 
     return element
@@ -75,7 +75,7 @@ export class ColorSwatchGenerator {
    * @param element - Refrence to the HTML element to set the property on.
    * @param CSSValue - The value to set the property to.
    */
-  #setCSSWidth (element:HTMLElement, CSSValue:string) {
+  #setCSSWidth (element: HTMLElement, CSSValue: string): void {
     element.style.width = CSSValue
   }
 
@@ -85,7 +85,7 @@ export class ColorSwatchGenerator {
    * @param element - Refrence to the HTML element to set the property on.
    * @param CSSValue - The value to set the property to.
    */
-  #setCSSHeight (element:HTMLElement, CSSValue:string) {
+  #setCSSHeight (element: HTMLElement, CSSValue: string): void {
     element.style.height = CSSValue
   }
 
@@ -95,7 +95,7 @@ export class ColorSwatchGenerator {
    * @param element - Refrence to the HTML element to set the property on.
    * @param CSSValue - The value to set the property to.
    */
-  #setCSSBorderRadius (element:HTMLElement, CSSValue:string) {
+  #setCSSBorderRadius (element: HTMLElement, CSSValue: string): void {
     element.style.borderRadius = CSSValue
   }
 }

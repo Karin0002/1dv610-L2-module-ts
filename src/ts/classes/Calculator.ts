@@ -13,7 +13,7 @@ export class Calculator {
    * @param minvalue - The minimum value the generated number can be.
    * @returns The newly generated number.
    */
-  generateRandomNumber (maxValue:number, minvalue:number): number {
+  generateRandomNumber (maxValue: number, minvalue: number): number {
     return Math.round(Math.random() * (maxValue - minvalue) + minvalue)
   }
 
@@ -25,7 +25,7 @@ export class Calculator {
    * @param deviation - The value of the deviation to allow.
    * @returns The newly generated number that is inside the deviation.
    */
-  adjustNumber (originalNumber:number, deviation:number): number {
+  adjustNumber (originalNumber: number, deviation: number): number {
     return this.generateRandomNumber(originalNumber + deviation, originalNumber - deviation)
   }
 }

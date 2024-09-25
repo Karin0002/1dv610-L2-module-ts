@@ -19,7 +19,7 @@ export class Complementary extends MultiHueColorTheme {
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
-  generateColorTheme (numberOfColors:number): ColorThemeData {
+  generateColorTheme (numberOfColors: number): ColorThemeData {
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.ComplementaryMax,
       minValue: ArgumentLimits.ComplementaryMin,

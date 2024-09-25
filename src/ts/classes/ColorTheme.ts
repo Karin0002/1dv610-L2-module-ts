@@ -2,10 +2,10 @@
  * Module for the class ColorTheme.
  */
 
-import { ColorThemeData } from "./ColorThemeData.js"
-import { ColorValues } from "../enums/ColorValues.js"
-import { Guard } from "./Guard.js"
-import { Calculator } from "./Calculator.js"
+import { ColorThemeData } from './ColorThemeData.js'
+import { ColorValues } from '../enums/ColorValues.js'
+import { Guard } from './Guard.js'
+import { Calculator } from './Calculator.js'
 
 /**
  * Represents a color theme.
@@ -59,7 +59,7 @@ export abstract class ColorTheme {
    * @param maxValue - The maximum value hue can be set to.
    * @param minValue - The minimum value hue can be set to.
    */
-  #setHue (maxValue:number, minValue:number) {
+  #setHue (maxValue: number, minValue: number): void {
     this.hue = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
@@ -69,7 +69,7 @@ export abstract class ColorTheme {
    * @param maxValue - The maximum value saturation can be set to.
    * @param minValue - The minimum value saturation can be set to.
    */
-  #setSaturation (maxValue:number, minValue:number) {
+  #setSaturation (maxValue: number, minValue: number): void {
     this.saturation = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
@@ -78,7 +78,7 @@ export abstract class ColorTheme {
    *
    * @param value - The value to set minLightness to.
    */
-  #setMinLightness (value:number) {
+  #setMinLightness (value: number): void {
     this.minLightness = value
   }
 
@@ -87,9 +87,9 @@ export abstract class ColorTheme {
    *
    * @param value - The value to set maxLightness to.
    */
-  #setMaxLightness (value:number) {
+  #setMaxLightness (value: number): void {
     this.maxLightness = value
   }
 
-  abstract generateColorTheme (numberOfColors:number): ColorThemeData
+  abstract generateColorTheme (numberOfColors: number): ColorThemeData
 }

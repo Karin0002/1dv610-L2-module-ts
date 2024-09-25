@@ -1,8 +1,8 @@
 /**
  * Module for the class Color.
  */
-import { ArgumentLimits } from "../enums/ArgumentLimits.js"
-import { Guard } from "./Guard.js"
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { Guard } from './Guard.js'
 
 /**
  * Represents a color.
@@ -55,7 +55,7 @@ export class Color {
    *
    * @param value - The value to set hue to.
    */
-  #setHue (value:number) {
+  #setHue (value: number): void {
     const argumentValues = {
       maxValue: ArgumentLimits.HueMax,
       minValue: ArgumentLimits.HueMin,
@@ -72,7 +72,7 @@ export class Color {
    * @param value - The value to set saturation to.
    * @throws Error if the arguments does not pass the validation.
    */
-  #setSaturation (value:number) {
+  #setSaturation (value: number): void {
     const argumentValues = {
       maxValue: ArgumentLimits.SaturationMax,
       minValue: ArgumentLimits.SaturationMin,
@@ -89,7 +89,7 @@ export class Color {
    * @param value - The value to set lightness to.
    * @throws Error if the arguments does not pass the validation.
    */
-  #setLightness (value:number) {
+  #setLightness (value: number): void {
     const argumentValues = {
       maxValue: ArgumentLimits.LightnessMax,
       minValue: ArgumentLimits.LightnessMin,
@@ -105,7 +105,7 @@ export class Color {
    *
    * @param value - The value to set hsl to.
    */
-  #setHSL (value:string) {
+  #setHSL (value: string): void {
     this.#hsl = value
   }
 
@@ -123,16 +123,16 @@ export class Color {
    *
    * @returns The hue.
    */
-  get hue ():number {
+  get hue (): number {
     return this.#hue
   }
-  
+
   /**
    * Gets the saturation of the object.
    *
    * @returns The saturation.
    */
-  get saturation ():number {
+  get saturation (): number {
     return this.#saturation
   }
 
@@ -141,7 +141,7 @@ export class Color {
    *
    * @returns The lightness.
    */
-  get lightness ():number {
+  get lightness (): number {
     return this.#lightness
   }
 
@@ -150,7 +150,7 @@ export class Color {
    *
    * @returns The hsl.
    */
-  get hsl ():string {
+  get hsl (): string {
     return this.#hsl
   }
 }
