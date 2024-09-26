@@ -14,7 +14,7 @@ export default [
   ...tseslint.configs.stylistic,
   stylistic.configs["recommended-flat"],
   {
-    ignores: ["node_modules/", "build/", "eslint.config.js"]
+    ignores: ["node_modules/", "build/", "eslint.config.js", "jest.config.mjs"]
   },
   {
     files: ["**/*.js"],
