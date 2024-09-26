@@ -1,104 +1,111 @@
-/**
- * Module for the class CSSColorSetter.
- */
-
 import { Color } from './Color.js'
 import { Guard } from './Guard.js'
 
-/**
- * Represents a CSS color setter.
- */
 export class CSSColorSetter {
   /**
-   * The guard to validate arguments.
+   * The object to validate arguments with.
    */
   #argumentGuard: Guard
 
-  /**
-   * Creates a new CSSColorSetter object.
-   */
   constructor () {
     this.#argumentGuard = new Guard()
-    // If it was to write to file instead of using style attribute the constructor could take the path to css file as argument.
   }
 
   /**
-   * Sets the CSS property color on the recieved HTMLElement with the recieved color using style attribute.
+   * Sets the CSS property color using style attribute.
    *
    * @param HTMLElement - Refrence to the HTML element to set the property on.
    * @param color - The color to set the property to.
    * @throws Error if the arguments does not pass the validation.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   setCSSColorPropertyOn (HTMLElement: HTMLElement, color: Color): void {
-    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
-    this.#argumentGuard.validateColorArgument(color)
-
-    HTMLElement.style.backgroundColor = color.hsl
-    // Set color
-    // Notes: none
-  }
-
-  /**
-   * Sets the CSS property background-color on the recieved HTMLElement with the recieved color using style attribute.
-   *
-   * @param HTMLElement - Refrence to the HTML element to set the property on.
-   * @param color - The color to set the property to.
-   * @throws Error if the arguments does not pass the validation.
-   */
-  setCSSBackgroundColorPropertyOn (HTMLElement: HTMLElement, color: Color): void {
+    // Mixed abstraction levels.
+    // Low-level: setting attribute.
+    // High-level: calls methods.
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
     this.#argumentGuard.validateColorArgument(color)
 
     HTMLElement.style.color = color.hsl
-    // Set background-color
-    // Notes: none
   }
 
   /**
-   * Sets the CSS property border-color on the recieved HTMLElement with the recieved color and border-style to solid using style attribute.
+   * Sets the CSS property background-color using style attribute.
    *
    * @param HTMLElement - Refrence to the HTML element to set the property on.
    * @param color - The color to set the property to.
    * @throws Error if the arguments does not pass the validation.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
+  setCSSBackgroundColorPropertyOn (HTMLElement: HTMLElement, color: Color): void {
+    // Mixed abstraction levels.
+    // Low-level: setting attribute.
+    // High-level: calls methods.
+    this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
+    this.#argumentGuard.validateColorArgument(color)
+
+    HTMLElement.style.backgroundColor = color.hsl
+  }
+
+  /**
+   * Sets the CSS property border-style to solid and border-color using style attribute.
+   *
+   * @param HTMLElement - Refrence to the HTML element to set the property on.
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
+   */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   setCSSBorderPropertyOn (HTMLElement: HTMLElement, color: Color): void {
+    // Mixed abstraction levels.
+    // Low-level: setting attribute.
+    // High-level: calls methods.
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
     this.#argumentGuard.validateColorArgument(color)
 
-    HTMLElement.style.border = `solid ${color.hsl}`
-    // Set border
-    // Notes: check if border-style is on HTMLElement, if yes border: color;, else border: solid color;
+    const borderStyle = 'solid'
+    HTMLElement.style.border = `${borderStyle} ${color.hsl}`
   }
 
   /**
-   * Sets the CSS property outline-color on the recieved HTMLElement with the recieved color and outline-style to solid using style attribute.
+   * Sets the CSS property outline-style to solid and outline-color using style attribute.
    *
    * @param HTMLElement - Refrence to the HTML element to set the property on.
    * @param color - The color to set the property to.
    * @throws Error if the arguments does not pass the validation.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   setCSSOutlinePropertyOn (HTMLElement: HTMLElement, color: Color): void {
+    // Mixed abstraction levels.
+    // Low-level: variables, setting attribute.
+    // High-level: calls methods.
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
     this.#argumentGuard.validateColorArgument(color)
 
-    HTMLElement.style.outline = `solid ${color.hsl}`
-    // Set outline
-    // Notes: check if outline-style is on HTMLElement, if yes outline: color;, else outline: solid color;
+    const outlineStyle = 'solid'
+    HTMLElement.style.outline = `${outlineStyle} ${color.hsl}`
   }
 
   /**
-   * Sets the CSS property text-decoration-color on the recieved HTMLElement with the recieved color and text-decoration-line to underline using style attribute.
+   * Sets the CSS property text-decoration-line to underline and text-decoration-color using style attribute.
    *
    * @param HTMLElement - Refrence to the HTML element to set the property on.
    * @param color - The color to set the property to.
    * @throws Error if the arguments does not pass the validation.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   setCSSTextDecorationPropertyOn (HTMLElement: HTMLElement, color: Color): void {
+    // Mixed abstraction levels.
+    // Low-level: variables, setting attribute.
+    // High-level: calls methods.
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
     this.#argumentGuard.validateColorArgument(color)
 
-    HTMLElement.style.textDecoration = `underline ${color.hsl}`
-    // Set text-decoration
-    // Notes: check if text-decoration-line is on HTMLElement, if yes text-decoration: color;, else text-decoration: underline color;
+    const textDecorationLine = 'underline'
+    HTMLElement.style.textDecoration = `${textDecorationLine} ${color.hsl}`
   }
 }

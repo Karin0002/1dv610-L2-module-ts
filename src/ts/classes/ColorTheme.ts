@@ -1,92 +1,60 @@
-/**
- * Module for the class ColorTheme.
- */
-
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { Guard } from './Guard.js'
 import { Calculator } from './Calculator.js'
 
-/**
- * Represents a color theme.
- */
 export abstract class ColorTheme {
   /**
-   * The guard to validate arguments.
+   * The object to validate arguments with.
    */
   protected argumentGuard: Guard
 
   /**
-   * The object to use for math calculations.
+   * The object to use for adjusting values and generating random numbers.
    */
   protected numberCalculator: Calculator
 
-  /**
-   * The hue of the color theme.
-   */
   protected hue: number
 
-  /**
-   * The saturation of the color theme.
-   */
   protected saturation: number
 
-  /**
-   * The lowest allowed lightness.
-   */
   protected minLightness: number
 
-  /**
-   * The highest allowed lightness.
-   */
   protected maxLightness: number
 
-  /**
-   * Creates a new ColorTheme object.
-   */
+  // Instead of accepting arguments I uses enums to make the color themes be cohesive.
+  // The cons is that it is less versatile.
   constructor () {
     this.argumentGuard = new Guard()
     this.numberCalculator = new Calculator()
     this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
     this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
-    this.#setMaxLightness(ColorValues.MaxLightness)
     this.#setMinLightness(ColorValues.MinLightness)
+    this.#setMaxLightness(ColorValues.MaxLightness)
   }
 
   /**
-   * Sets the hue.
-   *
-   * @param maxValue - The maximum value hue can be set to.
-   * @param minValue - The minimum value hue can be set to.
+   * Sets the hue with a randomly generated number that is between the arguments.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   #setHue (maxValue: number, minValue: number): void {
     this.hue = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
   /**
-   * Sets the saturation.
-   *
-   * @param maxValue - The maximum value saturation can be set to.
-   * @param minValue - The minimum value saturation can be set to.
+   * Sets the saturation with a randomly generated number that is between the arguments.
    */
+  // Dyadic, two arguments, could perhaps be an object instead
+  // with the current arguments as properties.
   #setSaturation (maxValue: number, minValue: number): void {
     this.saturation = this.numberCalculator.generateRandomNumber(maxValue, minValue)
   }
 
-  /**
-   * Sets the minLightness.
-   *
-   * @param value - The value to set minLightness to.
-   */
   #setMinLightness (value: number): void {
     this.minLightness = value
   }
 
-  /**
-   * Sets the maxLightness.
-   *
-   * @param value - The value to set maxLightness to.
-   */
   #setMaxLightness (value: number): void {
     this.maxLightness = value
   }

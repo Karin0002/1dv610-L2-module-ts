@@ -1,28 +1,15 @@
-/**
- * Module for the class ColorThemeData.
- */
-
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 
-/**
- * Represents a color theme data.
- */
 export class ColorThemeData {
   /**
-   * The number of colors in the theme.
-   */
-  #numberOfColors: number
-
-  /**
-   * The color theme.
+   * The name of the color theme.
    */
   #colorTheme: ColorThemes
 
-  /**
-   * The colors in the theme.
-   */
-  #colors: Color[]
+  #numberOfColorsInTheme: number
+
+  #colorsInTheme: Color[]
 
   /**
    * Creates a new Color object.
@@ -31,38 +18,26 @@ export class ColorThemeData {
    * @param colorTheme - The name of the colorTheme.
    * @param colors - The colors in the theme.
    */
+  // Triads, three arguments which is often to many but in this case I made
+  // the decision to accept it since it is a constructor.
   constructor (numberOfColors: number, colorTheme: ColorThemes, colors: Color[]) {
-    this.#numberOfColors = numberOfColors
+    this.#numberOfColorsInTheme = numberOfColors
     this.#colorTheme = colorTheme
-    this.#colors = colors
+    this.#colorsInTheme = colors
   }
 
-  /**
-   * Gets the numberOfColors of the object.
-   *
-   * @returns The numberOfColors.
-   */
-  get numberOfColors (): number {
-    return this.#numberOfColors
+  get numberOfColorsInTheme (): number {
+    return this.#numberOfColorsInTheme
   }
 
-  /**
-   * Gets the colorTheme of the object.
-   *
-   * @returns The colorTheme.
-   */
   get colorTheme (): ColorThemes {
     return this.#colorTheme
   }
 
-  /**
-   * Gets the colors of the object.
-   *
-   * @returns A copy of the colors.
-   */
-  get colors (): Color[] {
+  get colorsInTheme (): Color[] {
+    // Copies the colors since they are refrence types.
     const copyOfColors = []
-    for (const color of this.#colors) {
+    for (const color of this.#colorsInTheme) {
       const copyOfColor = new Color(color.hue, color.saturation, color.lightness)
       copyOfColors.push(copyOfColor)
     }
@@ -75,7 +50,7 @@ export class ColorThemeData {
    */
   sortColorsByHue (): void {
     // Does not return colors because of command query separation.
-    this.#colors.sort((a, b) => a.hue - b.hue)
+    this.#colorsInTheme.sort((a, b) => a.hue - b.hue)
   }
 
   /**
@@ -83,7 +58,7 @@ export class ColorThemeData {
    */
   sortColorsBySaturation (): void {
     // Does not return colors because of command query separation.
-    this.#colors.sort((a, b) => a.saturation - b.saturation)
+    this.#colorsInTheme.sort((a, b) => a.saturation - b.saturation)
   }
 
   /**
@@ -91,6 +66,6 @@ export class ColorThemeData {
    */
   sortColorsByLightness (): void {
     // Does not return colors because of command query separation.
-    this.#colors.sort((a, b) => a.lightness - b.lightness)
+    this.#colorsInTheme.sort((a, b) => a.lightness - b.lightness)
   }
 }

@@ -56,7 +56,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
    * @returns The generated color.
    */
   protected generateDarkColor (): Color {
-    const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
+    const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation, 10)
 
     const color = new Color(this.pickRandomHue(), calculatedSaturation, this.minLightness)
     return color
@@ -68,7 +68,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
    * @returns The generated color.
    */
   protected generateLightColor (): Color {
-    const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
+    const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation, 10)
 
     const color = new Color(this.pickRandomHue(), calculatedSaturation, this.maxLightness)
     return color

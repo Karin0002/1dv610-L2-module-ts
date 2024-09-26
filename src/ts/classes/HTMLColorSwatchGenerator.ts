@@ -1,15 +1,8 @@
-/**
- * Module for the class ColorSwatchGenerator.
- */
-
 import { Color } from './Color.js'
 import { CSSColorSetter } from './CSSColorSetter.js'
 import { Guard } from './Guard.js'
 
-/**
- * Represents a color swatch generator.
- */
-export class ColorSwatchGenerator {
+export class HTMLColorSwatchGenerator {
   /**
    * The object to use for setting CSS background-color property.
    */

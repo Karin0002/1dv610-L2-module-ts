@@ -1,25 +1,22 @@
-/**
- * Module for the class Complementary.
- */
-
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-/**
- * Represents a complementary color theme.
- */
 export class Complementary extends MultiHueColorTheme {
   /**
-   * Generates a color theme.
+   * Generates a complementary color theme.
    *
+  // Implicit instruction but that is explicit in the code through validation.
    * @param numberOfColors - The number of colors to include ranging from 2 to 4.
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors: number): ColorThemeData {
+    // Mixed abstraction levels.
+    // Low-level: variables, array.push, control statements.
+    // High-level: initiates objects of Color, calls methods.
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.ComplementaryMax,
       minValue: ArgumentLimits.ComplementaryMin,
@@ -51,6 +48,9 @@ export class Complementary extends MultiHueColorTheme {
    * @returns The two generated colors.
    */
   #generate2Colors (): Color[] {
+    // Mixed abstraction level
+    // Low-level: variables, array.push, loops, calculations.
+    // High-level: initiates objects of Color, calls adjustNumberWithin10.
     const numberOfColors = 2
     const numberOfHues = 360
     const hueIncrement = numberOfHues / numberOfColors
@@ -59,9 +59,9 @@ export class Complementary extends MultiHueColorTheme {
     for (let i = 0; i < numberOfColors; i++) {
       const calculatedHue = (((this.hue + (hueIncrement * i)) % numberOfHues) === 0) ? this.hue + (hueIncrement * i) : (this.hue + (hueIncrement * i)) % numberOfHues
       this.hues.push(calculatedHue)
-      const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
+      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
 
-      const color = new Color(calculatedHue, calculatedSaturation, this.lightness) // 10 for slight variation.
+      const color = new Color(calculatedHue, calculatedSaturation, this.lightness)
       colors.push(color)
     }
 

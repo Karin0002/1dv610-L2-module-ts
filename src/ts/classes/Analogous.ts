@@ -1,25 +1,22 @@
-/**
- * Module for the class Analogous.
- */
-
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-/**
- * Represents a analogous color theme.
- */
 export class Analogous extends MultiHueColorTheme {
   /**
-   * Generates a color theme.
+   * Generates an analogous color theme.
    *
+  // Implicit instruction but that is explicit in the code through validation.
    * @param numberOfColors - The number of colors to include ranging from 3 to 5.
    * @returns  An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors: number): ColorThemeData {
+    // Mixed abstraction levels.
+    // Low-level: variables, array.push, control statements.
+    // High-level: initiates objects of Color, calls methods.
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
@@ -41,8 +38,6 @@ export class Analogous extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    // Prehaps ColorTheme can be the object that is returned???
-    // So it has the fields numberOfColors, colorScheme and colors.
     const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
     return data
   }
@@ -50,21 +45,23 @@ export class Analogous extends MultiHueColorTheme {
   /**
    * Generates three analogous colors.
    *
-   * @returns The three generated colors.
+   * @returns The three generated colors as an array.
    */
   #generate3Colors (): Color[] {
+    // Mixed abstraction level
+    // Low-level: variables, array.push, loops, calculations.
+    // High-level: initiates objects of Color, calls adjustNumberWithin10.
     const numberOfColors = 3
     const numberOfHues = 360
-    // Only difference between Analogous and Triadic is hueInterval and ColorSchemes, otherwise identical.
     const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
     const colors: Color[] = []
 
     for (let i = 0; i < numberOfColors; i++) {
       const calculatedHue = (((this.hue + (hueIncrement * i)) % numberOfHues) === 0) ? this.hue + (hueIncrement * i) : (this.hue + (hueIncrement * i)) % numberOfHues
       this.hues.push(calculatedHue)
-      const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
+      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
 
-      const color = new Color(calculatedHue, calculatedSaturation, this.lightness) // 10 for slight variation.
+      const color = new Color(calculatedHue, calculatedSaturation, this.lightness)
       colors.push(color)
     }
 

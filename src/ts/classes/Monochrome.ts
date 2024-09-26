@@ -47,7 +47,7 @@ export class Monochrome extends ColorTheme {
     for (let i = 0; i < numberOfColors; i++) {
       const lightnessIncrement = (this.maxLightness - this.minLightness) / (increments)
       const calculatedLightness = this.minLightness + (lightnessIncrement * i)
-      const calculatedSaturation = this.numberCalculator.adjustNumber(this.saturation, 10)
+      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation, 10)
 
       const color = new Color(this.hue, calculatedSaturation, calculatedLightness)
       colors.push(color)
