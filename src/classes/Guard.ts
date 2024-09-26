@@ -14,7 +14,7 @@ export class Guard {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
     // High-level: calls methods.
-    if (!values.maxValue || !values.minValue || !values.recievedArgument) {
+    if (values.maxValue === undefined || values.minValue === undefined || values.recievedArgument === undefined) {
       const message = 'Could not validate since at least one of maxValue, minValue and recievedArgument is missing.'
       this.#throwError(message)
     }

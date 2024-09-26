@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "1dv610-L1-start-programming-again",
   "type": "module",
-  "main": "src/js/app.js",
+  "main": "src/app.ts",
   "scripts": {
     "start": "node build/app.js",
     "lint": "npx eslint ./src || exit 0",

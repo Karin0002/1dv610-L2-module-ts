@@ -48,26 +48,23 @@ export class RandomColorTheme {
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
-  generateColorTheme (numberOfColors: number): ColorThemeData {
-    console.log('recieved numberOfColors: ', numberOfColors)
+  generateColorTheme (numberOfColors?: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
     // High-level: calls methods.
-    // if (numberOfColors) {
-    this.#argumentGuard.validateNumberArgument({
-      maxValue: ArgumentLimits.RandomColorThemeMax,
-      minValue: ArgumentLimits.RandomColorThemeMin,
-      recievedArgument: numberOfColors
-    })
+    if (numberOfColors) {
+      this.#argumentGuard.validateNumberArgument({
+        maxValue: ArgumentLimits.RandomColorThemeMax,
+        minValue: ArgumentLimits.RandomColorThemeMin,
+        recievedArgument: numberOfColors
+      })
 
-    const data = this.#getSingleColorTheme(numberOfColors)
+      return this.#getSingleColorTheme(numberOfColors)
+    } else {
+      const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
 
-    return data
-    // } else {
-    //   const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
-
-    //   return this.#getSingleColorTheme(randomNumberOfColors)
-    // }
+      return this.#getSingleColorTheme(randomNumberOfColors)
+    }
   }
 
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
