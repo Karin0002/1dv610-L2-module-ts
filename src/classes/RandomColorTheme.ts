@@ -48,28 +48,31 @@ export class RandomColorTheme {
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
-  generateColorTheme (numberOfColors?: number): ColorThemeData {
+  generateColorTheme (numberOfColors: number): ColorThemeData {
+    console.log('recieved numberOfColors: ', numberOfColors)
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
     // High-level: calls methods.
-    if (numberOfColors !== undefined) {
-      this.#argumentGuard.validateNumberArgument({
-        maxValue: ArgumentLimits.RandomColorThemeMax,
-        minValue: ArgumentLimits.RandomColorThemeMin,
-        recievedArgument: numberOfColors
-      })
+    // if (numberOfColors) {
+    this.#argumentGuard.validateNumberArgument({
+      maxValue: ArgumentLimits.RandomColorThemeMax,
+      minValue: ArgumentLimits.RandomColorThemeMin,
+      recievedArgument: numberOfColors
+    })
 
-      return this.#getSingleColorTheme(numberOfColors)
-    } else {
-      const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
+    const data = this.#getSingleColorTheme(numberOfColors)
 
-      return this.#getSingleColorTheme(randomNumberOfColors)
-    }
+    return data
+    // } else {
+    //   const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
+
+    //   return this.#getSingleColorTheme(randomNumberOfColors)
+    // }
   }
 
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
     const themes = this.#getThemesWithNColors(numberOfColors)
-    const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length, 0)
+    const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length - 1, 0)
     const theme = themes[randomIndex]
 
     return theme.generateColorTheme(numberOfColors)
@@ -86,21 +89,26 @@ export class RandomColorTheme {
   // it works in my opinion since it sets it in a context.
   #getThemesWithNColors (n: number): ColorTheme[] {
     // Breaks open/close rule.
-    let themes
+    const themes = []
+    // let themes
     // Switch statement which are generally bad.
     switch (n) {
       case 2:
-        themes = [this.#complementary, this.#monochrome]
+        themes.push(this.#complementary, this.#monochrome)
+        // themes = [this.#complementary, this.#monochrome]
         break
       case 3:
-        themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
+        themes.push(this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic)
+        // themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
       case 4:
-        themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
+        themes.push(this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic)
+        // themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
       default:
         // Represents case 5.
-        themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
+        themes.push(this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic)
+        // themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
     }
 
