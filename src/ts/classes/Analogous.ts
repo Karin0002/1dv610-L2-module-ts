@@ -16,7 +16,7 @@ export class Analogous extends MultiHueColorTheme {
   generateColorTheme (numberOfColors: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
-    // High-level: initiates objects of Color, calls methods.
+    // High-level: initiates objects, calls methods.
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
@@ -39,6 +39,7 @@ export class Analogous extends MultiHueColorTheme {
     }
 
     const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
+
     return data
   }
 
@@ -50,13 +51,14 @@ export class Analogous extends MultiHueColorTheme {
   #generate3Colors (): Color[] {
     // Mixed abstraction level
     // Low-level: variables, array.push, loops, calculations.
-    // High-level: initiates objects of Color, calls adjustNumberWithin10.
+    // High-level: initiates objects, calls method.
     const numberOfColors = 3
     const numberOfHues = 360
     const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
     const colors: Color[] = []
 
     for (let i = 0; i < numberOfColors; i++) {
+      // Hard to read due to long line.
       const calculatedHue = (((this.hue + (hueIncrement * i)) % numberOfHues) === 0) ? this.hue + (hueIncrement * i) : (this.hue + (hueIncrement * i)) % numberOfHues
       this.hues.push(calculatedHue)
       const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)

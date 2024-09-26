@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-duplicate-enum-values */
+/**
+ * The limitation on arguments for the methods generateColorTheme.
+ */
 export enum ArgumentLimits {
   AnalogousMax = 5,
   AnalogousMin = 3,

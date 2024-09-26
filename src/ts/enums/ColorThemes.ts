@@ -1,3 +1,6 @@
+/**
+ * The name of the color themes.
+ */
 export enum ColorThemes {
   Monochrome = 'MONOCHROME',
   Triadic = 'TRIADIC',

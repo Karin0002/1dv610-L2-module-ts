@@ -1,25 +1,22 @@
-/**
- * Module for the class SplitComplementary.
- */
-
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-/**
- * Represents a split complementary color theme.
- */
 export class SplitComplementary extends MultiHueColorTheme {
   /**
-   * Generates a color theme.
+   * Generates an split complementary color theme.
    *
+  // Implicit instruction but that is explicit in the code through validation.
    * @param numberOfColors - The number of colors to include ranging from 3 to 5.
-   * @returns An object containing data about the generated color theme.
+   * @returns  An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors: number): ColorThemeData {
+    // Mixed abstraction levels.
+    // Low-level: variables, array.push, control statements.
+    // High-level: initiates objects, calls methods.
     this.argumentGuard.validateNumberArgument({
       maxValue: ArgumentLimits.SplitComplementaryMax,
       minValue: ArgumentLimits.SplitComplementaryMin,
@@ -42,6 +39,7 @@ export class SplitComplementary extends MultiHueColorTheme {
     }
 
     const data = new ColorThemeData(numberOfColors, ColorThemes.SplitComplementary, colors)
+
     return data
   }
 
@@ -52,6 +50,9 @@ export class SplitComplementary extends MultiHueColorTheme {
    * @returns The three generated colors.
    */
   #generate3Colors (): Color[] {
+    // Mixed abstraction level
+    // Low-level: variables, array.push, loops, calculations.
+    // High-level: initiates objects, calls method.
     const numberOfColors = 3
     const numberOfHues = 360
     const colors: Color[] = []
@@ -59,11 +60,12 @@ export class SplitComplementary extends MultiHueColorTheme {
     for (let i = 0; i < numberOfColors; i++) {
       // Equation made with the help of chatGPT, see @link in comment.
       const hueIncrement = 30 * (-(3 / 2) * (i ** 2) + (13 / 2) * i) // ** is "power of"
+      // Hard to read due to long line.
       const calculatedHue = (((this.hue + hueIncrement) % numberOfHues) === 0) ? this.hue + hueIncrement : (this.hue + hueIncrement) % numberOfHues
       this.hues.push(calculatedHue)
-      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation, 10)
+      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
 
-      const color = new Color(calculatedHue, calculatedSaturation, this.lightness) // 10 for slight variation.
+      const color = new Color(calculatedHue, calculatedSaturation, this.lightness)
       colors.push(color)
     }
 

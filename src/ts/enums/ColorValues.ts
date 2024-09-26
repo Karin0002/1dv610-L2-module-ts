@@ -1,3 +1,6 @@
+/**
+ * Set values for color themes.
+ */
 export enum ColorValues {
   HueMax = 360,
   HueMin = 0,

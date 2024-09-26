@@ -4,29 +4,23 @@ import { Guard } from './Guard.js'
 
 export class HTMLColorSwatchGenerator {
   /**
-   * The object to use for setting CSS background-color property.
+   * The object to use for setting the color of the color swatch.
    */
   #styler: CSSColorSetter
 
-  /**
-   * The value to set the CSS property width to.
-   */
   #swatchCSSWidth: string
 
-  /**
-   * The value to set the CSS property height to.
-   */
   #swatchCSSHeight: string
 
-  /**
-   * The value to set the CSS property border-radius to.
-   */
   #swatchCSSBorderRadius: string
 
   /**
    * Creates a new ColorSwatchGenerator object.
    */
   constructor () {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: initiates object of CSSColorSetter.
     this.#styler = new CSSColorSetter()
     this.#swatchCSSWidth = '50px'
     this.#swatchCSSHeight = '50px'
@@ -39,56 +33,38 @@ export class HTMLColorSwatchGenerator {
    * @param color - The color to set the element to.
    * @returns The generated element.
    */
-  generateColorSwatchElement (color: Color): HTMLDivElement {
+  generateElement (color: Color): HTMLDivElement {
+    // Somewhat mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls methods.
     const argumentGuard = new Guard()
     argumentGuard.validateColorArgument(color)
 
     const swatch = this.#createDivElement()
 
     this.#styler.setCSSBackgroundColorPropertyOn(swatch, color)
-    this.#setCSSWidth(swatch, this.#swatchCSSWidth)
-    this.#setCSSHeight(swatch, this.#swatchCSSHeight)
-    this.#setCSSBorderRadius(swatch, this.#swatchCSSBorderRadius)
+    this.#setCSSWidthOn(swatch)
+    this.#setCSSHeightOn(swatch)
+    this.#setCSSBorderRadiusOn(swatch)
 
     return swatch
   }
 
-  /**
-   * Creates a HTMLDivElement.
-   */
   #createDivElement (): HTMLDivElement {
     const element = document.createElement('div')
 
     return element
   }
 
-  /**
-   * Sets the CSS width property on an element.
-   *
-   * @param element - Refrence to the HTML element to set the property on.
-   * @param CSSValue - The value to set the property to.
-   */
-  #setCSSWidth (element: HTMLElement, CSSValue: string): void {
-    element.style.width = CSSValue
+  #setCSSWidthOn (element: HTMLElement): void {
+    element.style.width = this.#swatchCSSWidth
   }
 
-  /**
-   * Sets the CSS height property on an element.
-   *
-   * @param element - Refrence to the HTML element to set the property on.
-   * @param CSSValue - The value to set the property to.
-   */
-  #setCSSHeight (element: HTMLElement, CSSValue: string): void {
-    element.style.height = CSSValue
+  #setCSSHeightOn (element: HTMLElement): void {
+    element.style.height = this.#swatchCSSHeight
   }
 
-  /**
-   * Sets the CSS border-radius property on an element.
-   *
-   * @param element - Refrence to the HTML element to set the property on.
-   * @param CSSValue - The value to set the property to.
-   */
-  #setCSSBorderRadius (element: HTMLElement, CSSValue: string): void {
-    element.style.borderRadius = CSSValue
+  #setCSSBorderRadiusOn (element: HTMLElement): void {
+    element.style.borderRadius = this.#swatchCSSBorderRadius
   }
 }

@@ -1,7 +1,3 @@
-/**
- * Module for the class RandomColorTheme.
- */
-
 import { Triadic } from './Triadic.js'
 import { Analogous } from './Analogous.js'
 import { Complementary } from './Complementary.js'
@@ -13,48 +9,27 @@ import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { Calculator } from './Calculator.js'
 
-/**
- * Represents a random color theme.
- */
 export class RandomColorTheme {
   /**
-   * The guard to validate arguments.
+   * The object to validate arguments with.
    */
   #argumentGuard: Guard
 
   /**
-   * The object to use for math calculations.
+   * The object to use for generating random numbers.
    */
   #numberCalculator: Calculator
 
-  /**
-   * The object to use for generating triadic color themes.
-   */
   #analogous: Analogous
 
-  /**
-   * The object to use for generating complementary color themes.
-   */
   #complementary: Complementary
 
-  /**
-   * The object to use for generating monochrome color themes.
-   */
   #monochrome: Monochrome
 
-  /**
-   * The object to use for generating split complementary color themes.
-   */
   #splitComplementary: SplitComplementary
 
-  /**
-   * The object to use for generating triadic color themes.
-   */
   #triadic: Triadic
 
-  /**
-   * Creates a new RandomColorTheme object.
-   */
   constructor () {
     this.#argumentGuard = new Guard()
     this.#numberCalculator = new Calculator()
@@ -66,13 +41,17 @@ export class RandomColorTheme {
   }
 
   /**
-   * Generates a random color theme.
+   * Generates a random color theme using analogous, complementary, monochrome, split complementary or triadic.
    *
-   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
+  // Implicit instruction but that is explicit in the code through validation.
+   * @param numberOfColors - Optional, the number of colors to include ranging from 2 to 5.
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
    */
   generateColorTheme (numberOfColors?: number): ColorThemeData {
+    // Mixed abstraction levels.
+    // Low-level: variables, control statements.
+    // High-level: calls methods.
     if (numberOfColors !== undefined) {
       this.#argumentGuard.validateNumberArgument({
         maxValue: ArgumentLimits.RandomColorThemeMax,
@@ -80,38 +59,35 @@ export class RandomColorTheme {
         recievedArgument: numberOfColors
       })
 
-      return this.#getColorTheme(numberOfColors)
+      return this.#getSingleColorTheme(numberOfColors)
     } else {
       const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
 
-      return this.#getColorTheme(randomNumberOfColors)
+      return this.#getSingleColorTheme(randomNumberOfColors)
     }
   }
 
-  /**
-   * Gets a single color theme.
-   *
-   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
-   * @returns An object containing data about the generated color theme.
-   */
-  #getColorTheme (numberOfColors: number): ColorThemeData {
+  #getSingleColorTheme (numberOfColors: number): ColorThemeData {
     const themes = this.#getThemesWithNColors(numberOfColors)
     const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length, 0)
     const theme = themes[randomIndex]
+
     return theme.generateColorTheme(numberOfColors)
   }
 
   /**
-   * Gets an array of themes that can handle a certain amount of colors.
+   * Gets an array of themes that can take a certain amount of colors.
    *
    * @param n - The number of colors the theme must be able to handle.
    * @returns An array of themes.
    */
-  // The name of the argument is only one character which is typically not good,
-  // but combined with the name of the method it works in my opinion since it sets it in a context.
+  // The name of the argument is only one character which is typically not
+  // good and is not searchable, but combined with the name of the method
+  // it works in my opinion since it sets it in a context.
   #getThemesWithNColors (n: number): ColorTheme[] {
     // Breaks open/close rule.
     let themes
+    // Switch statement which are generally bad.
     switch (n) {
       case 2:
         themes = [this.#complementary, this.#monochrome]
@@ -127,6 +103,7 @@ export class RandomColorTheme {
         themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
     }
+
     return themes
   }
 }

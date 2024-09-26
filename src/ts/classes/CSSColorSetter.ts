@@ -60,7 +60,7 @@ export class CSSColorSetter {
   // with the current arguments as properties.
   setCSSBorderPropertyOn (HTMLElement: HTMLElement, color: Color): void {
     // Mixed abstraction levels.
-    // Low-level: setting attribute.
+    // Low-level: variables, setting attribute.
     // High-level: calls methods.
     this.#argumentGuard.validateHTMLElementArgument(HTMLElement)
     this.#argumentGuard.validateColorArgument(color)
