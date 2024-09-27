@@ -18,6 +18,7 @@ describe('ColorThemeData.ts', () => {
     const themeName = ColorThemes.Analogous
     const colorTheme = new ColorThemeData(themeName, colors)
     expect(colorTheme.numberOfColorsInTheme).toEqual(numberOfColors)
+    expect(colorTheme.numberOfColorsInTheme).not.toEqual(numberOfColors + 1)
   })
 
   test('checking colorTheme', () => {
@@ -35,6 +36,7 @@ describe('ColorThemeData.ts', () => {
     const themeName = ColorThemes.Analogous
     const colorTheme = new ColorThemeData(themeName, colors)
     expect(colorTheme.colorTheme).toEqual(themeName)
+    expect(colorTheme.colorTheme).not.toEqual(ColorThemes.Complementary)
   })
 
   test('checking colorsInTheme', () => {
@@ -48,9 +50,14 @@ describe('ColorThemeData.ts', () => {
     for (let i = 0; i < numberOfColors; i++) {
       colors.push(new Color(valuesOfColor.hue, valuesOfColor.saturation, valuesOfColor.lightness))
     }
+    const alternateColors = []
+    for (let i = 0; i < numberOfColors; i++) {
+      colors.push(new Color(valuesOfColor.hue + 1, valuesOfColor.saturation, valuesOfColor.lightness))
+    }
     const themeName = ColorThemes.Analogous
     const colorTheme = new ColorThemeData(themeName, colors)
     expect(colorTheme.colorsInTheme).toEqual(colors)
+    expect(colorTheme.colorsInTheme).not.toEqual(alternateColors)
   })
 
   test('invalid number of params - exclude colorTheme', () => {
@@ -64,11 +71,13 @@ describe('ColorThemeData.ts', () => {
     for (let i = 0; i < numberOfColors; i++) {
       colors.push(new Color(valuesOfColor.hue, valuesOfColor.saturation, valuesOfColor.lightness))
     }
+    expect(() => new ColorThemeData(undefined, colors)).toThrowError()
     expect(() => new ColorThemeData(colors)).toThrowError()
   })
 
   test('invalid number of params - exclude colors', () => {
     const themeName = ColorThemes.Analogous
+    expect(() => new ColorThemeData(themeName, undefined)).toThrowError()
     expect(() => new ColorThemeData(themeName)).toThrowError()
   })
 
@@ -182,5 +191,26 @@ describe('ColorThemeData.ts', () => {
 
     expect(unsortedLightness).not.toStrictEqual(sortedLightness)
     expect(sortedLightness).toStrictEqual(expectedValueOfSortedLightness)
+  })
+
+  test('altering colorsInTheme', () => {
+    const valuesOfColor = {
+      hue: 180,
+      saturation: 50,
+      lightness: 50,
+    }
+    const colors = []
+    const numberOfColors = 3
+    for (let i = 0; i < numberOfColors; i++) {
+      colors.push(new Color(valuesOfColor.hue, valuesOfColor.saturation, valuesOfColor.lightness))
+    }
+    const themeName = ColorThemes.Analogous
+    const colorTheme = new ColorThemeData(themeName, colors)
+
+    const alteredColors = colorTheme.colorsInTheme
+    alteredColors.pop()
+
+    expect(colorTheme.colorsInTheme).toEqual(colors)
+    expect(colorTheme.colorsInTheme).not.toEqual(alteredColors)
   })
 })

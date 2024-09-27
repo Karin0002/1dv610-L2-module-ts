@@ -4,13 +4,18 @@ import { Guard } from './Guard.js'
 
 export class ColorThemeData {
   /**
+   * The object to validate arguments with.
+   */
+  #argumentGuard: Guard
+
+  #colorsInTheme: Color[]
+
+  /**
    * The name of the color theme.
    */
   #colorTheme: ColorThemes
 
   #numberOfColorsInTheme: number
-
-  #colorsInTheme: Color[]
 
   /**
    * Creates a new Color object.
@@ -19,26 +24,34 @@ export class ColorThemeData {
    * @param colors - The colors in the theme.
    */
   constructor (colorTheme: ColorThemes, colors: Color[]) {
-    const argumentGuard = new Guard()
-    argumentGuard.validateColorThemesArgument(colorTheme)
-    argumentGuard.validateColorArrayArgument(colors)
-    this.#setColorsInTheme(colors)
+    this.#argumentGuard = new Guard()
     this.#setColorTheme(colorTheme)
+    this.#setColorsInTheme(colors)
     this.#setNumberOfColorsInTheme()
   }
 
-  #setColorsInTheme (colors: Color[]): void {
-    this.#colorsInTheme = colors
+  #setColorTheme (theme: ColorThemes): void {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls method.
+    this.#argumentGuard.validateColorThemesArgument(theme)
+
+    this.#colorTheme = theme
   }
 
-  #setColorTheme (theme: ColorThemes): void {
-    this.#colorTheme = theme
+  #setColorsInTheme (colors: Color[]): void {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls method.
+    this.#argumentGuard.validateColorArrayArgument(colors)
+
+    this.#colorsInTheme = colors
   }
 
   #setNumberOfColorsInTheme (): void {
     this.#numberOfColorsInTheme = this.#colorsInTheme.length
   }
-  
+
   get colorsInTheme (): Color[] {
     // Mixed abstraction levels.
     // Low-level: array.push.

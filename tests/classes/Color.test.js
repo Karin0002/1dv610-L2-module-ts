@@ -8,6 +8,7 @@ describe('Color.ts', () => {
     const lightness = 50
     const color = new Color(hue, saturation, lightness)
     expect(color.hue).toEqual(hue)
+    expect(color.hue).not.toEqual(hue + 1)
   })
 
   test('setting too low hue', () => {
@@ -60,7 +61,7 @@ describe('Color.ts', () => {
     expect(() => new Color(hue, saturation, lightness)).toThrowError()
   })
 
-  test('setting and returning valid lightness', () => {
+  test('setting valid lightness', () => {
     const hue = 180
     const saturation = 50
     const lightness = 50
@@ -94,16 +95,48 @@ describe('Color.ts', () => {
     const saturation = 50
     const lightness = 100
     const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    const alternateHsl = `hsl(${hue - 1}, ${saturation}%, ${lightness}%)`
     const color = new Color(hue, saturation, lightness)
     expect(color.hsl).toBe(hsl)
+    expect(color.hsl).not.toBe(alternateHsl)
   })
 
-  test('getting the hsl and comparing it to wrong hsl', () => {
+  test('invalid number of params - exclude hue', () => {
+    const saturation = 50
+    const lightness = 50
+    expect(() => new Color(undefined, saturation, lightness)).toThrowError()
+    expect(() => new Color(saturation, lightness)).toThrowError()
+  })
+
+  test('invalid number of params - exclude saturation', () => {
+    const hue = 180
+    const lightness = 50
+    expect(() => new Color(hue, undefined, lightness)).toThrowError()
+    expect(() => new Color(hue, lightness)).toThrowError()
+  })
+
+  test('invalid number of params - exclude lightness', () => {
     const hue = 180
     const saturation = 50
-    const lightness = 100
-    const hsl = `hsl(${hue + 1}, ${saturation}%, ${lightness}%)`
-    const color = new Color(hue, saturation, lightness)
-    expect(color.hsl).not.toBe(hsl)
+    expect(() => new Color(hue, saturation, undefined)).toThrowError()
+    expect(() => new Color(hue, saturation)).toThrowError()
+  })
+
+  test('invalid number of params - only hue', () => {
+    const hue = 50
+    expect(() => new Color(hue, undefined, undefined)).toThrowError()
+    expect(() => new Color(hue)).toThrowError()
+  })
+
+  test('invalid number of params - only saturation', () => {
+    const saturation = 50
+    expect(() => new Color(undefined, saturation, undefined)).toThrowError()
+    expect(() => new Color(saturation)).toThrowError()
+  })
+
+  test('invalid number of params - only lightness', () => {
+    const lightness = 50
+    expect(() => new Color(undefined, undefined, lightness)).toThrowError()
+    expect(() => new Color(lightness)).toThrowError()
   })
 })
