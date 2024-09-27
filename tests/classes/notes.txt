@@ -80,6 +80,15 @@ Triadic:
 
 
 
+RandomColorTheme:
+- generateColorTheme - the return value is ColorThemeData with a analogous, complementary, monochrome, splitComplementary or triadic theme (check that colorTheme is one of the enums)
+- generateColorTheme - if argument present, no invalid value (must be between RandomColorThemeMax (enum) and RandomColorThemeMin (enum))
+- generateColorTheme - if argument present, no invalid type (must be between RandomColorThemeMax (enum) and RandomColorThemeMin (enum))
+- generateColorTheme - if argument present, the numberOfColorsInTheme matches the argument
+- generateColorTheme - if argument not present, a color theme is generated with numberOfColorsInTheme being (random) between RandomColorThemeMax (enum) and RandomColorThemeMin (enum)
+
+
+
 Calculator:
 - generateRandomNumber - the generated number must be between arguments
 - generateRandomNumber - the generated number must be random
