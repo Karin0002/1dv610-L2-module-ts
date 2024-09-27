@@ -27,7 +27,7 @@ export class Monochrome extends ColorTheme {
 
     colors.push(...this.#generateColors(numberOfColors))
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Monochrome, colors)
+    const data = new ColorThemeData(ColorThemes.Monochrome, colors)
 
     return data
   }

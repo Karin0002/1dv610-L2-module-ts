@@ -38,7 +38,7 @@ export class Triadic extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Triadic, colors)
+    const data = new ColorThemeData(ColorThemes.Triadic, colors)
 
     return data
   }

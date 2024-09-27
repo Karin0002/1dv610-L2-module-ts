@@ -38,7 +38,7 @@ export class SplitComplementary extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.SplitComplementary, colors)
+    const data = new ColorThemeData(ColorThemes.SplitComplementary, colors)
 
     return data
   }

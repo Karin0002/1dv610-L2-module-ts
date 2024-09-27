@@ -38,7 +38,7 @@ export class Analogous extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
+    const data = new ColorThemeData(ColorThemes.Analogous, colors)
 
     return data
   }

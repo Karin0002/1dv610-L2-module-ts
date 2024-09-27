@@ -38,7 +38,7 @@ export class Complementary extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Complementary, colors)
+    const data = new ColorThemeData(ColorThemes.Complementary, colors)
 
     return data
   }

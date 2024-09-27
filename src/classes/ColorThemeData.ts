@@ -14,14 +14,11 @@ export class ColorThemeData {
   /**
    * Creates a new Color object.
    *
-   * @param numberOfColors - The number of colors in the theme.
    * @param colorTheme - The name of the colorTheme.
    * @param colors - The colors in the theme.
    */
-  // Triads, three arguments which is often to many but in this case I made
-  // the decision to accept it since it is a constructor.
-  constructor (numberOfColors: number, colorTheme: ColorThemes, colors: Color[]) {
-    this.#numberOfColorsInTheme = numberOfColors
+  constructor (colorTheme: ColorThemes, colors: Color[]) {
+    this.#numberOfColorsInTheme = colors.length
     this.#colorTheme = colorTheme
     this.#colorsInTheme = colors
   }
