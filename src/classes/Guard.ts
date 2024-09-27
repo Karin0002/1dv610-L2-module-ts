@@ -1,3 +1,4 @@
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 
 export class Guard {
@@ -54,6 +55,41 @@ export class Guard {
     // High-level: calls methods.
     if (!(recievedArgument instanceof HTMLElement)) {
       const message = `The argument must be an instance of HTMLElement.`
+      this.#throwError(message)
+    }
+  }
+
+  // The description of method and param in comment does not add any new information but the throws does.
+  /**
+   * Validates an argument of type ColorThemes.
+   *
+   * @param recievedArgument - The argument to validate.
+   * @throws Error if the arguments does not pass the validation.
+   */
+  validateColorThemesArgument (recievedArgument: ColorThemes): void {
+    // Mixed abstraction levels.
+    // Low-level: variables, control statements, object.values.
+    // High-level: calls methods.
+    const values = Object.values(ColorThemes)
+    if (!values.includes(recievedArgument)) {
+      const message = `The argument must be a value of ColorThemes.`
+      this.#throwError(message)
+    }
+  }
+
+  // The description of method and param in comment does not add any new information but the throws does.
+  /**
+   * Validates an argument of type Color[].
+   *
+   * @param recievedArgument - The argument to validate.
+   * @throws Error if the arguments does not pass the validation.
+   */
+  validateColorArrayArgument (recievedArgument: Color[]): void {
+    // Mixed abstraction levels.
+    // Low-level: variables, control statements, array.isArray, array.every.
+    // High-level: calls methods.
+    if (!Array.isArray(recievedArgument) || !recievedArgument.every(value => value instanceof Color)) {
+      const message = `The argument must be an array of Color objects.`
       this.#throwError(message)
     }
   }

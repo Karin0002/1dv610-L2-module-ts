@@ -1,5 +1,6 @@
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
+import { Guard } from './Guard.js'
 
 export class ColorThemeData {
   /**
@@ -18,6 +19,12 @@ export class ColorThemeData {
    * @param colors - The colors in the theme.
    */
   constructor (colorTheme: ColorThemes, colors: Color[]) {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls methods and initiate object.
+    const argumentGuard = new Guard()
+    argumentGuard.validateColorThemesArgument(colorTheme)
+    argumentGuard.validateColorArrayArgument(colors)
     this.#numberOfColorsInTheme = colors.length
     this.#colorTheme = colorTheme
     this.#colorsInTheme = colors

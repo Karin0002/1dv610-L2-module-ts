@@ -2,9 +2,9 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Language and Environment */
-    "target":"ES6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target":"ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     /* Modules */
-    "module":"NodeNext",                                /* Specify what module code is generated. */
+    "module": "NodeNext",                                /* Specify what module code is generated. */
     "moduleResolution": "NodeNext",
     /* Emit */
     "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
