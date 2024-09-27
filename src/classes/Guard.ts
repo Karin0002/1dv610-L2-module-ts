@@ -19,6 +19,12 @@ export class Guard {
       const message = 'Could not validate since at least one of maxValue, minValue and recievedArgument is missing.'
       this.#throwError(message)
     }
+
+    if (isNaN(values.maxValue) || isNaN(values.minValue)) {
+      const message = 'Could not validate since at least one of maxValue and minValue is not of type number.'
+      this.#throwError(message)
+    }
+
     if (isNaN(values.recievedArgument) || values.recievedArgument > values.maxValue || values.recievedArgument < values.minValue) {
       const message = `The argument cannot be greater than ${values.maxValue}, nor less than ${values.minValue}.`
       this.#throwError(message)

@@ -4,6 +4,8 @@ ColorTheme:
 - maxLightness (protected) should be MaxLightness (enum)
 - minLightness (protected) should be MinLightness (enum)
 
+
+
 MultiHueColorTheme:
 - lightness (protected) should be a random number between LightnessMax (enum) and LightnessMin (enum)
 - pickRandomHue (protected) picks a random hue from this.hues (protected)
@@ -14,22 +16,69 @@ MultiHueColorTheme:
 - generateLightColor (protected) - lightness of the light color should be MaxLightness (enum)
 - generateLightColor (protected) - saturation is within +- 10 from this.saturation
 
+
+
 Analogous, Complementary, Monochrome, SplitComplementary, Triadic:
-- difference of saturation in the colors must be within 20
-- if present, the light color has lightness MaxLightness (enum)
-- if present, the dark color has lightness MinLightness (enum)
 - generateColorTheme - the return value must be of type ColorThemeData
-- generateColorTheme - the number of Colors must match argument
+- generateColorTheme - difference of saturation in the colors must be within 20
+- generateColorTheme - numberOfColorsInTheme must match argument
+- generateColorTheme - colorTheme must match the name of the class
 - generateColorTheme - one cannot send invalid number of arguments
 - generateColorTheme - one cannot send invalid type of arguments
-- generateColorTheme - if the argument is 5/4 it adds one light and one dark
-- generateColorTheme - colorTheme must match the name of the class
+- generateColorTheme - if present, the light color has lightness MaxLightness (enum)
+- generateColorTheme - if present, the dark color has lightness MinLightness (enum)
+
+
 
 Analogous, Complementary, SplitComplementary, Triadic:
-- generateColorTheme - if the lightness of main colors is over 50, it adds one dark
-- generateColorTheme - if the lightness of main colors is under 50, it adds one light
-- if present, the light color is picked random from the hues
-- if present, the dark color is picked random from the hues
+- if present, the light color is picked random from the existing hues
+- if present, the dark color is picked random from the existing hues
+
+
+
+Analogous:
+- generateColorTheme - if the argument is 5 it adds one light and one dark
+- generateColorTheme - if the argument is 4 it adds one light or one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
+- generateColorTheme - (3 colors) hues of the colors is x, x+30, x+60
+
+
+
+Complementary:
+- generateColorTheme - if the argument is 4 it adds one light and one dark
+- generateColorTheme - if the argument is 3 it adds one light or one dark
+- generateColorTheme - (3 colors) if the lightness of main colors is over 50, it adds one dark
+- generateColorTheme - (3 colors) if the lightness of main colors is under 50, it adds one light
+- generateColorTheme - (2 colors) hues of the colors is x, x+180
+
+
+
+Monochrome:
+- generateColorTheme - the colors share the same hue
+- generateColorTheme - the darkest color has lightness MinLightness (enum)
+- generateColorTheme - the lightest color has lightness MaxLightness (enum)
+- generateColorTheme - the lightness of the colors is evenly spread between MinLightness and MaxLightness
+
+
+
+SplitComplementary:
+- generateColorTheme - if the argument is 5 it adds one light and one dark
+- generateColorTheme - if the argument is 4 it adds one light or one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
+- generateColorTheme - (3 colors) hues of the colors is x, x+150, x+210
+
+
+
+Triadic:
+- generateColorTheme - if the argument is 5 it adds one light and one dark
+- generateColorTheme - if the argument is 4 it adds one light or one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
+- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
+- generateColorTheme - (3 colors) hues of the colors is x, x+120, x+240
+
+
 
 Calculator:
 - generateRandomNumber - the generated number must be between arguments
@@ -44,4 +93,77 @@ Calculator:
 - adjustNumberWithin10 - the generated number must be within +-10 from orginal
 
 
+
+Guard:
+-validateNumberArgumentWithMaxAndMin - if a property on argument is missing throw error
+-validateNumberArgumentWithMaxAndMin - if maxValue on argument is not a number throw error
+-validateNumberArgumentWithMaxAndMin - if minValue on argument is not a number throw error
+-validateNumberArgumentWithMaxAndMin - if recievedArgument is not between maxValue and minValue throw error
+-validateNumberArgumentWithMaxAndMin - if recievedArgument is between maxValue and minValue nothing happens (returns undefined?)
+
+-validateNumberArgument - if argument is missing throw error
+-validateNumberArgument - if argument is not a number throw error
+-validateNumberArgument - if argument is a number nothing happens (returns undefined?)
+
+-validateColorArgument - if argument is missing throw error
+-validateColorArgument - if argument is not a Color throw error
+-validateColorArgument - if argument is a Color nothing happens (returns undefined?)
+
+-validateHTMLElementArgument - if argument is missing throw error
+-validateHTMLElementArgument - if argument is not a HTMLElement throw error
+-validateHTMLElementArgument - if argument is a HTMLElement nothing happens (returns undefined?)
+
+-validateColorThemesArgument - if argument is missing throw error
+-validateColorThemesArgument - if argument is not a ColorThemes throw error
+-validateColorThemesArgument - if argument is a ColorThemes nothing happens (returns undefined?)
+
+-validateColorArrayArgument - if argument is missing throw error
+-validateColorArrayArgument - if argument is not an array of Color throw error
+-validateColorArrayArgument - if argument is a an array of Color nothing happens (returns undefined?)
+
+
+
+CSSColorSetter:
+- setCSSColorPropertyOn - if 1 or 2 arguments is missing throw error
+- setCSSColorPropertyOn - if type of arguments is invalid throw error
+- setCSSColorPropertyOn - the HTMLElement has the css property color
+- setCSSColorPropertyOn - the value of the css property color is the same as the argument.hsl
+
+- setCSSBackgroundColorPropertyOn - if 1 or 2 arguments is missing throw error
+- setCSSBackgroundColorPropertyOn - if type of arguments is invalid throw error
+- setCSSBackgroundColorPropertyOn - the HTMLElement has the css property background-color
+- setCSSBackgroundColorPropertyOn - the value of the css property background-color is the same as the argument.hsl
+
+- setCSSBorderPropertyOn - if 1 or 2 arguments is missing throw error
+- setCSSBorderPropertyOn - if type of arguments is invalid throw error
+- setCSSBorderPropertyOn - the HTMLElement has the css property border-style
+- setCSSBorderPropertyOn - the HTMLElement has the css property border-color
+- setCSSBorderPropertyOn - the value of the css property border-style is solid
+- setCSSBorderPropertyOn - the value of the css property border-color is the same as the argument.hsl
+
+- setCSSOutlinePropertyOn - if 1 or 2 arguments is missing throw error
+- setCSSOutlinePropertyOn - if type of arguments is invalid throw error
+- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-style
+- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-color
+- setCSSOutlinePropertyOn - the value of the css property outline-style is solid
+- setCSSOutlinePropertyOn - the value of the css property outline-color is the same as the argument.hsl
+
+- setCSSTextDecorationPropertyOn - if 1 or 2 arguments is missing throw error
+- setCSSTextDecorationPropertyOn - if type of arguments is invalid throw error
+- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-line
+- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-color
+- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-line is underline
+- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-color is the same as the argument.hsl
+
+
+
+HTMLColorSwatchGenerator:
+- generateElement - if argument is missing throw error
+- generateElement - if type of argument is invalid throw error
+- generateElement - the return type is HTMLDivElement
+- generateElement - the return element has CSS width = 50px
+- generateElement - the return element has CSS height = 50px
+- generateElement - the return element has CSS border-radius = 50%
+- generateElement - the return element has CSS background-color
+- generateElement - the value of the CSS background-color is the same as the argument.hsl
 
