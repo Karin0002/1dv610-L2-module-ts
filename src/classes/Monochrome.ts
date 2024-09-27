@@ -17,7 +17,7 @@ export class Monochrome extends ColorTheme {
     // Mixed abstraction levels.
     // Low-level: variables, array.push.
     // High-level: initiates objects, calls methods.
-    this.argumentGuard.validateNumberArgument({
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.MonochromeMax,
       minValue: ArgumentLimits.MonochromeMin,
       recievedArgument: numberOfColors

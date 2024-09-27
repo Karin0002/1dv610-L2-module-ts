@@ -34,7 +34,7 @@ export class Color {
     // Mixed abstraction level.
     // Low-level: variables.
     // High-level: calling validation method.
-    this.#argumentGuard.validateNumberArgument({
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.HueMax,
       minValue: ArgumentLimits.HueMin,
       recievedArgument: value
@@ -50,7 +50,7 @@ export class Color {
     // Mixed abstraction level.
     // Low-level: variables.
     // High-level: calling validation method.
-    this.#argumentGuard.validateNumberArgument({
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.SaturationMax,
       minValue: ArgumentLimits.SaturationMin,
       recievedArgument: value
@@ -66,7 +66,7 @@ export class Color {
     // Mixed abstraction level.
     // Low-level: variables.
     // High-level: calling validation method.
-    this.#argumentGuard.validateNumberArgument({
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.LightnessMax,
       minValue: ArgumentLimits.LightnessMin,
       recievedArgument: value

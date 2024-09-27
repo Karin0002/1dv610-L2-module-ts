@@ -54,7 +54,7 @@ export class ColorThemeData {
 
   get colorsInTheme (): Color[] {
     // Mixed abstraction levels.
-    // Low-level: array.push.
+    // Low-level: array.push, loop.
     // High-level: initiates objects.
     // Copies the colors since they are refrence types.
     const copyOfColors = []

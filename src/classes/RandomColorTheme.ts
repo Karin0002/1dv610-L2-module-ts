@@ -53,7 +53,7 @@ export class RandomColorTheme {
     // Low-level: variables, control statements.
     // High-level: calls methods.
     if (numberOfColors) {
-      this.#argumentGuard.validateNumberArgument({
+      this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
         maxValue: ArgumentLimits.RandomColorThemeMax,
         minValue: ArgumentLimits.RandomColorThemeMin,
         recievedArgument: numberOfColors

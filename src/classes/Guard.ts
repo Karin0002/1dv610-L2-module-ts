@@ -11,9 +11,9 @@ export class Guard {
    * @throws Error if a property is missing on the argument.
    * @throws Error if the argument does not pass the validation.
    */
-  validateNumberArgument (values: { maxValue: number, minValue: number, recievedArgument: number }): void {
+  validateNumberArgumentWithMaxAndMin (values: { maxValue: number, minValue: number, recievedArgument: number }): void {
     // Mixed abstraction levels.
-    // Low-level: variables, control statements.
+    // Low-level: variables, control statements, number.isNaN.
     // High-level: calls methods.
     if (values.maxValue === undefined || values.minValue === undefined || values.recievedArgument === undefined) {
       const message = 'Could not validate since at least one of maxValue, minValue and recievedArgument is missing.'
@@ -21,6 +21,23 @@ export class Guard {
     }
     if (isNaN(values.recievedArgument) || values.recievedArgument > values.maxValue || values.recievedArgument < values.minValue) {
       const message = `The argument cannot be greater than ${values.maxValue}, nor less than ${values.minValue}.`
+      this.#throwError(message)
+    }
+  }
+
+  // The description of method and param in comment does not add any new information but the throws does.
+  /**
+   * Validates an argument of type number.
+   *
+   * @param recievedArgument - The argument to validate.
+   * @throws Error if the arguments does not pass the validation.
+   */
+  validateNumberArgument (recievedArgument: number): void {
+    // Mixed abstraction levels.
+    // Low-level: variables, control statements, number.isNaN.
+    // High-level: calls methods.
+    if (isNaN(recievedArgument)) {
+      const message = 'The argument must be of type number.'
       this.#throwError(message)
     }
   }

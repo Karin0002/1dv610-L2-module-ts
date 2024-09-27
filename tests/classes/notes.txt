@@ -1,0 +1,47 @@
+ColorTheme:
+- hue (protected) should be a random number between HueMax (enum) and HueMin (enum)
+- saturation (protected) should be a random number between SaturationMax (enum) and SaturationMin (enum)
+- maxLightness (protected) should be MaxLightness (enum)
+- minLightness (protected) should be MinLightness (enum)
+
+MultiHueColorTheme:
+- lightness (protected) should be a random number between LightnessMax (enum) and LightnessMin (enum)
+- pickRandomHue (protected) picks a random hue from this.hues (protected)
+- generateDarkColor (protected) - picks a random hue from this.hues (protected)
+- generateDarkColor (protected) - lightness of the dark color should be MinLightness (enum)
+- generateDarkColor (protected) - saturation is within +- 10 from this.saturation
+- generateLightColor (protected) - picks a random hue from this.hues (protected)
+- generateLightColor (protected) - lightness of the light color should be MaxLightness (enum)
+- generateLightColor (protected) - saturation is within +- 10 from this.saturation
+
+Analogous, Complementary, Monochrome, SplitComplementary, Triadic:
+- difference of saturation in the colors must be within 20
+- if present, the light color has lightness MaxLightness (enum)
+- if present, the dark color has lightness MinLightness (enum)
+- generateColorTheme - the return value must be of type ColorThemeData
+- generateColorTheme - the number of Colors must match argument
+- generateColorTheme - one cannot send invalid number of arguments
+- generateColorTheme - one cannot send invalid type of arguments
+- generateColorTheme - if the argument is 5/4 it adds one light and one dark
+- generateColorTheme - colorTheme must match the name of the class
+
+Analogous, Complementary, SplitComplementary, Triadic:
+- generateColorTheme - if the lightness of main colors is over 50, it adds one dark
+- generateColorTheme - if the lightness of main colors is under 50, it adds one light
+- if present, the light color is picked random from the hues
+- if present, the dark color is picked random from the hues
+
+Calculator:
+- generateRandomNumber - the generated number must be between arguments
+- generateRandomNumber - the generated number must be random
+- generateRandomNumber - the generated number must be a number
+- generateRandomNumber - one cannot send invalid type of arguments
+- generateRandomNumber - one cannot send invalid number of arguments
+- adjustNumberWithin10 - one cannot send invalid type of arguments
+- adjustNumberWithin10 - one cannot send invalid number of arguments
+- adjustNumberWithin10 - the generated number must be random
+- adjustNumberWithin10 - the generated number must be a number
+- adjustNumberWithin10 - the generated number must be within +-10 from orginal
+
+
+

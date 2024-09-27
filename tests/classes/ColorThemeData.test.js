@@ -213,4 +213,9 @@ describe('ColorThemeData.ts', () => {
     expect(colorTheme.colorsInTheme).toEqual(colors)
     expect(colorTheme.colorsInTheme).not.toEqual(alteredColors)
   })
+
+  test('has 3 properties, numberOfColorsInTheme, colorsInTheme, colorTheme')
+  test('numberOfColorsInTheme is a number and matches colorsInTheme.length')
+  test('colorsInTheme is a value of an array of Color objects')
+  test('colorTheme is a value of the enum ColorThemes')
 })
