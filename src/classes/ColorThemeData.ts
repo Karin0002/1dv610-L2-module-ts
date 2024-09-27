@@ -19,25 +19,26 @@ export class ColorThemeData {
    * @param colors - The colors in the theme.
    */
   constructor (colorTheme: ColorThemes, colors: Color[]) {
-    // Mixed abstraction levels.
-    // Low-level: variables.
-    // High-level: calls methods and initiate object.
     const argumentGuard = new Guard()
     argumentGuard.validateColorThemesArgument(colorTheme)
     argumentGuard.validateColorArrayArgument(colors)
-    this.#numberOfColorsInTheme = colors.length
-    this.#colorTheme = colorTheme
+    this.#setColorsInTheme(colors)
+    this.#setColorTheme(colorTheme)
+    this.#setNumberOfColorsInTheme()
+  }
+
+  #setColorsInTheme (colors: Color[]): void {
     this.#colorsInTheme = colors
   }
 
-  get numberOfColorsInTheme (): number {
-    return this.#numberOfColorsInTheme
+  #setColorTheme (theme: ColorThemes): void {
+    this.#colorTheme = theme
   }
 
-  get colorTheme (): ColorThemes {
-    return this.#colorTheme
+  #setNumberOfColorsInTheme (): void {
+    this.#numberOfColorsInTheme = this.#colorsInTheme.length
   }
-
+  
   get colorsInTheme (): Color[] {
     // Mixed abstraction levels.
     // Low-level: array.push.
@@ -50,6 +51,14 @@ export class ColorThemeData {
     }
 
     return copyOfColors
+  }
+
+  get colorTheme (): ColorThemes {
+    return this.#colorTheme
+  }
+
+  get numberOfColorsInTheme (): number {
+    return this.#numberOfColorsInTheme
   }
 
   /**
