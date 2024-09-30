@@ -64,7 +64,6 @@ describe('Calculator.ts', () => {
     const invalidArgument = 'test'
 
     expect(() => calculator.adjustNumberWithin10(invalidArgument)).toThrowError()
-
   })
 
   test('invalid number of argument to adjustNumberWithin10', () => {

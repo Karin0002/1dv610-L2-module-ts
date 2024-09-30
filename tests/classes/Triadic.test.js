@@ -114,10 +114,12 @@ describe('Triadic.ts', () => {
   test('difference in hue', () => {
     const colorTheme = new Triadic()
     const data = colorTheme.generateColorTheme(3)
-    data.sortColorsByHue()
+
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 120) % 360) === 0) ? data.colorsInTheme[0].hue + 120 : (data.colorsInTheme[0].hue + 120) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 240) % 360) === 0) ? data.colorsInTheme[0].hue + 240 : (data.colorsInTheme[0].hue + 240) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
-    expect(data.colorsInTheme[1].hue).toBeGreaterThanOrEqual(data.colorsInTheme[0].hue + 120)
-    expect(data.colorsInTheme[2].hue).toBeGreaterThanOrEqual(data.colorsInTheme[0].hue + 240)
+    expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
+    expect(data.colorsInTheme[2].hue).toEqual(hueOfThirdColor)
   })
 })

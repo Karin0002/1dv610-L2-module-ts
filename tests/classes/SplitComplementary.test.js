@@ -114,10 +114,12 @@ describe('SplitComplementary.ts', () => {
   test('difference in hue', () => {
     const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(3)
-    data.sortColorsByHue()
+
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 150) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 150) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 210) % 360) === 0) ? data.colorsInTheme[0].hue + 210 : (data.colorsInTheme[0].hue + 210) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
-    expect(data.colorsInTheme[1].hue).toBeGreaterThanOrEqual(data.colorsInTheme[0].hue + 150)
-    expect(data.colorsInTheme[2].hue).toBeGreaterThanOrEqual(data.colorsInTheme[0].hue + 210)
+    expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
+    expect(data.colorsInTheme[2].hue).toEqual(hueOfThirdColor)
   })
 })

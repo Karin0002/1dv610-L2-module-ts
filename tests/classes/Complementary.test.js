@@ -114,9 +114,11 @@ describe('Complementary.ts', () => {
   test('difference in hue', () => {
     const colorTheme = new Complementary()
     const data = colorTheme.generateColorTheme(2)
-    data.sortColorsByHue()
+
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 180) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 180) % 360
+
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
-    expect(data.colorsInTheme[1].hue).toBeGreaterThanOrEqual(data.colorsInTheme[0].hue + 180)
+    expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
   })
 })

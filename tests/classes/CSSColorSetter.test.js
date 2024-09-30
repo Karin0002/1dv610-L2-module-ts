@@ -1,10 +1,9 @@
-import { CSSColorSetter } from "../../src/classes/CSSColorSetter"
+import { CSSColorSetter } from '../../src/classes/CSSColorSetter'
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
-import { Color } from "../../src/classes/Color"
+import { Color } from '../../src/classes/Color'
 
 describe('CSSColorSetter.ts', () => {
-  // Code was 
   let document
 
   beforeAll(() => {
@@ -86,7 +85,6 @@ describe('CSSColorSetter.ts', () => {
     expect(colorProperty).toBeTruthy()
     expect(colorProperty).toEqual(expectedValueOfColorProperty)
   })
-
 
   test('invalid number of arguments - setCSSBorderPropertyOn', () => {
     const CSSSetter = new CSSColorSetter()

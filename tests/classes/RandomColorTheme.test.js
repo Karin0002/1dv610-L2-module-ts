@@ -1,7 +1,6 @@
 import { RandomColorTheme } from '../../src/classes/RandomColorTheme'
 import { ColorThemeData } from '../../src/classes/ColorThemeData'
 import { ColorThemes } from '../../src/enums/ColorThemes'
-import { ColorValues } from '../../src/enums/ColorValues'
 import { ArgumentLimits } from '../../src/enums/ArgumentLimits'
 import { describe, expect, test } from 'vitest'
 

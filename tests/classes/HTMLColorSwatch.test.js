@@ -1,7 +1,7 @@
-import { HTMLColorSwatch } from "../../src/classes/HTMLColorSwatch"
+import { HTMLColorSwatch } from '../../src/classes/HTMLColorSwatch'
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
-import { Color } from "../../src/classes/Color"
+import { Color } from '../../src/classes/Color'
 
 describe('HTMLColorSwatch.ts', () => {
   let document
