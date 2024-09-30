@@ -112,7 +112,7 @@ export class Guard {
     // Mixed abstraction levels.
     // Low-level: variables, control statements, array.isArray, array.every.
     // High-level: calls methods.
-    if (!Array.isArray(recievedArgument) || !recievedArgument.every(value => value instanceof Color)) {
+    if (!Array.isArray(recievedArgument) || recievedArgument.length <= 0 || !recievedArgument.every(value => value instanceof Color)) {
       const message = `The argument must be an array of Color objects.`
       this.#throwError(message)
     }

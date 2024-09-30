@@ -119,17 +119,17 @@ R-validateColorArgument - if argument is missing throw error
 R-validateColorArgument - if argument is not a Color throw error
 R-validateColorArgument - if argument is a Color nothing happens (returns undefined?)
 
--validateHTMLElementArgument - if argument is missing throw error
--validateHTMLElementArgument - if argument is not a HTMLElement throw error
--validateHTMLElementArgument - if argument is a HTMLElement nothing happens (returns undefined?)
+R-validateHTMLElementArgument - if argument is missing throw error
+R-validateHTMLElementArgument - if argument is not a HTMLElement throw error
+R-validateHTMLElementArgument - if argument is a HTMLElement nothing happens (returns undefined?)
 
--validateColorThemesArgument - if argument is missing throw error
--validateColorThemesArgument - if argument is not a ColorThemes throw error
--validateColorThemesArgument - if argument is a ColorThemes nothing happens (returns undefined?)
+R-validateColorThemesArgument - if argument is missing throw error
+R-validateColorThemesArgument - if argument is not a ColorThemes throw error
+R-validateColorThemesArgument - if argument is a ColorThemes nothing happens (returns undefined?)
 
--validateColorArrayArgument - if argument is missing throw error
--validateColorArrayArgument - if argument is not an array of Color throw error
--validateColorArrayArgument - if argument is a an array of Color nothing happens (returns undefined?)
+R-validateColorArrayArgument - if argument is missing throw error
+R-validateColorArrayArgument - if argument is not an array of Color throw error
+R-validateColorArrayArgument - if argument is a an array of Color nothing happens (returns undefined?)
 
 
 

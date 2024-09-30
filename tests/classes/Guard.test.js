@@ -2,6 +2,7 @@ import { Color } from "../../src/classes/Color"
 import { Guard } from "../../src/classes/Guard"
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
+import { ColorThemes } from "../../src/enums/ColorThemes"
 
 describe('Guard.ts', () => {
   // Code was 
@@ -144,20 +145,57 @@ describe('Guard.ts', () => {
     expect(() => guard.validateHTMLElementArgument(validArgument)).not.toThrowError()
   })
 
-  test('validateNumberArgument', () => {
+  test('invalid number of argument - validateColorThemesArgument', () => {
+    const guard = new Guard()
+
+    expect(() => guard.validateColorThemesArgument()).toThrowError()
   })
-  test('validateColorArgument', () => {
+
+  test('invalid type of argument - validateColorThemesArgument', () => {
+    const guard = new Guard()
+    const invalidTypeArgument = 'test'
+
+    expect(() => guard.validateColorThemesArgument(invalidTypeArgument)).toThrowError()
   })
-  test('validateHTMLElementArgument', () => {
+
+  test('pass the validation - validateColorThemesArgument', () => {
+    const guard = new Guard()
+    const validArgument = ColorThemes.Analogous
+
+    expect(() => guard.validateColorThemesArgument(validArgument)).not.toThrowError()
   })
-  test('validateColorThemesArgument', () => {
+
+  test('invalid number of argument - validateColorArrayArgument', () => {
+    const guard = new Guard()
+
+    expect(() => guard.validateColorArrayArgument()).toThrowError()
   })
-  test('invalid number of argument in validateColorArrayArgument', () => {
+
+  test('invalid type of argument - validateColorArrayArgument', () => {
+    const guard = new Guard()
+    const invalidTypeArgument = 'test'
+
+    expect(() => guard.validateColorArrayArgument(invalidTypeArgument)).toThrowError()
   })
-  test('invalid type of argument in validateColorArrayArgument', () => {
+
+  test('invalid type of element amongst valid in argument - validateColorArrayArgument', () => {
+    const guard = new Guard()
+    const invalidTypeArgument = [new Color(180, 50, 100), 'test', new Color(1, 50, 100)]
+
+    expect(() => guard.validateColorArrayArgument(invalidTypeArgument)).toThrowError()
   })
-  test('the argument doesnt pass validation in validateColorArrayArgument', () => {
+
+  test('empty array as argument - validateColorArrayArgument', () => {
+    const guard = new Guard()
+    const invalidTypeArgument = []
+
+    expect(() => guard.validateColorArrayArgument(invalidTypeArgument)).toThrowError()
   })
-  test('the argument passes validation in validateColorArrayArgument', () => {
+
+  test('pass the validation - validateColorArrayArgument', () => {
+    const guard = new Guard()
+    const validArgument = [new Color(5, 50, 100), new Color(35, 50, 100), new Color(65, 50, 100), new Color(95, 50, 100)]
+
+    expect(() => guard.validateColorArrayArgument(validArgument)).not.toThrowError()
   })
 })
