@@ -63,11 +63,11 @@ Monochrome:
 
 
 SplitComplementary:
-- generateColorTheme - if the argument is 5 it adds one light and one dark
-- generateColorTheme - if the argument is 4 it adds one light or one dark
-- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
-- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
-- generateColorTheme - (3 colors) hues of the colors is x, x+150, x+210
+R- generateColorTheme - if the argument is 5 it adds one light and one dark
+R- generateColorTheme - if the argument is 4 it adds one light or one dark
+R- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
+R- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
+R- generateColorTheme - (3 colors) hues of the colors is x, x+150, x+210
 
 
 
