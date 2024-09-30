@@ -134,36 +134,36 @@ R-validateColorArrayArgument - if argument is a an array of Color nothing happen
 
 
 CSSColorSetter:
-- setCSSColorPropertyOn - if 1 or 2 arguments is missing throw error
-- setCSSColorPropertyOn - if type of arguments is invalid throw error
-- setCSSColorPropertyOn - the HTMLElement has the css property color
-- setCSSColorPropertyOn - the value of the css property color is the same as the argument.hsl
+R- setCSSColorPropertyOn - if 1 or 2 arguments is missing throw error
+R- setCSSColorPropertyOn - if type of arguments is invalid throw error
+R- setCSSColorPropertyOn - the HTMLElement has the css property color
+R- setCSSColorPropertyOn - the value of the css property color is the same as the argument.hsl
 
-- setCSSBackgroundColorPropertyOn - if 1 or 2 arguments is missing throw error
-- setCSSBackgroundColorPropertyOn - if type of arguments is invalid throw error
-- setCSSBackgroundColorPropertyOn - the HTMLElement has the css property background-color
-- setCSSBackgroundColorPropertyOn - the value of the css property background-color is the same as the argument.hsl
+R- setCSSBackgroundColorPropertyOn - if 1 or 2 arguments is missing throw error
+R- setCSSBackgroundColorPropertyOn - if type of arguments is invalid throw error
+R- setCSSBackgroundColorPropertyOn - the HTMLElement has the css property background-color
+R- setCSSBackgroundColorPropertyOn - the value of the css property background-color is the same as the argument.hsl
 
-- setCSSBorderPropertyOn - if 1 or 2 arguments is missing throw error
-- setCSSBorderPropertyOn - if type of arguments is invalid throw error
-- setCSSBorderPropertyOn - the HTMLElement has the css property border-style
-- setCSSBorderPropertyOn - the HTMLElement has the css property border-color
-- setCSSBorderPropertyOn - the value of the css property border-style is solid
-- setCSSBorderPropertyOn - the value of the css property border-color is the same as the argument.hsl
+R- setCSSBorderPropertyOn - if 1 or 2 arguments is missing throw error
+R- setCSSBorderPropertyOn - if type of arguments is invalid throw error
+R- setCSSBorderPropertyOn - the HTMLElement has the css property border-style
+R- setCSSBorderPropertyOn - the HTMLElement has the css property border-color
+R- setCSSBorderPropertyOn - the value of the css property border-style is solid
+R- setCSSBorderPropertyOn - the value of the css property border-color is the same as the argument.hsl
 
-- setCSSOutlinePropertyOn - if 1 or 2 arguments is missing throw error
-- setCSSOutlinePropertyOn - if type of arguments is invalid throw error
-- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-style
-- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-color
-- setCSSOutlinePropertyOn - the value of the css property outline-style is solid
-- setCSSOutlinePropertyOn - the value of the css property outline-color is the same as the argument.hsl
+R- setCSSOutlinePropertyOn - if 1 or 2 arguments is missing throw error
+R- setCSSOutlinePropertyOn - if type of arguments is invalid throw error
+R- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-style
+R- setCSSOutlinePropertyOn - the HTMLElement has the css property outline-color
+R- setCSSOutlinePropertyOn - the value of the css property outline-style is solid
+R- setCSSOutlinePropertyOn - the value of the css property outline-color is the same as the argument.hsl
 
-- setCSSTextDecorationPropertyOn - if 1 or 2 arguments is missing throw error
-- setCSSTextDecorationPropertyOn - if type of arguments is invalid throw error
-- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-line
-- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-color
-- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-line is underline
-- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-color is the same as the argument.hsl
+R- setCSSTextDecorationPropertyOn - if 1 or 2 arguments is missing throw error
+R- setCSSTextDecorationPropertyOn - if type of arguments is invalid throw error
+R- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-line
+R- setCSSTextDecorationPropertyOn - the HTMLElement has the css property text-decoration-color
+R- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-line is underline
+R- setCSSTextDecorationPropertyOn - the value of the css property text-decoration-color is the same as the argument.hsl
 
 
 
