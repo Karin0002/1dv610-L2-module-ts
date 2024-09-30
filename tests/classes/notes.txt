@@ -1,47 +1,47 @@
 ColorTheme:
-- hue (protected) should be a random number between HueMax (enum) and HueMin (enum)
-- saturation (protected) should be a random number between SaturationMax (enum) and SaturationMin (enum)
-- maxLightness (protected) should be MaxLightness (enum)
-- minLightness (protected) should be MinLightness (enum)
+R- hue (protected) should be a random number between HueMax (enum) and HueMin (enum)
+R- saturation (protected) should be a random number between SaturationMax (enum) and SaturationMin (enum)
+R- maxLightness (protected) should be MaxLightness (enum)
+R- minLightness (protected) should be MinLightness (enum)
 
 
 
 MultiHueColorTheme:
-- lightness (protected) should be a random number between LightnessMax (enum) and LightnessMin (enum)
-- pickRandomHue (protected) picks a random hue from this.hues (protected)
-- generateDarkColor (protected) - picks a random hue from this.hues (protected)
-- generateDarkColor (protected) - lightness of the dark color should be MinLightness (enum)
-- generateDarkColor (protected) - saturation is within +- 10 from this.saturation
-- generateLightColor (protected) - picks a random hue from this.hues (protected)
-- generateLightColor (protected) - lightness of the light color should be MaxLightness (enum)
-- generateLightColor (protected) - saturation is within +- 10 from this.saturation
+R- lightness (protected) should be a random number between LightnessMax (enum) and LightnessMin (enum)
+R- pickRandomHue (protected) picks a random hue from this.hues (protected)
+R- generateDarkColor (protected) - picks a random hue from this.hues (protected)
+R- generateDarkColor (protected) - lightness of the dark color should be MinLightness (enum)
+R- generateDarkColor (protected) - saturation is within +- 10 from this.saturation
+R- generateLightColor (protected) - picks a random hue from this.hues (protected)
+R- generateLightColor (protected) - lightness of the light color should be MaxLightness (enum)
+R- generateLightColor (protected) - saturation is within +- 10 from this.saturation
 
 
 
 Analogous, Complementary, Monochrome, SplitComplementary, Triadic:
-- generateColorTheme - the return value must be of type ColorThemeData
-- generateColorTheme - difference of saturation in the colors must be within 20
-- generateColorTheme - numberOfColorsInTheme must match argument
-- generateColorTheme - colorTheme must match the name of the class
-- generateColorTheme - one cannot send invalid number of arguments
-- generateColorTheme - one cannot send invalid type of arguments
-- generateColorTheme - if present, the light color has lightness MaxLightness (enum)
-- generateColorTheme - if present, the dark color has lightness MinLightness (enum)
+R- generateColorTheme - the return value must be of type ColorThemeData
+R- generateColorTheme - difference of saturation in the colors must be within 20
+R- generateColorTheme - numberOfColorsInTheme must match argument
+R- generateColorTheme - colorTheme must match the name of the class
+R- generateColorTheme - one cannot send invalid number of arguments
+R- generateColorTheme - one cannot send invalid type of arguments
+R- generateColorTheme - if present, the light color has lightness MaxLightness (enum)
+R- generateColorTheme - if present, the dark color has lightness MinLightness (enum)
 
 
 
 Analogous, Complementary, SplitComplementary, Triadic:
-- if present, the light color is picked random from the existing hues
-- if present, the dark color is picked random from the existing hues
+R- if present, the light color is picked random from the existing hues
+R- if present, the dark color is picked random from the existing hues
 
 
 
 Analogous:
-- generateColorTheme - if the argument is 5 it adds one light and one dark
-- generateColorTheme - if the argument is 4 it adds one light or one dark
-- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
-- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
-- generateColorTheme - (3 colors) hues of the colors is x, x+30, x+60
+R- generateColorTheme - if the argument is 5 it adds one light and one dark
+R- generateColorTheme - if the argument is 4 it adds one light or one dark
+R- generateColorTheme - (4 colors) if the lightness of main colors is over 50, it adds one dark
+R- generateColorTheme - (4 colors) if the lightness of main colors is under 50, it adds one light
+R- generateColorTheme - (3 colors) hues of the colors is x, x+30, x+60
 
 
 
