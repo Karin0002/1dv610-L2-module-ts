@@ -76,7 +76,8 @@ export class Guard {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
     // High-level: calls methods.
-    if (!(recievedArgument instanceof HTMLElement)) {
+    // nodeType is a property on a Node. The value 1 means it is an element node, i.e. a HTMLElement.
+    if (recievedArgument.nodeType !== 1) {
       const message = `The argument must be an instance of HTMLElement.`
       this.#throwError(message)
     }

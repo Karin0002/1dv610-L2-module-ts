@@ -104,19 +104,20 @@ R- adjustNumberWithin10 - the generated number must be within +-10 from orginal
 
 
 Guard:
--validateNumberArgumentWithMaxAndMin - if a property on argument is missing throw error
--validateNumberArgumentWithMaxAndMin - if maxValue on argument is not a number throw error
--validateNumberArgumentWithMaxAndMin - if minValue on argument is not a number throw error
--validateNumberArgumentWithMaxAndMin - if recievedArgument is not between maxValue and minValue throw error
--validateNumberArgumentWithMaxAndMin - if recievedArgument is between maxValue and minValue nothing happens (returns undefined?)
+R-validateNumberArgumentWithMaxAndMin - if a property on argument is missing throw error
+R-validateNumberArgumentWithMaxAndMin - if maxValue on argument is not a number throw error
+R-validateNumberArgumentWithMaxAndMin - if minValue on argument is not a number throw error
+R-validateNumberArgumentWithMaxAndMin - if recievedArgument is not between maxValue and minValue throw error
+R-validateNumberArgumentWithMaxAndMin - if recievedArgument is not a number throw error
+R-validateNumberArgumentWithMaxAndMin - if recievedArgument is between maxValue and minValue nothing happens (returns undefined?)
 
--validateNumberArgument - if argument is missing throw error
--validateNumberArgument - if argument is not a number throw error
--validateNumberArgument - if argument is a number nothing happens (returns undefined?)
+R-validateNumberArgument - if argument is missing throw error
+R-validateNumberArgument - if argument is not a number throw error
+R-validateNumberArgument - if argument is a number nothing happens (returns undefined?)
 
--validateColorArgument - if argument is missing throw error
--validateColorArgument - if argument is not a Color throw error
--validateColorArgument - if argument is a Color nothing happens (returns undefined?)
+R-validateColorArgument - if argument is missing throw error
+R-validateColorArgument - if argument is not a Color throw error
+R-validateColorArgument - if argument is a Color nothing happens (returns undefined?)
 
 -validateHTMLElementArgument - if argument is missing throw error
 -validateHTMLElementArgument - if argument is not a HTMLElement throw error
