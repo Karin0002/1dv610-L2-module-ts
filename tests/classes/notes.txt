@@ -95,8 +95,8 @@ R- generateRandomNumber - the generated number must be between arguments
 R- generateRandomNumber - the generated number must be a number
 R- generateRandomNumber - one cannot send invalid type of arguments
 R- generateRandomNumber - one cannot send invalid number of arguments
-- adjustNumberWithin10 - one cannot send invalid type of arguments
-- adjustNumberWithin10 - one cannot send invalid number of arguments
+R- adjustNumberWithin10 - one cannot send invalid type of arguments
+R- adjustNumberWithin10 - one cannot send invalid number of arguments
 - adjustNumberWithin10 - the generated number must be random
 R- adjustNumberWithin10 - the generated number must be a number
 R- adjustNumberWithin10 - the generated number must be within +-10 from orginal
