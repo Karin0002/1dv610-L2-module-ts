@@ -1,0 +1,125 @@
+import { Triadic } from '../../src/classes/Triadic'
+import { ColorThemeData } from '../../src/classes/ColorThemeData'
+import { ColorThemes } from '../../src/enums/ColorThemes'
+import { ColorValues } from '../../src/enums/ColorValues'
+import { describe, expect, test } from 'vitest'
+
+describe('Triadic.ts', () => {
+  test('return type', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(5)
+    expect(data).toBeInstanceOf(ColorThemeData)
+  })
+
+  test('difference in saturation', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(5)
+    data.sortColorsBySaturation()
+    const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
+    expect(difference).toBeLessThanOrEqual(20)
+  })
+
+  test('numbersOfColorsInTheme must match argument', () => {
+    const colorTheme = new Triadic()
+    const numberOfColors = 5
+    const data = colorTheme.generateColorTheme(numberOfColors)
+    expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
+  })
+
+  test('colorTheme must match class', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(5)
+    expect(data.colorTheme).toEqual(ColorThemes.Triadic)
+  })
+
+  test('invlaid number of arguments', () => {
+    const colorTheme = new Triadic()
+    expect(() => colorTheme.generateColorTheme()).toThrowError()
+  })
+
+  test('invlaid value of arguments', () => {
+    const colorTheme = new Triadic()
+    expect(() => colorTheme.generateColorTheme(6)).toThrowError()
+    expect(() => colorTheme.generateColorTheme(2)).toThrowError()
+  })
+
+  test('invlaid type of arguments', () => {
+    const colorTheme = new Triadic()
+    const invalidArgument = 'test'
+    expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
+  })
+
+  test('adding one light or dark color', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(4)
+    data.sortColorsByLightness()
+    let expectedLightness
+    if (data.colorsInTheme[2].lightness < 50) {
+      expectedLightness = ColorValues.MaxLightness
+    } else {
+      expectedLightness = ColorValues.MinLightness
+    }
+
+    expect(() => data.colorsInTheme.some(color => color.lightness === expectedLightness)).toBeTruthy()
+  })
+
+  test('adding a light and dark color', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(5)
+    data.sortColorsByLightness()
+    const expectedLightness = ColorValues.MaxLightness
+    const expectedDarkness = ColorValues.MinLightness
+
+    expect(() => data.colorsInTheme.some(color => color.lightness === expectedLightness)).toBeTruthy()
+    expect(() => data.colorsInTheme.some(color => color.lightness === expectedDarkness)).toBeTruthy()
+  })
+
+  test('hue of light or dark color should be included in main colors', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(5)
+    data.sortColorsByLightness()
+    const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
+    const darkColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MinLightness)
+    const mainColors = data.colorsInTheme.filter(color => (color.lightness !== ColorValues.MinLightness) || (color.lightness !== ColorValues.MaxLightness))
+
+    expect(() => mainColors.some(color => color.hue === lightColor.hue)).toBeTruthy()
+    expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
+  })
+
+  test('hue must be between HueMax and HueMin', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(3)
+
+    expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
+    expect(data.colorsInTheme[0].hue).toBeGreaterThanOrEqual(ColorValues.HueMin)
+  })
+
+  test('lightness must be between LightnessMax and LightnessMin', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(3)
+
+    expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
+    expect(data.colorsInTheme[0].lightness).toBeGreaterThanOrEqual(ColorValues.LightnessMin)
+  })
+
+  test('saturation must be between SaturationMax + 10 and SaturationMin - 10', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(3)
+
+    // +10 and -10 is due to satuartion being generated with a deviation.
+    expect(data.colorsInTheme[0].saturation).toBeLessThanOrEqual(ColorValues.SaturationMax + 10)
+    expect(data.colorsInTheme[0].saturation).toBeGreaterThanOrEqual(ColorValues.SaturationMin - 10)
+  })
+
+  test('difference in hue', () => {
+    const colorTheme = new Triadic()
+    const data = colorTheme.generateColorTheme(3)
+
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 120) % 360) === 0) ? data.colorsInTheme[0].hue + 120 : (data.colorsInTheme[0].hue + 120) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 240) % 360) === 0) ? data.colorsInTheme[0].hue + 240 : (data.colorsInTheme[0].hue + 240) % 360
+
+    expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
+    expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
+    expect(data.colorsInTheme[2].hue).toEqual(hueOfThirdColor)
+  })
+})

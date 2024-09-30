@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Language and Environment */
-    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target":"ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     /* Modules */
     "module": "NodeNext",                                /* Specify what module code is generated. */
     "moduleResolution": "NodeNext",
@@ -20,5 +20,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*", "eslint.config.js"],
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build", "tests", "coverage"]
 }

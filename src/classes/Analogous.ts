@@ -17,7 +17,7 @@ export class Analogous extends MultiHueColorTheme {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
     // High-level: initiates objects, calls methods.
-    this.argumentGuard.validateNumberArgument({
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
       recievedArgument: numberOfColors
@@ -38,7 +38,7 @@ export class Analogous extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Analogous, colors)
+    const data = new ColorThemeData(ColorThemes.Analogous, colors)
 
     return data
   }

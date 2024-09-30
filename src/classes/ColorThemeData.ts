@@ -1,7 +1,15 @@
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
+import { Guard } from './Guard.js'
 
 export class ColorThemeData {
+  /**
+   * The object to validate arguments with.
+   */
+  #argumentGuard: Guard
+
+  #colorsInTheme: Color[]
+
   /**
    * The name of the color theme.
    */
@@ -9,34 +17,44 @@ export class ColorThemeData {
 
   #numberOfColorsInTheme: number
 
-  #colorsInTheme: Color[]
-
   /**
    * Creates a new Color object.
    *
-   * @param numberOfColors - The number of colors in the theme.
    * @param colorTheme - The name of the colorTheme.
    * @param colors - The colors in the theme.
    */
-  // Triads, three arguments which is often to many but in this case I made
-  // the decision to accept it since it is a constructor.
-  constructor (numberOfColors: number, colorTheme: ColorThemes, colors: Color[]) {
-    this.#numberOfColorsInTheme = numberOfColors
-    this.#colorTheme = colorTheme
+  constructor (colorTheme: ColorThemes, colors: Color[]) {
+    this.#argumentGuard = new Guard()
+    this.#setColorTheme(colorTheme)
+    this.#setColorsInTheme(colors)
+    this.#setNumberOfColorsInTheme()
+  }
+
+  #setColorTheme (theme: ColorThemes): void {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls method.
+    this.#argumentGuard.validateColorThemesArgument(theme)
+
+    this.#colorTheme = theme
+  }
+
+  #setColorsInTheme (colors: Color[]): void {
+    // Mixed abstraction levels.
+    // Low-level: variables.
+    // High-level: calls method.
+    this.#argumentGuard.validateColorArrayArgument(colors)
+
     this.#colorsInTheme = colors
   }
 
-  get numberOfColorsInTheme (): number {
-    return this.#numberOfColorsInTheme
-  }
-
-  get colorTheme (): ColorThemes {
-    return this.#colorTheme
+  #setNumberOfColorsInTheme (): void {
+    this.#numberOfColorsInTheme = this.#colorsInTheme.length
   }
 
   get colorsInTheme (): Color[] {
     // Mixed abstraction levels.
-    // Low-level: array.push.
+    // Low-level: array.push, loop.
     // High-level: initiates objects.
     // Copies the colors since they are refrence types.
     const copyOfColors = []
@@ -46,6 +64,14 @@ export class ColorThemeData {
     }
 
     return copyOfColors
+  }
+
+  get colorTheme (): ColorThemes {
+    return this.#colorTheme
+  }
+
+  get numberOfColorsInTheme (): number {
+    return this.#numberOfColorsInTheme
   }
 
   /**

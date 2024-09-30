@@ -53,7 +53,7 @@ export class RandomColorTheme {
     // Low-level: variables, control statements.
     // High-level: calls methods.
     if (numberOfColors) {
-      this.#argumentGuard.validateNumberArgument({
+      this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
         maxValue: ArgumentLimits.RandomColorThemeMax,
         minValue: ArgumentLimits.RandomColorThemeMin,
         recievedArgument: numberOfColors
@@ -92,20 +92,16 @@ export class RandomColorTheme {
     switch (n) {
       case 2:
         themes.push(this.#complementary, this.#monochrome)
-        // themes = [this.#complementary, this.#monochrome]
         break
       case 3:
         themes.push(this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic)
-        // themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
       case 4:
         themes.push(this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic)
-        // themes = [this.#analogous, this.#complementary, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
       default:
         // Represents case 5.
         themes.push(this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic)
-        // themes = [this.#analogous, this.#monochrome, this.#splitComplementary, this.#triadic]
         break
     }
 

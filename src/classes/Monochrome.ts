@@ -17,7 +17,7 @@ export class Monochrome extends ColorTheme {
     // Mixed abstraction levels.
     // Low-level: variables, array.push.
     // High-level: initiates objects, calls methods.
-    this.argumentGuard.validateNumberArgument({
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.MonochromeMax,
       minValue: ArgumentLimits.MonochromeMin,
       recievedArgument: numberOfColors
@@ -27,7 +27,7 @@ export class Monochrome extends ColorTheme {
 
     colors.push(...this.#generateColors(numberOfColors))
 
-    const data = new ColorThemeData(numberOfColors, ColorThemes.Monochrome, colors)
+    const data = new ColorThemeData(ColorThemes.Monochrome, colors)
 
     return data
   }
