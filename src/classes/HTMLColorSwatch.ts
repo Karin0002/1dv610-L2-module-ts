@@ -2,7 +2,7 @@ import { Color } from './Color.js'
 import { CSSColorSetter } from './CSSColorSetter.js'
 import { Guard } from './Guard.js'
 
-export class HTMLColorSwatchGenerator {
+export class HTMLColorSwatch {
   /**
    * The object to use for setting the color of the color swatch.
    */
