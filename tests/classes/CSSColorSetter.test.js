@@ -14,7 +14,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid number of arguments - setCSSColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
 
@@ -26,7 +26,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid type of arguments - setCSSColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
     const invalidArgument = 'test'
@@ -37,11 +37,12 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('CSS color is set and has correct value - setCSSColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const expectedValueOfColorProperty = 'rgb(0, 255, 255)'
     const element = document.createElement('div')
     CSSSetter.setCSSColorPropertyOn(element, color)
+
     const stylesSet = element.style
     const colorProperty = stylesSet.color
 
@@ -50,7 +51,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid number of arguments - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
 
@@ -62,7 +63,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid type of arguments - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
     const invalidArgument = 'test'
@@ -73,11 +74,12 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('CSS background-color is set and has correct value - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const expectedValueOfColorProperty = 'rgb(0, 255, 255)'
     const element = document.createElement('div')
     CSSSetter.setCSSBackgroundColorPropertyOn(element, color)
+
     const stylesSet = element.style
     const colorProperty = stylesSet.backgroundColor
 
@@ -87,7 +89,7 @@ describe('CSSColorSetter.ts', () => {
 
 
   test('invalid number of arguments - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
 
@@ -99,7 +101,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid type of arguments - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
     const invalidArgument = 'test'
@@ -110,11 +112,12 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('CSS border-color is set and has correct value - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const expectedValueOfBorderProperty = `solid ${color.hsl}`
     const element = document.createElement('div')
     CSSSetter.setCSSBorderPropertyOn(element, color)
+
     const stylesSet = element.style
     const colorProperty = stylesSet.border
 
@@ -123,7 +126,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid number of arguments - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
 
@@ -135,7 +138,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid type of arguments - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
     const invalidArgument = 'test'
@@ -146,11 +149,12 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('CSS outline-color is set and has correct value - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const expectedValueOfOutlineProperty = `solid ${color.hsl}`
     const element = document.createElement('div')
     CSSSetter.setCSSOutlinePropertyOn(element, color)
+
     const stylesSet = element.style
     const colorProperty = stylesSet.outline
 
@@ -159,7 +163,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid number of arguments - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
 
@@ -171,7 +175,7 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('invalid type of arguments - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
     const invalidArgument = 'test'
@@ -182,11 +186,12 @@ describe('CSSColorSetter.ts', () => {
   })
 
   test('CSS text-decoration is set and has correct value - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new CSSColorSetter
+    const CSSSetter = new CSSColorSetter()
     const color = new Color(180, 100, 50)
     const expectedValueOfTextDecorationProperty = `underline ${color.hsl}`
     const element = document.createElement('div')
     CSSSetter.setCSSTextDecorationPropertyOn(element, color)
+
     const stylesSet = element.style
     const colorProperty = stylesSet.textDecoration
 

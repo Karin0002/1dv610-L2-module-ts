@@ -28,32 +28,23 @@ export class HTMLColorSwatch {
   }
 
   /**
-   * Generates a div element representing a color swtach.
+   * Sets CSS properties to make an HTMLElement represent a color swtach.
    *
-   * @param color - The color to set the element to.
-   * @returns The generated element.
+   * @param HTMLElement - Refrence to the HTML element to turn into a color swatch.
+   * @param color - The color to set for the swatch.
    */
-  generateElement (color: Color): HTMLDivElement {
+  turnElementIntoColorSwatch (HTMLElement: HTMLElement, color: Color): void {
     // Somewhat mixed abstraction levels.
     // Low-level: variables.
     // High-level: calls methods.
     const argumentGuard = new Guard()
+    argumentGuard.validateHTMLElementArgument(HTMLElement)
     argumentGuard.validateColorArgument(color)
 
-    const swatch = this.#createDivElement()
-
-    this.#styler.setCSSBackgroundColorPropertyOn(swatch, color)
-    this.#setCSSWidthOn(swatch)
-    this.#setCSSHeightOn(swatch)
-    this.#setCSSBorderRadiusOn(swatch)
-
-    return swatch
-  }
-
-  #createDivElement (): HTMLDivElement {
-    const element = document.createElement('div')
-
-    return element
+    this.#styler.setCSSBackgroundColorPropertyOn(HTMLElement, color)
+    this.#setCSSWidthOn(HTMLElement)
+    this.#setCSSHeightOn(HTMLElement)
+    this.#setCSSBorderRadiusOn(HTMLElement)
   }
 
   #setCSSWidthOn (element: HTMLElement): void {

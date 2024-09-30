@@ -168,12 +168,11 @@ R- setCSSTextDecorationPropertyOn - the value of the css property text-decoratio
 
 
 HTMLColorSwatchGenerator:
-- generateElement - if argument is missing throw error
-- generateElement - if type of argument is invalid throw error
-- generateElement - the return type is HTMLDivElement
-- generateElement - the return element has CSS width = 50px
-- generateElement - the return element has CSS height = 50px
-- generateElement - the return element has CSS border-radius = 50%
-- generateElement - the return element has CSS background-color
-- generateElement - the value of the CSS background-color is the same as the argument.hsl
+R- generateElement - if argument is missing throw error
+R- generateElement - if type of argument is invalid throw error
+R- generateElement - the element has CSS width = 50px
+R- generateElement - the element has CSS height = 50px
+R- generateElement - the element has CSS border-radius = 50%
+R- generateElement - the element has CSS background-color
+R- generateElement - the value of the CSS background-color is the same as the argument.hsl
 
