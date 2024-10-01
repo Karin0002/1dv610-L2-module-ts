@@ -15,7 +15,7 @@
   ],
   "homepage": "https://github.com/Karin0002/color-theme-generator",
   "repository": {
-    "url": "git+https://github.com/Karin0002/color-theme-generator"
+    "url": "git+https://github.com/Karin0002/color-theme-generator.git"
   },
   "scripts": {
     "start": "node build/index.js",
