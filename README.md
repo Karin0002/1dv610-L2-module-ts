@@ -34,7 +34,7 @@ import { RandomColorTheme, CSSColorSetter } from 'color-theme-generator'
 try {
   const CSSSetter = new CSSColorSetter()
   const randomTheme = new RandomColorTheme()
-  const generatedColorTheme = triadicTheme.generateColorTheme() // Generates a theme with 2 - 5 colors.
+  const generatedColorTheme = randomTheme.generateColorTheme() // Generates a theme with 2 - 5 colors.
   const colors = generatedColorTheme.colorsInTheme
 
   const exampleElements = []
@@ -53,9 +53,8 @@ try {
 import { RandomColorTheme } from 'color-theme-generator'
 
 try {
-  const CSSSetter = new CSSColorSetter()
   const randomTheme = new RandomColorTheme()
-  const generatedColorTheme = triadicTheme.generateColorTheme() // Generates a theme with 2 - 5 colors.
+  const generatedColorTheme = randomTheme.generateColorTheme() // Generates a random theme with 2 - 5 colors.
   generatedColorTheme.sortColorsByLightness()
   const lightestColor = generatedColorTheme.colorsInTheme[0]
 
