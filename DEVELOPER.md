@@ -4,7 +4,7 @@
 Testing is done through the testing framework vitest. The tests can be found in ./tests and can be run through the command **npm test**. The testreports can be found [here](./testreports.md).
 
 ## Linting
-Linting is done with eslint. Rules and plugins is defined in eslint.config.js. Linting is run with the command **npx eslint .**.
+Linting is done with eslint. Rules and plugins is defined in [config](./eslint.config.js). Linting is run with the command **npx eslint .**.
 
 ## Language and dependencies
 The module is written in Typescript.
