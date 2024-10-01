@@ -70,10 +70,10 @@ try {
 To see the full documentation see [docs](./docs.md).
 
 ## Bugreports and contribution
-To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project on [github](https://github.com/Karin0002/color-theme-generator).
+To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project in [github](https://github.com/Karin0002/color-theme-generator).
 
 ## Testreports
-To see the testreports go to [github](https://github.com/Karin0002/color-theme-generator)
+To see the testreports go to [testreport](./testreport.md)
 
 ### Disclosure
 This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this moudle is a student.

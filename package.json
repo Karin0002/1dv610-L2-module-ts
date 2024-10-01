@@ -1,18 +1,28 @@
 {
-  "name": "1dv610-l1",
+  "name": "color-theme-generator",
   "version": "1.0.0",
-  "description": "1dv610-L1-start-programming-again",
+  "description": "Generates random color themes that are based in color theory.",
   "type": "module",
-  "main": "src/app.ts",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "keywords": [
+    "colors",
+    "color themes",
+    "themes"
+  ],
+  "homepage": "https://github.com/Karin0002/color-theme-generator",
+  "repository": {
+    "url": "git+https://github.com/Karin0002/color-theme-generator"
+  },
   "scripts": {
-    "start": "node build/app.js",
+    "start": "node build/index.js",
     "test": "vitest"
   },
-  "contributors": [
-    "Karin Silfversparre <ks224ac@student.lnu.se>"
-  ],
+  "author": {
+    "name": "Karin Silfversparre",
+    "email": "ks224ac@student.lnu.se"
+  },
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "@eslint/js": "^9.11.1",
     "@stylistic/eslint-plugin": "^2.8.0",
