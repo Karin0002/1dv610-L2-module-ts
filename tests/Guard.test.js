@@ -1,8 +1,8 @@
-import { Color } from '../../src/classes/Color'
-import { Guard } from '../../src/classes/Guard'
+import { Color } from '../src/classes/Color'
+import { Guard } from '../src/classes/Guard'
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
-import { ColorThemes } from '../../src/enums/ColorThemes'
+import { ColorThemes } from '../src/enums/ColorThemes'
 
 describe('Guard.ts', () => {
   let document

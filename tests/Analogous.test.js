@@ -1,56 +1,48 @@
-import { SplitComplementary } from '../../src/classes/SplitComplementary'
-import { ColorThemeData } from '../../src/classes/ColorThemeData'
-import { ColorThemes } from '../../src/enums/ColorThemes'
-import { ColorValues } from '../../src/enums/ColorValues'
+import { Analogous } from '../src/classes/Analogous'
+import { ColorThemeData } from '../src/classes/ColorThemeData'
+import { ColorThemes } from '../src/enums/ColorThemes'
+import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('SplitComplementary.ts', () => {
-  test('return type', () => {
-    const colorTheme = new SplitComplementary()
+describe('Analogous.ts', () => {
+  test('return type - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(5)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
-  test('difference in saturation', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
-    data.sortColorsBySaturation()
-    const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
-    expect(difference).toBeLessThanOrEqual(20)
-  })
-
-  test('numbersOfColorsInTheme must match argument', () => {
-    const colorTheme = new SplitComplementary()
+  test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
-
-  test('colorTheme must match class', () => {
-    const colorTheme = new SplitComplementary()
+  
+  test('colorTheme must match class - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(5)
-    expect(data.colorTheme).toEqual(ColorThemes.SplitComplementary)
+    expect(data.colorTheme).toEqual(ColorThemes.Analogous)
   })
-
-  test('invlaid number of arguments', () => {
-    const colorTheme = new SplitComplementary()
+  
+  test('invlaid number of arguments - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
-
-  test('invlaid value of arguments', () => {
-    const colorTheme = new SplitComplementary()
+  
+  test('invlaid value of arguments - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     expect(() => colorTheme.generateColorTheme(6)).toThrowError()
     expect(() => colorTheme.generateColorTheme(2)).toThrowError()
   })
-
-  test('invlaid type of arguments', () => {
-    const colorTheme = new SplitComplementary()
+  
+  test('invlaid type of arguments - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
-  test('adding one light or dark color', () => {
-    const colorTheme = new SplitComplementary()
+  test('adding one light or dark color - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     let expectedLightness
@@ -63,8 +55,8 @@ describe('SplitComplementary.ts', () => {
     expect(() => data.colorsInTheme.some(color => color.lightness === expectedLightness)).toBeTruthy()
   })
 
-  test('adding a light and dark color', () => {
-    const colorTheme = new SplitComplementary()
+  test('adding a light and dark color - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const expectedLightness = ColorValues.MaxLightness
@@ -74,8 +66,8 @@ describe('SplitComplementary.ts', () => {
     expect(() => data.colorsInTheme.some(color => color.lightness === expectedDarkness)).toBeTruthy()
   })
 
-  test('hue of light or dark color should be included in main colors', () => {
-    const colorTheme = new SplitComplementary()
+  test('hue of light or dark color should be included in main colors - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
@@ -86,24 +78,32 @@ describe('SplitComplementary.ts', () => {
     expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
   })
 
-  test('hue must be between HueMax and HueMin', () => {
-    const colorTheme = new SplitComplementary()
+  test('variation in saturation - generateColorTheme', () => {
+    const colorTheme = new Analogous()
+    const data = colorTheme.generateColorTheme(5)
+    data.sortColorsBySaturation()
+    const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
+    expect(difference).toBeLessThanOrEqual(20)
+  })
+
+  test('hue must be between HueMax and HueMin - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
     expect(data.colorsInTheme[0].hue).toBeGreaterThanOrEqual(ColorValues.HueMin)
   })
 
-  test('lightness must be between LightnessMax and LightnessMin', () => {
-    const colorTheme = new SplitComplementary()
+  test('lightness must be between LightnessMax and LightnessMin - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
     expect(data.colorsInTheme[0].lightness).toBeGreaterThanOrEqual(ColorValues.LightnessMin)
   })
 
-  test('saturation must be between SaturationMax + 10 and SaturationMin - 10', () => {
-    const colorTheme = new SplitComplementary()
+  test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
@@ -111,12 +111,12 @@ describe('SplitComplementary.ts', () => {
     expect(data.colorsInTheme[0].saturation).toBeGreaterThanOrEqual(ColorValues.SaturationMin - 10)
   })
 
-  test('difference in hue', () => {
-    const colorTheme = new SplitComplementary()
+  test('difference in hue - generateColorTheme', () => {
+    const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(3)
 
-    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 150) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 150) % 360
-    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 210) % 360) === 0) ? data.colorsInTheme[0].hue + 210 : (data.colorsInTheme[0].hue + 210) % 360
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 30) % 360) === 0) ? data.colorsInTheme[0].hue + 30 : (data.colorsInTheme[0].hue + 30) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 60) % 360) === 0) ? data.colorsInTheme[0].hue + 60 : (data.colorsInTheme[0].hue + 60) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)

@@ -1,7 +1,7 @@
-import { HTMLColorSwatch } from '../../src/classes/HTMLColorSwatch'
+import { HTMLColorSwatch } from '../src/classes/HTMLColorSwatch'
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
-import { Color } from '../../src/classes/Color'
+import { Color } from '../src/classes/Color'
 
 describe('HTMLColorSwatch.ts', () => {
   let document
@@ -12,7 +12,7 @@ describe('HTMLColorSwatch.ts', () => {
     document = window.document
   })
 
-  test('invalid number of arguments', () => {
+  test('invalid number of arguments - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
@@ -24,7 +24,7 @@ describe('HTMLColorSwatch.ts', () => {
     expect(() => swatch.turnElementIntoColorSwatch(element, undefined)).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSColorPropertyOn', () => {
+  test('invalid type of arguments - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const element = document.createElement('div')
@@ -35,7 +35,7 @@ describe('HTMLColorSwatch.ts', () => {
     expect(() => swatch.turnElementIntoColorSwatch(element, invalidArgument)).toThrowError()
   })
 
-  test('CSS wdith is set and has correct value', () => {
+  test('CSS wdith is set and has correct value - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const expectedValueOfWidthProperty = '50px'
@@ -49,7 +49,7 @@ describe('HTMLColorSwatch.ts', () => {
     expect(colorProperty).toEqual(expectedValueOfWidthProperty)
   })
 
-  test('CSS height is set and has correct value', () => {
+  test('CSS height is set and has correct value - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const expectedValueOfHeightProperty = '50px'
@@ -63,7 +63,7 @@ describe('HTMLColorSwatch.ts', () => {
     expect(colorProperty).toEqual(expectedValueOfHeightProperty)
   })
 
-  test('CSS border-radius is set and has correct value', () => {
+  test('CSS border-radius is set and has correct value - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const expectedValueOfBorderRadiusProperty = '50%'
@@ -77,7 +77,7 @@ describe('HTMLColorSwatch.ts', () => {
     expect(colorProperty).toEqual(expectedValueOfBorderRadiusProperty)
   })
 
-  test('CSS background-color is set and has correct value', () => {
+  test('CSS background-color is set and has correct value - turnElementIntoColorSwatch', () => {
     const swatch = new HTMLColorSwatch()
     const color = new Color(180, 100, 50)
     const expectedValueOfBackgroundColorProperty = 'rgb(0, 255, 255)'

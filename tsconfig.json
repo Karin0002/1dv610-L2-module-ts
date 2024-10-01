@@ -7,7 +7,6 @@
     "module": "NodeNext",                                /* Specify what module code is generated. */
     "moduleResolution": "NodeNext",
     /* Emit */
-    "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
     "outDir": "./build",                                   /* Specify an output folder for all emitted files. */
     "rootDir": "./src",
     /* Interop Constraints */
@@ -17,7 +16,9 @@
     "strictPropertyInitialization": false,
     "strict": true,                                      /* Enable all strict type-checking options. */
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
+    "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
   },
   "include": ["src/**/*", "eslint.config.js"],
   "exclude": ["node_modules", "build", "tests", "coverage"]
