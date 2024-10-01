@@ -70,7 +70,7 @@ try {
 To see the full documentation click [here](./docs.md).
 
 ## Bugreports
-To make bugreports and see current ones go to [github](https://github.com/Karin0002/color-theme-generator). 
+To make bugreports and see current ones go to [github](https://github.com/Karin0002/color-theme-generator).
 
 ### Disclosure
 This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this moudle is a student.
