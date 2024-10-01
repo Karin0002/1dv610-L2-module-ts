@@ -83,7 +83,6 @@ describe('Monochrome.ts', () => {
     expect(() => data.colorsInTheme.every(color => color.hue === expectedHue)).toBeTruthy()
   })
 
-
   test('variation in saturation - generateColorTheme', () => {
     const colorTheme = new Monochrome()
     const data = colorTheme.generateColorTheme(5)

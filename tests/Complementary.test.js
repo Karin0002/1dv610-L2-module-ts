@@ -117,7 +117,6 @@ describe('Complementary.ts', () => {
 
     const hueOfSecondColor = (((data.colorsInTheme[0].hue + 180) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 180) % 360
 
-
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
   })

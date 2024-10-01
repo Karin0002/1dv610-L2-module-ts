@@ -78,7 +78,6 @@ describe('Analogous.ts', () => {
     expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
   })
 
-  
   test('variation in saturation - generateColorTheme', () => {
     const colorTheme = new Analogous()
     const data = colorTheme.generateColorTheme(5)
@@ -118,7 +117,6 @@ describe('Analogous.ts', () => {
 
     const hueOfSecondColor = (((data.colorsInTheme[0].hue + 30) % 360) === 0) ? data.colorsInTheme[0].hue + 30 : (data.colorsInTheme[0].hue + 30) % 360
     const hueOfThirdColor = (((data.colorsInTheme[0].hue + 60) % 360) === 0) ? data.colorsInTheme[0].hue + 60 : (data.colorsInTheme[0].hue + 60) % 360
-
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
