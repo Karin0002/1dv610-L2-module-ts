@@ -69,45 +69,11 @@ try {
 ## Documentation
 To see the full documentation click [here](./docs.md).
 
-## Bugreports
-To make bugreports and see current ones go to [github](https://github.com/Karin0002/color-theme-generator).
+## Bugreports and contribution
+To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project on [github](https://github.com/Karin0002/color-theme-generator).
+
+## Testreports
+To see the testreports go to [github](https://github.com/Karin0002/color-theme-generator)
 
 ### Disclosure
 This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this moudle is a student.
-
-
-```mermaid
-classDiagram
-  class ColorTheme {
-    #hue
-    #saturation
-    #minLight
-    #maxLight
-    -setters()
-    #generateRandomNumber()
-    #adjustNumber()
-    -generateColorTheme()*
-  }
-  <<Abstract>> ColorTheme
-
-  class MultiHueColorTheme {
-    #hues
-    #pickRandomHue()
-  }
-  <<Abstract>> MultiHueColorTheme
-
-
-  ColorTheme --|> MultiHueColorTheme
-
-  class MonochromeColorTheme
-  class TriadicColorTheme
-  class AnalogousColorTheme
-  class ComplementaryColorTheme
-  class SplitComplementaryColorTheme
-
-  ColorTheme --|> MonochromeColorTheme
-  MultiHueColorTheme --|> TriadicColorTheme
-  MultiHueColorTheme --|> AnalogousColorTheme
-  MultiHueColorTheme --|> ComplementaryColorTheme
-  MultiHueColorTheme --|> SplitComplementaryColorTheme
-```
