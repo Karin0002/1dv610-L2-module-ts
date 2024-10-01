@@ -19,7 +19,8 @@ Generates an analogous color theme with a certain amout of colors.
 - If value is 5 it will generate three colors with equal lightness and a fourth lighter color and a fifth darker color.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containing the generated color theme.
 
 #### Throws error
 - If numberOfColors is not present.
@@ -60,7 +61,8 @@ Generates a complementary color theme with a certain amout of colors.
 - If value is 4 it will generate two colors with equal lightness and a third lighter color and a fourth darker color.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containg the generated color theme.
 
 #### Throws error
 - If numberOfColors is not present.
@@ -98,7 +100,8 @@ Generates a monochrome color theme with a certain amout of colors.
 - Value must be between 2 and 5.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containg the generated color theme.
 
 #### Throws error
 - If numberOfColors is not present.
@@ -139,7 +142,8 @@ Generates a split complementary color theme with a certain amout of colors.
 - If value is 5 it will generate three colors with equal lightness and a fourth lighter color and a fifth darker color.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containg the generated color theme.
 
 #### Throws error
 - If numberOfColors is not present.
@@ -180,7 +184,8 @@ Generates a triadic color theme with a certain amout of colors.
 - If value is 5 it will generate three colors with equal lightness and a fourth lighter color and a fifth darker color.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containg the generated color theme.
 
 #### Throws error
 - If numberOfColors is not present.
@@ -216,10 +221,11 @@ Generates a color theme with a certain amout of colors. The color theme is picke
 - Optional.
 - If present, must be of type number.
 - If present, value must be between 2 and 5.
-- If not present, a pseudorandom number between 2 and 5 is picked.
+- Defaults to a pseudorandom number between 2 and 5 is picked.
 
 #### Returns
-A ColorThemeData object containg the generated color theme.
+ColorThemeData{}
+  - A ColorThemeData object containg the generated color theme.
 
 #### Throws error
 - If numberOfColors is present and has invalid type.
@@ -232,7 +238,7 @@ import { RandomColorTheme } from 'color-theme-generator'
 
 try {
   const randomTheme = new RandomColorTheme()
-  const requestedNumberOfColors = 4  // Argument can be 2 - 5.
+  const requestedNumberOfColors = 5  // Argument can be 2 - 5.
   const generatedColorTheme = triadicTheme.generateColorTheme() // Without argument.
   const secondGeneratedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // With argument.
 } catch (e) {
@@ -246,7 +252,7 @@ try {
 ### hue
 
 #### Description:
-A property containing the hue of the color the object represents.
+A property containing the hue of the color that the object represents.
 
 #### Type
 Number
@@ -263,7 +269,6 @@ try {
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
   const hue = color.hue // For example 180
-
 } catch (e) {
   console.log(e.message)
 }
@@ -272,7 +277,7 @@ try {
 ### saturation
 
 #### Description:
-A property containing the saturation of the color the object represents.
+A property containing the saturation of the color that the object represents.
 
 #### Type
 Number
@@ -288,8 +293,7 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
-  const hue = color.satuartion // For example 75.
-
+  const saturation = color.satuartion // For example 75.
 } catch (e) {
   console.log(e.message)
 }
@@ -298,7 +302,7 @@ try {
 ### lightness
 
 #### Description:
-A property containing the lightness of the color the object represents.
+A property containing the lightness of the color that the object represents.
 
 #### Type
 Number
@@ -314,8 +318,7 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
-  const hue = color.lightness // For example 50.
-
+  const lightness = color.lightness // For example 50.
 } catch (e) {
   console.log(e.message)
 }
@@ -324,7 +327,7 @@ try {
 ### hsl
 
 #### Description:
-A property containing the hsl string of the color the object represents.
+A property containing the hsl string of the color that the object represents.
 
 #### Type
 String
@@ -340,8 +343,7 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
-  const hue = color.hsl // For example hsl(180, 75%, 50%)
-
+  const hsl = color.hsl // For example hsl(180, 75%, 50%)
 } catch (e) {
   console.log(e.message)
 }
@@ -353,7 +355,7 @@ try {
 ### colorTheme
 
 #### Description:
-A property containing the name of the color theme it represents.
+A property containing the name of the color theme the object represents.
 
 #### Type
 String
@@ -369,8 +371,6 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const nameOfColorTheme = generatedColorTheme.colorTheme // 'triadic'
-
-
 } catch (e) {
   console.log(e.message)
 }
@@ -379,7 +379,7 @@ try {
 ### numberOfColorsInTheme
 
 #### Description:
-A property containing the number of colors in the theme it represents.
+A property containing the number of colors in the theme the object represents.
 
 #### Type
 Number
@@ -395,8 +395,6 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const numberOfColors = generatedColorTheme.numberOfColorsInTheme // 3
-
-
 } catch (e) {
   console.log(e.message)
 }
@@ -405,10 +403,11 @@ try {
 ### colorsInTheme
 
 #### Description:
-A property containing the colors in the theme it represents.
+A property containing the colors in the theme the object represents.
 
 #### Type
 Color[]
+  - A deep copied array of Color objects.
 
 #### Example usage
 
@@ -421,8 +420,6 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const colors = generatedColorTheme.colorsInTheme // [Color{}, Color{}, Color{}]
-
-
 } catch (e) {
   console.log(e.message)
 }
@@ -544,6 +541,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
@@ -589,6 +587,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
@@ -634,6 +633,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
@@ -679,6 +679,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
@@ -724,6 +725,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
@@ -772,6 +774,7 @@ try {
   const triadicTheme = new Triadic()
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+
   const color = generatedColorTheme.colorsInTheme[0]
   const element = document.createElement('div')
 
