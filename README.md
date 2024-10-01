@@ -1,5 +1,5 @@
 # color-theme-generator
-color-theme-generator is a module used for generating color themes that are based in color-theory. The module can generate analogous, complementary, monochrome, split complementary and triadic themes. For explanation of these see [monchrome](https://en.wikipedia.org/wiki/Monochrome) and [others](https://en.wikipedia.org/wiki/Harmony_(color)). In addition it can set common CSS properties that affect the colors of HTMLElements. To visually test the colors in the browser the module can create color swatches, a HTMLElement with CSS properties that displays the color.
+color-theme-generator is a module used for generating color themes that are based in color theory. The module can generate analogous, complementary, monochrome, split complementary and triadic themes. For explanation of these see [monchrome](https://en.wikipedia.org/wiki/Monochrome) and [others](https://en.wikipedia.org/wiki/Harmony_(color)). In addition it can set common CSS properties that affect the colors of HTMLElements. To visually test the colors in the browser the module can create color swatches, a HTMLElement with CSS properties that displays the color.
 
 ## Installing
 ```bash
@@ -73,7 +73,7 @@ To see the full documentation see [docs](./docs.md).
 To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project in [github](https://github.com/Karin0002/color-theme-generator).
 
 ## Testreports
-To see the testreports go to [testreport](./testreport.md)
+To see the testreports go to [testreport](./testreports.md)
 
 ### Disclosure
-This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this moudle is a student.
+This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this module is a student.

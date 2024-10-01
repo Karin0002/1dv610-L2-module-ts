@@ -1,25 +1,3 @@
-Classes:
-- Analogous
-- Color
-- ColorThemeData
-- Complementary
-- CSSColorSetter
-- HTMLColorSwatch
-- Monochrome
-- RandomColorTheme
-- SplitComplementary
-- Triadic
-
-Direct access:
-- Analogous
-- Complementary
-- CSSColorSetter
-- HTMLColorSwatch
-- Monochrome
-- RandomColorTheme
-- SplitComplementary
-- Triadic
-
 # Objects, methods and properties
 
 ## Analogous

@@ -1,7 +1,7 @@
-# Testreport
+# Testreports
 Testing was done using the testing framework vitest. All tests can be found in the directory ./tests.
 
-## Report
+## Reports
 
 ### Tests run 2024-10-01:
 
