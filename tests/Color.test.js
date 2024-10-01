@@ -1,4 +1,4 @@
-import { Color } from '../../src/classes/Color'
+import { Color } from '../src/classes/Color'
 import { describe, expect, test } from 'vitest'
 
 describe('Color.ts', () => {
@@ -69,14 +69,14 @@ describe('Color.ts', () => {
     expect(color.lightness).toEqual(lightness)
   })
 
-  test('setting and returning too low lightness', () => {
+  test('setting too low lightness', () => {
     const hue = 180
     const saturation = 50
     const lightness = -1
     expect(() => new Color(hue, saturation, lightness)).toThrowError()
   })
 
-  test('setting and returning too high lightness', () => {
+  test('setting too high lightness', () => {
     const hue = 180
     const saturation = 50
     const lightness = 101

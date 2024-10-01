@@ -1,15 +1,15 @@
-import { Calculator } from '../../src/classes/Calculator'
+import { Calculator } from '../src/classes/Calculator'
 import { describe, expect, test } from 'vitest'
 
 describe('Calculator.ts', () => {
-  test('return type of generateRandomNumber', () => {
+  test('return type - generateRandomNumber', () => {
     const calculator = new Calculator()
     const number = calculator.generateRandomNumber(10, 5)
 
     expect(typeof number).toBe('number')
   })
 
-  test('return value of generateRandomNumber', () => {
+  test('return value - generateRandomNumber', () => {
     const calculator = new Calculator()
     const number = calculator.generateRandomNumber(10, 5)
 
@@ -17,7 +17,7 @@ describe('Calculator.ts', () => {
     expect(number).toBeGreaterThanOrEqual(5)
   })
 
-  test('invalid type of argument to generateRandomNumber', () => {
+  test('invalid type of argument - generateRandomNumber', () => {
     const calculator = new Calculator()
     const invalidArgument = 'test'
 
@@ -26,7 +26,7 @@ describe('Calculator.ts', () => {
     expect(() => calculator.generateRandomNumber(10, invalidArgument)).toThrowError()
   })
 
-  test('invalid number of argument to generateRandomNumber', () => {
+  test('invalid number of argument - generateRandomNumber', () => {
     const calculator = new Calculator()
 
     expect(() => calculator.generateRandomNumber(10)).toThrowError()
@@ -35,7 +35,7 @@ describe('Calculator.ts', () => {
     expect(() => calculator.generateRandomNumber(undefined, 5)).toThrowError()
   })
 
-  test('wrong order of argument to generateRandomNumber', () => {
+  test('wrong order of argument - generateRandomNumber', () => {
     const calculator = new Calculator()
     const number = calculator.generateRandomNumber(5, 10)
 
@@ -43,14 +43,14 @@ describe('Calculator.ts', () => {
     expect(number).toBeGreaterThanOrEqual(5)
   })
 
-  test('return type of adjustNumberWithin10', () => {
+  test('return type - adjustNumberWithin10', () => {
     const calculator = new Calculator()
     const number = calculator.adjustNumberWithin10(20)
 
     expect(typeof number).toBe('number')
   })
 
-  test('return value of adjustNumberWithin10', () => {
+  test('return value - adjustNumberWithin10', () => {
     const calculator = new Calculator()
     const argument = 20
     const number = calculator.adjustNumberWithin10(argument)
@@ -59,14 +59,14 @@ describe('Calculator.ts', () => {
     expect(number).toBeGreaterThanOrEqual(argument - 10)
   })
 
-  test('invalid type of argument to adjustNumberWithin10', () => {
+  test('invalid type of argument - adjustNumberWithin10', () => {
     const calculator = new Calculator()
     const invalidArgument = 'test'
 
     expect(() => calculator.adjustNumberWithin10(invalidArgument)).toThrowError()
   })
 
-  test('invalid number of argument to adjustNumberWithin10', () => {
+  test('invalid number of argument - adjustNumberWithin10', () => {
     const calculator = new Calculator()
 
     expect(() => calculator.adjustNumberWithin10()).toThrowError()

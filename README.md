@@ -67,7 +67,7 @@ try {
 ```
 
 ## Documentation
-To see the full documentation click [here](./docs.md).
+To see the full documentation see [docs](./docs.md).
 
 ## Bugreports and contribution
 To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project on [github](https://github.com/Karin0002/color-theme-generator).

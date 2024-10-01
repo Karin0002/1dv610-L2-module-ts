@@ -1,56 +1,48 @@
-import { Triadic } from '../../src/classes/Triadic'
-import { ColorThemeData } from '../../src/classes/ColorThemeData'
-import { ColorThemes } from '../../src/enums/ColorThemes'
-import { ColorValues } from '../../src/enums/ColorValues'
+import { SplitComplementary } from '../src/classes/SplitComplementary'
+import { ColorThemeData } from '../src/classes/ColorThemeData'
+import { ColorThemes } from '../src/enums/ColorThemes'
+import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('Triadic.ts', () => {
-  test('return type', () => {
-    const colorTheme = new Triadic()
+describe('SplitComplementary.ts', () => {
+  test('return type  - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(5)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
-  test('difference in saturation', () => {
-    const colorTheme = new Triadic()
-    const data = colorTheme.generateColorTheme(5)
-    data.sortColorsBySaturation()
-    const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
-    expect(difference).toBeLessThanOrEqual(20)
-  })
-
-  test('numbersOfColorsInTheme must match argument', () => {
-    const colorTheme = new Triadic()
+  test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
 
-  test('colorTheme must match class', () => {
-    const colorTheme = new Triadic()
+  test('colorTheme must match class - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(5)
-    expect(data.colorTheme).toEqual(ColorThemes.Triadic)
+    expect(data.colorTheme).toEqual(ColorThemes.SplitComplementary)
   })
 
-  test('invlaid number of arguments', () => {
-    const colorTheme = new Triadic()
+  test('invlaid number of arguments - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
 
-  test('invlaid value of arguments', () => {
-    const colorTheme = new Triadic()
+  test('invlaid value of arguments - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     expect(() => colorTheme.generateColorTheme(6)).toThrowError()
     expect(() => colorTheme.generateColorTheme(2)).toThrowError()
   })
 
-  test('invlaid type of arguments', () => {
-    const colorTheme = new Triadic()
+  test('invlaid type of arguments - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
-  test('adding one light or dark color', () => {
-    const colorTheme = new Triadic()
+  test('adding one light or dark color - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     let expectedLightness
@@ -63,8 +55,8 @@ describe('Triadic.ts', () => {
     expect(() => data.colorsInTheme.some(color => color.lightness === expectedLightness)).toBeTruthy()
   })
 
-  test('adding a light and dark color', () => {
-    const colorTheme = new Triadic()
+  test('adding a light and dark color - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const expectedLightness = ColorValues.MaxLightness
@@ -74,8 +66,8 @@ describe('Triadic.ts', () => {
     expect(() => data.colorsInTheme.some(color => color.lightness === expectedDarkness)).toBeTruthy()
   })
 
-  test('hue of light or dark color should be included in main colors', () => {
-    const colorTheme = new Triadic()
+  test('hue of light or dark color should be included in main colors - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
@@ -86,24 +78,32 @@ describe('Triadic.ts', () => {
     expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
   })
 
-  test('hue must be between HueMax and HueMin', () => {
-    const colorTheme = new Triadic()
+  test('variation in saturation  - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
+    const data = colorTheme.generateColorTheme(5)
+    data.sortColorsBySaturation()
+    const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
+    expect(difference).toBeLessThanOrEqual(20)
+  })
+
+  test('hue must be between HueMax and HueMin - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
     expect(data.colorsInTheme[0].hue).toBeGreaterThanOrEqual(ColorValues.HueMin)
   })
 
-  test('lightness must be between LightnessMax and LightnessMin', () => {
-    const colorTheme = new Triadic()
+  test('lightness must be between LightnessMax and LightnessMin - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
     expect(data.colorsInTheme[0].lightness).toBeGreaterThanOrEqual(ColorValues.LightnessMin)
   })
 
-  test('saturation must be between SaturationMax + 10 and SaturationMin - 10', () => {
-    const colorTheme = new Triadic()
+  test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
@@ -111,12 +111,12 @@ describe('Triadic.ts', () => {
     expect(data.colorsInTheme[0].saturation).toBeGreaterThanOrEqual(ColorValues.SaturationMin - 10)
   })
 
-  test('difference in hue', () => {
-    const colorTheme = new Triadic()
+  test('difference in hue - generateColorTheme', () => {
+    const colorTheme = new SplitComplementary()
     const data = colorTheme.generateColorTheme(3)
 
-    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 120) % 360) === 0) ? data.colorsInTheme[0].hue + 120 : (data.colorsInTheme[0].hue + 120) % 360
-    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 240) % 360) === 0) ? data.colorsInTheme[0].hue + 240 : (data.colorsInTheme[0].hue + 240) % 360
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 150) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 150) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 210) % 360) === 0) ? data.colorsInTheme[0].hue + 210 : (data.colorsInTheme[0].hue + 210) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
