@@ -15,12 +15,28 @@ ColorThemeData består av riktiga och fulla engelska ord. Detta gör att man enk
 Make Meaningful Distinctions
 Denna regel innebär att man inte ska använda sig av "noise words". Anledning till att noise words förekommer är för att kodförfattarna enbart namnger för att "behaga" compilern (två identifierare kan inte dela samma namn, därför lägger man till noise words för att särskilja dem). Ett vanligt noise word är just data. Detta skulle kunna innebära att ColorThemeData tolkas som ColorTheme av människor. I just fallet av ColorThemeData är data inte ett noise word utan meningsfullt. Klassen ska innehålla data om ett color theme. Problemet i applikationen kring detta är att det redan finns en abstrakt klass som heter ColorTheme. Om ColorThemeData skulle förkortas av människor till ColorTheme skulle missförstånd lätt kunna ske. För att komma runt detta problem skulle man kunna byta namn på ColorTheme till t.ex. ColorThemeMaker. Om data då felaktigt skulle uppfattas som noise och ColorThemeData skulle förkortas till ColorTheme skulle detta inte vara hela världen eftersom det inte skulle krocka med befintliga identifierare. Möjligtvis skulle man också kunna byta namn till ColorThemeMetadata, detta skulle troligtvis innebära att läsarna förstår att data inte är noise utan en betydande del av namnet.
 
-setCSSBackgroundColorPropertyOn
-Pick One Word per Concept
-Ordet set är idag brett använt för konceptet att sätta en egenskap hos ett objekt. Vid användning (t.ex. CSSColorSetter.setCSSBackgroundColorPropertyOn(HTMLElement, color)) skulle man därför kunna tolka att CSSColorSetter har en egenskap som heter CSSBackgroundColorPropertyOn och att man genom metoden sätter värdet på denna. Detta är en felaktig tolkning och anledningen till att identifieraren har ordet On på slutet. Genom detta försöker jag kommunicera att man sätter egeneskapen "on" första argumentet till metoden. Trots detta kommer man inte ifrån att det inte är det vanliga konceptet som set står för. Istället hade man kanske kunnat ändra metodens funktion något så att den själv skapar ett HTMLElement och sätter CSS egenskapen på det egentillverkade elementet. Då hade man kunna byta namn till createElementWithCSSBackgroundColor. 
+setCSSBackgroundColorPropertyOn:
+Don't pun
+Ordet set är idag brett använt för syftet att sätta en egenskap hos ett objekt. Vid användning (t.ex. CSSColorSetter.setCSSBackgroundColorPropertyOn(HTMLElement, color)) skulle man därför kunna tolka att CSSColorSetter har en egenskap som heter CSSBackgroundColorPropertyOn och att man genom metoden sätter värdet på denna. Detta är en felaktig tolkning och anledningen till att identifieraren har ordet On på slutet. Genom detta försöker jag kommunicera att man sätter egeneskapen "on" första argumentet till metoden. Trots detta kommer man inte ifrån att det inte är det vanliga syftet som set står för. Istället hade man kanske kunnat ändra metodens funktion något så att den själv skapar ett HTMLElement och sätter CSS egenskapen på det egentillverkade elementet. Då hade man kunna byta namn till createElementWithCSSBackgroundColor. 
 
 Method names
 setCSSBackgroundColorPropertyOn är en verb-fras. Identiferaren innehåller många ord som inte är verb men sätt som helhet blir det en verb-fras. En metod ska göra något och den ordklass som bäst illustrerar detta är just verb. Därför får man en inblick i att identifieraren gör något. 
+
+HTMLColorSwatch:
+Use problem domain names
+En color swatch är inte kopplat till programmering på något vis utan hör direkt till problem domänen, det vill säga ämnet färger och färgteman. Detta gör identifieraren mer förståelig för den tänkta målgruppen. Eftersom det inte finns något programmerings ord för en color swatch valde jag att använda den "domän-korrekta" namnet och ej insatta kan enkelt slå upp en definition. Samtidigt inleds identifieraren med HTML vilket är ett mycket programmerings specifikt begrepp. Istället för att blanda begrepp från båda domänerna hade det kanske varit bättre att välja ett. Samtidigt är målgruppen programmerare som på något vis har behov av funktionalitet kopplat till problem domänen (färg). Så dessa bör ha kunskap om HTML och någon sorts koppling till färg. Anledningen till att jag valde att ha med HTML var för att förklara vad det i praktiken var för något, nämligen ett HTMLElement.
+
+Don't add gratuitous context
+Att inleda med HTML i identifierar riskerar att "stjälpa" användaren eftersom HTML inleder väldigt många olika begrepp (HTMLDivElement, HTMLButtonElement osv). Detta gör att HTMLColorSwatch lätt kommer bort bland alla andra "HTML-inledande" identifierare. Man kan av den anledningen hävda att man ger för mycket context. ColorSwatch kanske räcker. Om det trots allt ger för lite kontext för att förstå att det är ett HTMLElement det handlar om kanske man istället ska kalla den ColorSwatchElement eller ColorDisplayElement. Kontexten blir egentligen densamma men det blir bättre ur aspekten att IDE:n inte kan hjälpa effektivt. 
+
+sortColorsByLightness
+Don't be Cute
+sortColorsByLightness gör precis vad den säger. Därmed följer den mottot "Say what you mean. Mean what you say.". Oavsett erfarenheter, "inside jokes", humor m.m. kan man tolka vad identifieraren gör. Det är en objektiv beskrivning.
+
+Add meaningful context
+Ur ett perspektiv är identifieraren självförklarande, dvs den sorterar färger utifrån ljus. Utan dess omgivande kontext kan däremot ett antal frågor ställas. Vilka "colors" och vad/vilken lightness menas är exempel på dessa frågor. Metoden finns i klassen ColorThemeData. Inuti ColorThemeData finns egenskapen colorsInTheme. Det besvarar på frågan vilka "colors". Ett Color objekt har egenskapen lightness. Det i sin tur svarar på vad/vilken lightness. 
+
+
 
 
 5 namn på identifierare i det publika interface
