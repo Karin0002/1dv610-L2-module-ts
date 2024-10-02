@@ -275,8 +275,8 @@ import { RandomColorTheme } from 'color-theme-generator'
 try {
   const randomTheme = new RandomColorTheme()
   const requestedNumberOfColors = 5  // Argument can be 2 - 5.
-  const generatedColorTheme = triadicTheme.generateColorTheme() // Without argument.
-  const secondGeneratedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // With argument.
+  const generatedColorTheme = randomTheme.generateColorTheme() // Without argument.
+  const secondGeneratedColorTheme = randomTheme.generateColorTheme(requestedNumberOfColors) // With argument.
 } catch (e) {
   console.log(e.message)
 }
@@ -329,7 +329,7 @@ try {
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
-  const saturation = color.satuartion // For example 75.
+  const saturation = color.saturation // For example 75.
 } catch (e) {
   console.log(e.message)
 }
@@ -406,7 +406,7 @@ try {
   const requestedNumberOfColors = 3
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
-  const nameOfColorTheme = generatedColorTheme.colorTheme // 'triadic'
+  const nameOfColorTheme = generatedColorTheme.colorTheme // 'TRIADIC'
 } catch (e) {
   console.log(e.message)
 }
@@ -528,7 +528,7 @@ import { Triadic } from 'color-theme-generator'
 
 try {
   const triadicTheme = new Triadic()
-  const requestedNumberOfColors = 3
+  const requestedNumberOfColors = 5
   const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const unsortedColors = generatedColorTheme.colorsInTheme
