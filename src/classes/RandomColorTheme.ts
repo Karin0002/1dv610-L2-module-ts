@@ -47,7 +47,7 @@ export class RandomColorTheme {
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
   */
-  // Implicit instruction but that is explicit in the code through validation.
+  // Implicit instruction in comment but that is explicit in the code through validation.
   generateColorTheme (numberOfColors?: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
