@@ -6,11 +6,11 @@ export class Guard {
   /**
    * Validates an argument of type number.
    *
-  // Implicit instruction but that is explicit in the code through validation.
    * @param values - An object containing the properties maxValue, minValue and recievedArgument.
    * @throws Error if a property is missing on the argument.
    * @throws Error if the argument does not pass the validation.
-   */
+  */
+  // Implicit instruction in comment but that is explicit in the code through validation.
   validateNumberArgumentWithMaxAndMin (values: { maxValue: number, minValue: number, recievedArgument: number }): void {
     // Mixed abstraction levels.
     // Low-level: variables, control statements, number.isNaN.

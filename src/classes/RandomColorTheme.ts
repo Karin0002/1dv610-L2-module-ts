@@ -43,11 +43,11 @@ export class RandomColorTheme {
   /**
    * Generates a random color theme using analogous, complementary, monochrome, split complementary or triadic.
    *
-  // Implicit instruction but that is explicit in the code through validation.
    * @param numberOfColors - Optional, the number of colors to include ranging from 2 to 5.
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
-   */
+  */
+  // Implicit instruction in comment but that is explicit in the code through validation.
   generateColorTheme (numberOfColors?: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.

@@ -1,5 +1,41 @@
 # Objects, methods and properties
 
+## Table of content
+1. [Analogous](#analogous)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors) 
+2. [Complementary](#complementary)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors-1) 
+3. [Monochrome](#monochrome)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors-2) 
+4. [SplitComplementary](#splitcomplementary)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors-3) 
+5. [Triadic](#triadic)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors-4) 
+6. [RandomColorTheme](#randomcolortheme)
+    1. [generateColorTheme()](#generatecolorthemenumberofcolors-5) 
+7. [Color](#color)
+    1. [hue](#hue)
+    2. [saturation](#saturation)
+    3. [lightness](#lightness)
+    4. [hsl](#hsl)
+8. [ColorThemeData](#colorthemedata)
+    1. [colorTheme](#colortheme)
+    2. [numberOfColorsInTheme](#numberofcolorsintheme)
+    3. [colorsInTheme](#colorsintheme)
+    4. [sortColorsByHue()](#sortcolorsbyhue)
+    5. [sortColorsBySaturation()](#sortcolorsbysaturation)
+    6. [sortColorsByLightness()](#sortcolorsbylightness)
+9. [CSSColorSetter](#csscolorsetter)
+    1. [setCSSColorPropertyOn()](#setcsscolorpropertyonhtmlelement-color)
+    2. [setCSSBackgroundColorPropertyOn()](#setcssbackgroundcolorpropertyonhtmlelement-color)
+    3. [setCSSBorderPropertyOn()](#setcssborderpropertyonhtmlelement-color)
+    4. [setCSSOutlinePropertyOn()](#setcssoutlinepropertyonhtmlelement-color)
+    5. [setCSSTextDecorationPropertyOn()](#setcsstextdecorationpropertyonhtmlelement-color)
+10. [HTMLColorSwatch](#htmlcolorswatch)
+    1. [turnElementIntoColorSwatch()](#turnelementintocolorswatchhtmlelement-color)
+
+
+
 ## Analogous
 
 ### generateColorTheme(numberOfColors)
