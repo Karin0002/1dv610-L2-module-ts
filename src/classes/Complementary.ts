@@ -8,11 +8,11 @@ export class Complementary extends MultiHueColorTheme {
   /**
    * Generates a complementary color theme.
    *
-  // Implicit instruction but that is explicit in the code through validation.
    * @param numberOfColors - The number of colors to include ranging from 2 to 4.
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
-   */
+  */
+  // Implicit instruction in comment but that is explicit in the code through validation.
   generateColorTheme (numberOfColors: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
