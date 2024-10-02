@@ -67,3 +67,4 @@ generateColorTheme
 
 
 ## Reflektion av kapitel 3:
+Jag upptäckte efter att ha läst kapitel 3 i Clean Code att jag i mitt normala skrivande ofta bryter mot dessa regler. Samtidigt känner jag att det är väldigt lätt att bryta mot dessa regler för att de är så pass strikta. Jag håller med att det blir en märkbar positiv skillnad när man följer reglerna jämfört med när man inte gör det. Alla regler är logiska och jag instämmer med dem alla, problemet är att det är nästintill omöjligt att följa allt till punkt och pricka. Författaren skriver ju dessutom att han själv bryter dessa regler och gör en kompromiss för att lyckas med något. T.ex. tycker jag att det är tillräckligt läsbart och förståeligt att ha en nivå av nästlade kontrollsatser om dessa är små och kontrollerna är lättförståeliga.
