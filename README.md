@@ -72,7 +72,7 @@ To see the full documentation see [docs](./docs.md).
 To contribute you can make bugreports and see current ones in [github](https://github.com/Karin0002/color-theme-generator/issues). If you want to extend or experiment with the module you can fork the project in [github](https://github.com/Karin0002/color-theme-generator).
 
 ## Testreports
-To see the testreports go to [testreports](./testreports.md)
+To see the testreports go to [testreports](./testreports.md).
 
 ### Disclosure
 This module is part of an assignment in the course 1DV610, held by Linnaeus University. That means that the author of this module is a student.
