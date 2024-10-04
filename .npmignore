@@ -200,4 +200,7 @@ $RECYCLE.BIN/
 /src
 tsconfig.json
 
+/doc-images
+/tests
+
 # End of https://www.gitignore.io/api/node,linux,macos,windows,visualstudiocode
