@@ -27,19 +27,46 @@ export class HTMLColorSwatch {
     this.#swatchCSSBorderRadius = '50%'
   }
 
+  // /**
+  //  * Sets CSS properties to make an HTMLElement represent a color swtach.
+  //  *
+  //  * @param HTMLElement - Refrence to the HTML element to turn into a color swatch.
+  //  * @param color - The color to set for the swatch.
+  //  */
+  // turnElementIntoColorSwatch (HTMLElement: HTMLElement, color: Color): void {
+  //   // Somewhat mixed abstraction levels.
+  //   // Low-level: variables.
+  //   // High-level: calls methods.
+  //   const argumentGuard = new Guard()
+  //   argumentGuard.validateHTMLElementArgument(HTMLElement)
+  //   argumentGuard.validateColorArgument(color)
+
+  //   this.#styler.setCSSBackgroundColorPropertyOn(HTMLElement, color)
+  //   this.#setCSSWidthOn(HTMLElement)
+  //   this.#setCSSHeightOn(HTMLElement)
+  //   this.#setCSSBorderRadiusOn(HTMLElement)
+  // }
+
   /**
    * Sets CSS properties to make an HTMLElement represent a color swtach.
    *
-   * @param HTMLElement - Refrence to the HTML element to turn into a color swatch.
    * @param color - The color to set for the swatch.
    */
-  turnElementIntoColorSwatch (HTMLElement: HTMLElement, color: Color): void {
+  getCSSForColorDisplay (color: Color): void {
     // Somewhat mixed abstraction levels.
     // Low-level: variables.
     // High-level: calls methods.
     const argumentGuard = new Guard()
-    argumentGuard.validateHTMLElementArgument(HTMLElement)
     argumentGuard.validateColorArgument(color)
+
+    const styles = {
+      // backgroundColor: this.#styler.setCSSBackgroundColorPropertyOn(HTMLElement, color),
+      width: this.#swatchCSSWidth,
+      height: this.#swatchCSSHeight,
+      borderRadius: this.#swatchCSSBorderRadius
+    }
+
+    const HTMLElement = document.createElement('div')
 
     this.#styler.setCSSBackgroundColorPropertyOn(HTMLElement, color)
     this.#setCSSWidthOn(HTMLElement)

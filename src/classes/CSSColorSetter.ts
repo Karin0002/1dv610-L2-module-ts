@@ -31,6 +31,28 @@ export class CSSColorSetter {
   }
 
   /**
+   * Sets the CSS property color using style attribute.
+   *
+   * @param color - The color to set the property to.
+   * @throws Error if the arguments does not pass the validation.
+   */
+  getColorProperty (color: Color): { [color: string]: string } {
+    this.#argumentGuard.validateColorArgument(color)
+
+    return this.#createObject(['color'], [color.hsl])
+  }
+
+  #createObject (keys: string[], values: string[]): { [key: string]: string } {
+    const object: { [key: string]: string} = {}
+
+    for (let i = 0; i < keys.length; i++) {
+      object[keys[i]] = values[i]
+    }
+
+    return object
+  }
+
+  /**
    * Sets the CSS property background-color using style attribute.
    *
    * @param HTMLElement - Refrence to the HTML element to set the property on.
