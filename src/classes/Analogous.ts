@@ -1,10 +1,10 @@
-import { ColorThemes } from '../enums/ColorThemes.js'
-import { Color } from './Color.js'
 import { MultiHueColorTheme } from './MultiHueColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
+import { Color } from './Color.js'
 
-export class Analogous extends MultiHueColorTheme {
+export class AnalogousThemeMaker extends MultiHueColorTheme {
   /**
    * Generates an analogous color theme.
    *
@@ -13,6 +13,36 @@ export class Analogous extends MultiHueColorTheme {
    * @throws Error if the arguments does not pass the validation.
   */
   // Implicit instruction in comment but that is explicit in the code through validation.
+  // generateColorTheme (numberOfColors: number): ColorThemeData {
+  //   // Mixed abstraction levels.
+  //   // Low-level: variables, array.push, control statements.
+  //   // High-level: initiates objects, calls methods.
+  //   this.argumentGuard.validateNumberArgumentWithMaxAndMin({
+  //     maxValue: ArgumentLimits.AnalogousMax,
+  //     minValue: ArgumentLimits.AnalogousMin,
+  //     recievedArgument: numberOfColors
+  //   })
+
+  //   const colors: Color[] = []
+
+  //   colors.push(...this.#generate3Colors())
+  //   // Nested control statments and magic numbers.
+  //   if (numberOfColors === 4) {
+  //     if (this.lightness > 50) {
+  //       colors.push(this.generateDarkColor())
+  //     } else {
+  //       colors.push(this.generateLightColor())
+  //     }
+  //   } else if (numberOfColors === 5) {
+  //     colors.push(this.generateDarkColor())
+  //     colors.push(this.generateLightColor())
+  //   }
+
+  //   const data = new ColorThemeData(ColorThemes.Analogous, colors)
+
+  //   return data
+  // }
+
   generateColorTheme (numberOfColors: number): ColorThemeData {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
@@ -22,6 +52,13 @@ export class Analogous extends MultiHueColorTheme {
       minValue: ArgumentLimits.AnalogousMin,
       recievedArgument: numberOfColors
     })
+
+    const mainColors = this.#generate3Colors()
+    const contrastColors = this.#generateContrastColors(numberOfColors)
+    const allColors = this.#mergeContrastColorsWithMainColors(contrastColors, mainColors)
+
+
+    const data = new ColorThemeData(ColorThemes.Analogous, allColors)
 
     const colors: Color[] = []
 
@@ -38,9 +75,56 @@ export class Analogous extends MultiHueColorTheme {
       colors.push(this.generateLightColor())
     }
 
-    const data = new ColorThemeData(ColorThemes.Analogous, colors)
+    // const data = new ColorThemeData(ColorThemes.Analogous, colors)
 
     return data
+  }
+
+  #generateContrastColors (numberOfColorsInTheme: number): Color[] | undefined {
+    if (this.#shouldAddOneContrastColor(numberOfColorsInTheme)) {
+      if (this.#shouldAddDarkContrastColor(this.lightness)) {
+        return [this.generateDarkColor()]
+      } else {
+        return [this.generateLightColor()]
+      }
+    } else if (this.#shouldAddTwoContrastColor(numberOfColorsInTheme)) {
+      return [this.generateDarkColor(), this.generateLightColor()]
+    }
+  }
+
+  #shouldAddOneContrastColor (numberOfColorsInTheme: number): boolean {
+    const numberOfColorsForContrastColor = ArgumentLimits.AnalogousMax - 1
+    if (numberOfColorsInTheme === numberOfColorsForContrastColor) {
+      return true
+    }
+    return false
+  }
+
+  #shouldAddDarkContrastColor (lightnessOfMainColors: number) {
+    const fullLightness = 100
+    const halftLightness = fullLightness / 2
+    if (lightnessOfMainColors > halftLightness) {
+      return true
+    }
+    return false
+  } 
+
+  #shouldAddTwoContrastColor (numberOfColorsInTheme: number): boolean {
+    const numberOfColorsForTwoContrastColors = ArgumentLimits.AnalogousMax
+    if (numberOfColorsInTheme === numberOfColorsForTwoContrastColors) {
+      return true
+    }
+    return false
+  }
+
+  #createArray (): [] {
+    return []
+  }
+
+  #mergeContrastColorsWithMainColors (contrastColors: Color[] | undefined, mainColors: Color[],): Color[] {
+    const allColors = [...mainColors, ...contrastColors]
+    const filteredColors = allColors.filter(element => element !== undefined)
+    return filteredColors
   }
 
   /**
