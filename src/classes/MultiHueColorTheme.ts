@@ -1,8 +1,8 @@
-import { ColorTheme } from './ColorTheme.js'
+import { ColorThemeMaker } from './ColorThemeMaker.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { Color } from './Color.js'
 
-export abstract class MultiHueColorTheme extends ColorTheme {
+export abstract class MultiHueColorTheme extends ColorThemeMaker {
   protected hues: number[]
 
   protected lightness: number

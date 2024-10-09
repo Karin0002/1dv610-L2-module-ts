@@ -1,10 +1,10 @@
-import { ColorTheme } from './ColorTheme.js'
+import { ColorThemeMaker } from './ColorThemeMaker.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-export class Monochrome extends ColorTheme {
+export class Monochrome extends ColorThemeMaker {
   /**
    * Generates a monochrome color theme.
    *

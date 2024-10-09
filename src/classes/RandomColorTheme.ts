@@ -3,7 +3,7 @@ import { AnalogousThemeMaker } from './AnalogousThemeMaker.js'
 import { Complementary } from './Complementary.js'
 import { SplitComplementary } from './SplitComplementary.js'
 import { Monochrome } from './Monochrome.js'
-import { ColorTheme } from './ColorTheme.js'
+import { ColorThemeMaker } from './ColorThemeMaker.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
@@ -90,7 +90,7 @@ export class RandomColorTheme {
   // The name of the argument is only one character which is typically not
   // good and is not searchable, but combined with the name of the method
   // it works in my opinion since it sets it in a context.
-  #getThemesWithNColors (n: number): ColorTheme[] {
+  #getThemesWithNColors (n: number): ColorThemeMaker[] {
     // Breaks open/close rule.
     const themes = []
     // let themes

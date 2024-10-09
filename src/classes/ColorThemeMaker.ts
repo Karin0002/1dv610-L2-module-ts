@@ -1,9 +1,9 @@
-import { ColorThemeData } from './ColorThemeData.js'
-import { ColorValues } from '../enums/ColorValues.js'
 import { Guard } from './Guard.js'
 import { NumberGenerator } from './NumberGenerator.js'
+import { ColorValues } from '../enums/ColorValues.js'
+import { ColorThemeData } from './ColorThemeData.js'
 
-export abstract class ColorTheme {
+export abstract class ColorThemeMaker {
   /**
    * The object to validate arguments with.
    */
@@ -22,13 +22,17 @@ export abstract class ColorTheme {
 
   protected maxLightness: number
 
-  // Instead of accepting arguments I uses enums to make the color themes be cohesive.
-  // The cons is that it is less versatile.
   constructor () {
     this.argumentGuard = new Guard()
     this.generator = new NumberGenerator()
-    this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
-    this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
+    this.#setHue({
+      maxValue: ColorValues.HueMax,
+      minValue: ColorValues.HueMin
+    })
+    this.#setSaturation({
+      maxValue: ColorValues.SaturationMax,
+      minValue: ColorValues.SaturationMin
+    })
     this.#setMinLightness(ColorValues.MinLightness)
     this.#setMaxLightness(ColorValues.MaxLightness)
   }
@@ -36,19 +40,15 @@ export abstract class ColorTheme {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  // Dyadic, two arguments, could perhaps be an object instead
-  // with the current arguments as properties.
-  #setHue (maxValue: number, minValue: number): void {
-    this.hue = this.generator.generateRandomNumber({ maxValue, minValue })
+  #setHue (limits: { maxValue: number, minValue: number }): void {
+    this.hue = this.generator.generateRandomNumber(limits)
   }
 
   /**
    * Sets the saturation with a randomly generated number that is between the arguments.
    */
-  // Dyadic, two arguments, could perhaps be an object instead
-  // with the current arguments as properties.
-  #setSaturation (maxValue: number, minValue: number): void {
-    this.saturation = this.generator.generateRandomNumber({ maxValue, minValue })
+  #setSaturation (limits: { maxValue: number, minValue: number }): void {
+    this.saturation = this.generator.generateRandomNumber(limits)
   }
 
   #setMinLightness (value: number): void {
