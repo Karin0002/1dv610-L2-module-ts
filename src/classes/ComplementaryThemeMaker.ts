@@ -1,10 +1,10 @@
-import { MultiHueColorTheme } from './MultiHueColorTheme.js'
+import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 
-export class ComplementaryThemeMaker extends MultiHueColorTheme {
+export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
 
   constructor () {
     super(ArgumentLimits.ComplementaryMin)

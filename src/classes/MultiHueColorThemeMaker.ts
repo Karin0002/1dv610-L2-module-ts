@@ -2,7 +2,7 @@ import { ColorThemeMaker } from './ColorThemeMaker.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { Color } from './Color.js'
 
-export abstract class MultiHueColorTheme extends ColorThemeMaker {
+export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
   protected hues: number[]
   
   protected lightness: number
@@ -11,8 +11,11 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
 
   constructor (numberOfMainColors: number) {
     super()
-    this.hues = []
-    this.#setLightness(ColorValues.LightnessMax, ColorValues.LightnessMin)
+    this.#setHues()
+    this.#setLightness({
+      max: ColorValues.LightnessMax,
+      min: ColorValues.LightnessMin
+    })
     this.#setNumberOfMainColors(numberOfMainColors)
   }
 
@@ -23,10 +26,8 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  // Dyadic, two arguments, could perhaps be an object instead
-  // with the current arguments as properties.
-  #setLightness (maxValue: number, minValue: number): void {
-    this.lightness = this.generator.generateRandomNumber({ max: maxValue, min: minValue })
+  #setLightness (limits: { max: number, min: number }): void {
+    this.lightness = this.generator.generateRandomNumber(limits)
   }
 
   #setNumberOfMainColors (value: number) {
@@ -39,15 +40,16 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
    * @returns The hue that was picked.
    */
   protected pickRandomHue (): number {
-    // Mixed abstraction levels.
-    // Low-level: variable.
-    // High-level: calls methods.
     const randomIndex = this.generator.generateRandomNumber({
       max: this.hues.length - 1,
       min: 0
     })
 
-    return this.hues[randomIndex]
+    return this.#getHueFromHues(randomIndex)
+  }
+
+  #getHueFromHues (index: number): number {
+    return this.hues[index]
   }
 
   /**

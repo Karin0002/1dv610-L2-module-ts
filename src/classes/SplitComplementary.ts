@@ -1,10 +1,10 @@
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
-import { MultiHueColorTheme } from './MultiHueColorTheme.js'
+import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-export class SplitComplementary extends MultiHueColorTheme {
+export class SplitComplementary extends MultiHueColorThemeMaker {
   /**
    * Generates an split complementary color theme.
    *

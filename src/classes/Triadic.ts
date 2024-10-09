@@ -1,10 +1,10 @@
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
-import { MultiHueColorTheme } from './MultiHueColorTheme.js'
+import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
-export class Triadic extends MultiHueColorTheme {
+export class Triadic extends MultiHueColorThemeMaker {
   /**
    * Generates an triadic color theme.
    *
