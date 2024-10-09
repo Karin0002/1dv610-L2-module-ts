@@ -31,7 +31,10 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
     // Mixed abstraction levels.
     // Low-level: variable.
     // High-level: calls methods.
-    const randomIndex = this.generator.generateRandomNumber(this.hues.length - 1, 0)
+    const randomIndex = this.generator.generateRandomNumber({
+      maxValue: this.hues.length - 1,
+      minValue: 0
+    })
 
     return this.hues[randomIndex]
   }
