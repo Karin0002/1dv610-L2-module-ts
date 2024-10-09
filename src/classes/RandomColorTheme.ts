@@ -1,5 +1,5 @@
 import { Triadic } from './Triadic.js'
-import { AnalogousThemeMaker } from './Analogous.js'
+import { AnalogousThemeMaker } from './AnalogousThemeMaker.js'
 import { Complementary } from './Complementary.js'
 import { SplitComplementary } from './SplitComplementary.js'
 import { Monochrome } from './Monochrome.js'

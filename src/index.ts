@@ -1,4 +1,4 @@
-export * from './classes/Analogous.js'
+export * from './classes/AnalogousThemeMaker.js'
 export * from './classes/ColorStyles.js'
 export * from './classes/Complementary.js'
 export * from './classes/Monochrome.js'
