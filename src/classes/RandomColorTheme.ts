@@ -1,13 +1,13 @@
-import { Triadic } from './Triadic.js'
+import { Guard } from './Guard.js'
+import { NumberGenerator } from './NumberGenerator.js'
 import { AnalogousThemeMaker } from './AnalogousThemeMaker.js'
 import { ComplementaryThemeMaker } from './ComplementaryThemeMaker.js'
-import { SplitComplementary } from './SplitComplementary.js'
 import { MonochromeThemeMaker } from './MonochromeThemeMaker.js'
-import { ColorThemeMaker } from './ColorThemeMaker.js'
+import { SplitComplementary } from './SplitComplementary.js'
+import { Triadic } from './Triadic.js'
 import { ColorThemeData } from './ColorThemeData.js'
-import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { NumberGenerator } from './NumberGenerator.js'
+import { ColorThemeMaker } from './ColorThemeMaker.js'
 
 export class RandomColorTheme {
   /**
@@ -41,37 +41,48 @@ export class RandomColorTheme {
   }
 
   /**
-   * Generates a random color theme using analogous, complementary, monochrome, split complementary or triadic.
+   * Generates a random color theme with analogous, complementary, monochrome, split complementary or triadic colors.
    *
-   * @param numberOfColors - Optional, the number of colors to include ranging from 2 to 5.
+   * @param numberOfColors - The number of colors to include ranging from 2 to 5.
    * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
   */
-  // Implicit instruction in comment but that is explicit in the code through validation.
-  generateColorTheme (numberOfColors?: number): ColorThemeData {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements.
-    // High-level: calls methods.
-    if (numberOfColors) {
-      this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-        max: ArgumentLimits.RandomColorThemeMax,
-        min: ArgumentLimits.RandomColorThemeMin,
-        recieved: numberOfColors
-      })
+  generateColorTheme (numberOfColors: number): ColorThemeData
 
+  /**
+   * Generates a random color theme with analogous, complementary, monochrome, split complementary or triadic colors.
+   *
+   * @returns An object containing data about the generated color theme.
+   * @throws Error if the arguments does not pass the validation.
+  */
+  generateColorTheme (): ColorThemeData
+
+  generateColorTheme (numberOfColors?: number): ColorThemeData {
+    if (numberOfColors) {
+      this.#validateArgument(numberOfColors)
       return this.#getSingleColorTheme(numberOfColors)
     } else {
-      const randomNumberOfColors = this.#generator.generateRandomNumber({
-        max: ArgumentLimits.RandomColorThemeMax,
-        min: ArgumentLimits.RandomColorThemeMin
-      })
-
-      return this.#getSingleColorTheme(randomNumberOfColors)
+      return this.#getSingleColorTheme(this.#getRandomNumber())
     }
   }
 
+  #validateArgument (numberOfColors: number): void {
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
+      max: ArgumentLimits.RandomColorThemeMax,
+      min: ArgumentLimits.RandomColorThemeMin,
+      recieved: numberOfColors
+    })
+  }
+
+  #getRandomNumber (): number {
+    return this.#generator.generateRandomNumber({
+      max: ArgumentLimits.RandomColorThemeMax,
+      min: ArgumentLimits.RandomColorThemeMin
+    })
+  }
+
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
-    const themes = this.#getThemesWithNColors(numberOfColors)
+    const themes = this.#getThemes(numberOfColors)
     const randomIndex = this.#generator.generateRandomNumber({
       max: themes.length - 1,
       min: 0
@@ -81,21 +92,25 @@ export class RandomColorTheme {
     return theme.generateColorTheme(numberOfColors)
   }
 
+  #getRandomThemeFromThemes (numberOfColors: number): ColorThemeMaker {
+    const themes = this.#getThemes(numberOfColors)
+    const indexLimits = this.#getFirstAndLastIndex(themes)
+    const randomIndex = this.#generator.generateRandomNumber({
+      max: indexLimits.lastIndex,
+      min: indexLimits.firstIndex
+    })
+    return this.#getTheme(themes, randomIndex)
+  }
+
   /**
    * Gets an array of themes that can take a certain amount of colors.
    *
-   * @param n - The number of colors the theme must be able to handle.
+   * @param numberOfColorsInTheme - The number of colors the theme must be able to handle.
    * @returns An array of themes.
    */
-  // The name of the argument is only one character which is typically not
-  // good and is not searchable, but combined with the name of the method
-  // it works in my opinion since it sets it in a context.
-  #getThemesWithNColors (n: number): ColorThemeMaker[] {
-    // Breaks open/close rule.
+  #getThemes (numberOfColorsInTheme: number): ColorThemeMaker[] {
     const themes = []
-    // let themes
-    // Switch statement which are generally bad.
-    switch (n) {
+    switch (numberOfColorsInTheme) {
       case 2:
         themes.push(this.#complementary, this.#monochrome)
         break
@@ -112,5 +127,9 @@ export class RandomColorTheme {
     }
 
     return themes
+  }
+
+  #getTheme (themes: ColorThemeMaker[], index: number): ColorThemeMaker {
+    return themes[index]
   }
 }
