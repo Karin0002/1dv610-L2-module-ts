@@ -7,12 +7,7 @@ import { Color } from './Color.js'
 export class AnalogousThemeMaker extends MultiHueColorTheme {
 
   constructor () {
-    super()
-    this.#setNumberOfMainColors()
-  }
-
-  #setNumberOfMainColors() {
-    this.numberOfMainColors = 3
+    super(ArgumentLimits.AnalogousMin)
   }
 
   /**

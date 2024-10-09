@@ -9,10 +9,11 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
   
   protected numberOfMainColors: number
 
-  constructor () {
+  constructor (numberOfMainColors: number) {
     super()
     this.hues = []
     this.#setLightness(ColorValues.LightnessMax, ColorValues.LightnessMin)
+    this.#setNumberOfMainColors(numberOfMainColors)
   }
 
   #setHues () {
@@ -26,6 +27,10 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
   // with the current arguments as properties.
   #setLightness (maxValue: number, minValue: number): void {
     this.lightness = this.generator.generateRandomNumber({ maxValue, minValue })
+  }
+
+  #setNumberOfMainColors (value: number) {
+    this.numberOfMainColors = value
   }
 
   /**

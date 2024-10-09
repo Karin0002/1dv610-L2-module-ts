@@ -1,5 +1,5 @@
-import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 
 export class Guard {
   // The description of method in comment does not add any new information but the param and throws does.

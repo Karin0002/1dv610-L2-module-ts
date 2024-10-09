@@ -7,12 +7,7 @@ import { Color } from './Color.js'
 export class ComplementaryThemeMaker extends MultiHueColorTheme {
 
   constructor () {
-    super()
-    this.#setNumberOfMainColors()
-  }
-
-  #setNumberOfMainColors () {
-    this.numberOfMainColors = 2
+    super(ArgumentLimits.ComplementaryMin)
   }
 
   /**
