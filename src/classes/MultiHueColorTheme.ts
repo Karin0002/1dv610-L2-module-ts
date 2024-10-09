@@ -26,7 +26,7 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
   // Dyadic, two arguments, could perhaps be an object instead
   // with the current arguments as properties.
   #setLightness (maxValue: number, minValue: number): void {
-    this.lightness = this.generator.generateRandomNumber({ maxValue, minValue })
+    this.lightness = this.generator.generateRandomNumber({ max: maxValue, min: minValue })
   }
 
   #setNumberOfMainColors (value: number) {
@@ -43,8 +43,8 @@ export abstract class MultiHueColorTheme extends ColorThemeMaker {
     // Low-level: variable.
     // High-level: calls methods.
     const randomIndex = this.generator.generateRandomNumber({
-      maxValue: this.hues.length - 1,
-      minValue: 0
+      max: this.hues.length - 1,
+      min: 0
     })
 
     return this.hues[randomIndex]

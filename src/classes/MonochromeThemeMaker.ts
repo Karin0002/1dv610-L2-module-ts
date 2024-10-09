@@ -23,9 +23,9 @@ export class MonochromeThemeMaker extends ColorThemeMaker {
 
   #validateArgument (numberOfColors: number) {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.MonochromeMax,
-      minValue: ArgumentLimits.MonochromeMin,
-      recievedArgument: numberOfColors
+      max: ArgumentLimits.MonochromeMax,
+      min: ArgumentLimits.MonochromeMin,
+      recieved: numberOfColors
     })
   }
 

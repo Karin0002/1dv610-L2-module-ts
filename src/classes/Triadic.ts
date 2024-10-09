@@ -18,9 +18,9 @@ export class Triadic extends MultiHueColorTheme {
     // Low-level: variables, array.push, control statements.
     // High-level: initiates objects, calls methods.
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.TriadicMax,
-      minValue: ArgumentLimits.TriadicMin,
-      recievedArgument: numberOfColors
+      max: ArgumentLimits.TriadicMax,
+      min: ArgumentLimits.TriadicMin,
+      recieved: numberOfColors
     })
 
     const colors: Color[] = []

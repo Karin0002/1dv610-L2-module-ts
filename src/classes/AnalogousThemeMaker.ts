@@ -28,9 +28,9 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
 
   #validateArgument (numberOfColors: number): void {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.AnalogousMax,
-      minValue: ArgumentLimits.AnalogousMin,
-      recievedArgument: numberOfColors
+      max: ArgumentLimits.AnalogousMax,
+      min: ArgumentLimits.AnalogousMin,
+      recieved: numberOfColors
     })
   }
 

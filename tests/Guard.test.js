@@ -76,9 +76,9 @@ describe('Guard.ts', () => {
   test('pass the validation - validateNumberArgumentWithMaxAndMin', () => {
     const guard = new Guard()
     const validArgument = {
-      maxValue: 20,
-      minValue: 10,
-      recievedArgument: 15
+      max: 20,
+      min: 10,
+      recieved: 15
     }
 
     expect(() => guard.validateNumberArgumentWithMaxAndMin(validArgument)).not.toThrowError()

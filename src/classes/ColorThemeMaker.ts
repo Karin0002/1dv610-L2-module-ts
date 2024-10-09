@@ -26,12 +26,12 @@ export abstract class ColorThemeMaker {
     this.argumentGuard = new Guard()
     this.generator = new NumberGenerator()
     this.#setHue({
-      maxValue: ColorValues.HueMax,
-      minValue: ColorValues.HueMin
+      max: ColorValues.HueMax,
+      min: ColorValues.HueMin
     })
     this.#setSaturation({
-      maxValue: ColorValues.SaturationMax,
-      minValue: ColorValues.SaturationMin
+      max: ColorValues.SaturationMax,
+      min: ColorValues.SaturationMin
     })
     this.#setMinLightness(ColorValues.MinLightness)
     this.#setMaxLightness(ColorValues.MaxLightness)
@@ -40,14 +40,14 @@ export abstract class ColorThemeMaker {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  #setHue (limits: { maxValue: number, minValue: number }): void {
+  #setHue (limits: { max: number, min: number }): void {
     this.hue = this.generator.generateRandomNumber(limits)
   }
 
   /**
    * Sets the saturation with a randomly generated number that is between the arguments.
    */
-  #setSaturation (limits: { maxValue: number, minValue: number }): void {
+  #setSaturation (limits: { max: number, min: number }): void {
     this.saturation = this.generator.generateRandomNumber(limits)
   }
 

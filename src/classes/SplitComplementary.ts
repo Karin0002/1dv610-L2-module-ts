@@ -18,9 +18,9 @@ export class SplitComplementary extends MultiHueColorTheme {
     // Low-level: variables, array.push, control statements.
     // High-level: initiates objects, calls methods.
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.SplitComplementaryMax,
-      minValue: ArgumentLimits.SplitComplementaryMin,
-      recievedArgument: numberOfColors
+      max: ArgumentLimits.SplitComplementaryMax,
+      min: ArgumentLimits.SplitComplementaryMin,
+      recieved: numberOfColors
     })
 
     const colors: Color[] = []

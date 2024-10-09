@@ -6,116 +6,161 @@ export class Guard {
   /**
    * Validates an argument of type number.
    *
-   * @param values - An object containing the properties maxValue, minValue and recievedArgument.
+   * @param values - An object containing the properties max, min and recieved.
    * @throws Error if a property is missing on the argument.
    * @throws Error if the argument does not pass the validation.
   */
-  // Implicit instruction in comment but that is explicit in the code through validation.
-  validateNumberArgumentWithMaxAndMin (values: { maxValue: number, minValue: number, recievedArgument: number }): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements, number.isNaN.
-    // High-level: calls methods.
-    if (values.maxValue === undefined || values.minValue === undefined || values.recievedArgument === undefined) {
-      const message = 'Could not validate since at least one of maxValue, minValue and recievedArgument is missing.'
-      this.#throwError(message)
-    }
+  validateNumberArgumentWithMaxAndMin (values: { max: number, min: number, recieved: number }): void {
+    this.#validatePropertiesIsPresent(values)
+    this.#validateMaxAndMinTypes(values)
+    this.#validateIsRecievedValid(values)
+  }
 
-    if (isNaN(values.maxValue) || isNaN(values.minValue)) {
-      const message = 'Could not validate since at least one of maxValue and minValue is not of type number.'
-      this.#throwError(message)
-    }
-
-    if (isNaN(values.recievedArgument) || values.recievedArgument > values.maxValue || values.recievedArgument < values.minValue) {
-      const message = `The argument cannot be greater than ${values.maxValue}, nor less than ${values.minValue}.`
-      this.#throwError(message)
+  #validatePropertiesIsPresent (values: { max: number, min: number, recieved: number }): void {
+    if (this.#isAnyPropertyUndefined(values)) {
+      this.#throwError(this.#getPropertyUndefinedMessage())
     }
   }
+
+  #isAnyPropertyUndefined (values: { max: number, min: number, recieved: number }): boolean {
+    return this.#isUndefined(values.max) || this.#isUndefined(values.min) || this.#isUndefined(values.recieved)
+  }
+
+  #isUndefined (recieved: number): boolean {
+    return recieved === undefined
+  }
+
+  #getPropertyUndefinedMessage (): string {
+    return 'Could not validate since at least one property is missing.'
+  }
+
+  #validateMaxAndMinTypes (values: { max: number, min: number, recieved: number }): void {
+    if (this.#isMaxOrMinNaN({ max: values.max, min: values.min})) {
+      this.#throwError(this.#getMaxOrMinNaNMessage())
+    }
+  }
+
+  #isMaxOrMinNaN (values: { max: number, min: number }): boolean {
+    return isNaN(values.max) || isNaN(values.min)
+  }
+
+  #getMaxOrMinNaNMessage (): string {
+    return 'Could not validate since at least one of maxValue and minValue is not of type number.'
+  }
+
+  #validateIsRecievedValid (values: { max: number, min: number, recieved: number }): void {
+    if (this.#isRecievedInvalid(values)) {
+      this.#throwError(this.#getRecievedInvalidMessage({ max: values.max, min: values.min }))
+    }
+  }
+
+  #isRecievedInvalid (values: { max: number, min: number, recieved: number }): boolean {
+    return isNaN(values.recieved) || values.recieved > values.max || values.recieved < values.min
+  }
+
+  #getRecievedInvalidMessage (limits: { max: number, min: number}): string {
+    return `The argument cannot be greater than ${limits.max}, nor less than ${limits.min}.`
+  }
+
 
   // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type number.
    *
-   * @param recievedArgument - The argument to validate.
+   * @param recieved - The argument to validate.
    * @throws Error if the arguments does not pass the validation.
    */
-  validateNumberArgument (recievedArgument: number): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements, number.isNaN.
-    // High-level: calls methods.
-    if (isNaN(recievedArgument)) {
-      const message = 'The argument must be of type number.'
-      this.#throwError(message)
+  validateNumberArgument (recieved: number): void {
+    if (this.#isRecievedNaN(recieved)) {
+      this.#throwError(this.#getInvalidTypeMessage('Number'))
     }
+  }
+
+  #isRecievedNaN (recieved: number) {
+    return isNaN(recieved)
+  }
+
+  /**
+   * @param type - The name of the wanted type to include in message.
+   */
+  #getInvalidTypeMessage (type: string): string {
+    return `The argument must be of type ${type}.`
   }
 
   // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type Color.
    *
-   * @param recievedArgument - The argument to validate.
+   * @param recieved - The argument to validate.
    * @throws Error if the arguments does not pass the validation.
    */
-  validateColorArgument (recievedArgument: Color): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements.
-    // High-level: calls methods.
-    if (!(recievedArgument instanceof Color)) {
-      const message = `The argument must be an instance of Color.`
-      this.#throwError(message)
+  validateColorArgument (recieved: Color): void {
+    if (this.#isRecievedNotColor(recieved)) {
+      this.#throwError(this.#getInvalidTypeMessage('Color'))
     }
+  }
+
+  #isRecievedNotColor (recieved: Color): boolean {
+    return !(recieved instanceof Color)
   }
 
   // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type HTMLElement.
    *
-   * @param recievedArgument - The argument to validate.
+   * @param recieved - The argument to validate.
    * @throws Error if the arguments does not pass the validation.
    */
-  validateHTMLElementArgument (recievedArgument: HTMLElement): void {
+  validateHTMLElementArgument (recieved: HTMLElement): void {
     // Mixed abstraction levels.
     // Low-level: variables, control statements.
     // High-level: calls methods.
-    // nodeType is a property on a Node. The value 1 means it is an element node, i.e. a HTMLElement.
-    if (recievedArgument.nodeType !== 1) {
-      const message = `The argument must be an instance of HTMLElement.`
-      this.#throwError(message)
+    if (this.#isRecievedNotHTML(recieved)) {
+      this.#throwError(this.#getInvalidTypeMessage('HTMLElement'))
     }
+  }
+
+  #isRecievedNotHTML (recieved: HTMLElement): boolean {
+    // nodeType is a property on a Node. The value 1 means it is an element node, i.e. a HTMLElement.
+    return recieved.nodeType !== 1
   }
 
   // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type ColorThemes.
    *
-   * @param recievedArgument - The argument to validate.
+   * @param recieved - The argument to validate.
    * @throws Error if the arguments does not pass the validation.
    */
-  validateColorThemesArgument (recievedArgument: ColorThemes): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements, object.values.
-    // High-level: calls methods.
-    const values = Object.values(ColorThemes)
-    if (!values.includes(recievedArgument)) {
-      const message = `The argument must be a value of ColorThemes.`
-      this.#throwError(message)
+  validateColorThemesArgument (recieved: ColorThemes): void {
+    if (this.#isRecievedNotColorThemes(recieved)) {
+      this.#throwError(this.#getInvalidTypeMessage('ColorThemes'))
     }
+  }
+
+  #isRecievedNotColorThemes (recieved: ColorThemes): boolean {
+    const values = Object.values(ColorThemes)
+    return !values.includes(recieved)
   }
 
   // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type Color[].
    *
-   * @param recievedArgument - The argument to validate.
+   * @param recieved - The argument to validate.
    * @throws Error if the arguments does not pass the validation.
    */
-  validateColorArrayArgument (recievedArgument: Color[]): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements, array.isArray, array.every.
-    // High-level: calls methods.
-    if (!Array.isArray(recievedArgument) || recievedArgument.length <= 0 || !recievedArgument.every(value => value instanceof Color)) {
-      const message = `The argument must be an array of Color objects.`
-      this.#throwError(message)
+  validateColorArrayArgument (recieved: Color[]): void {
+    if (this.#isRecievedNotColorArray(recieved)) {
+      this.#throwError(this.#getInvalidTypeMessage('Color[]'))
     }
+  }
+
+  #isRecievedNotColorArray (recieved: Color[]): boolean {
+    const isNotArray = !Array.isArray(recieved)
+    const isEmpty = recieved.length === 0
+    const includesInvalidElement = recieved.some((color) => this.#isRecievedNotColor(color))
+    return isNotArray || isEmpty || includesInvalidElement
   }
 
   /**

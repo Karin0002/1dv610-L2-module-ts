@@ -13,19 +13,18 @@ export class NumberGenerator {
   /**
    * Generates a random number between the given arguments.
    *
-   * @param maxValue - The maximum value the generated number can be.
-   * @param minValue - The minimum value the generated number can be.
+   * @param limits - An object containing the properties max and min.
    * @returns The newly generated number.
    */
-  generateRandomNumber (limits: { maxValue: number, minValue: number }): number {
-    this.#argumentGuard.validateNumberArgument(limits.maxValue)
-    this.#argumentGuard.validateNumberArgument(limits.minValue)
+  generateRandomNumber (limits: { max: number, min: number }): number {
+    this.#argumentGuard.validateNumberArgument(limits.max)
+    this.#argumentGuard.validateNumberArgument(limits.min)
 
     return this.#generateNumber(limits)
   }
 
-  #generateNumber (limits: { maxValue: number, minValue: number }): number {
-    return Math.round(Math.random() * (limits.maxValue - limits.minValue) + limits.minValue)
+  #generateNumber (limits: { max: number, min: number }): number {
+    return Math.round(Math.random() * (limits.max - limits.min) + limits.min)
   }
 
   /**
@@ -39,8 +38,8 @@ export class NumberGenerator {
     this.#argumentGuard.validateNumberArgument(refrenceNumber)
 
     return this.#generateNumber({
-      maxValue: this.#addDeviationToRefrence(refrenceNumber),
-      minValue: this.#subtractDeviationFromRefrence(refrenceNumber)
+      max: this.#addDeviationToRefrence(refrenceNumber),
+      min: this.#subtractDeviationFromRefrence(refrenceNumber)
     })
   }
 

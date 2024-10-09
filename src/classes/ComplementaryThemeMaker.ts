@@ -28,9 +28,9 @@ export class ComplementaryThemeMaker extends MultiHueColorTheme {
 
   #validateArgument(numberOfColors: number): void {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.ComplementaryMax,
-      minValue: ArgumentLimits.ComplementaryMin,
-      recievedArgument: numberOfColors
+      max: ArgumentLimits.ComplementaryMax,
+      min: ArgumentLimits.ComplementaryMin,
+      recieved: numberOfColors
     })
   }
 

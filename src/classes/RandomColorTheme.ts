@@ -54,16 +54,16 @@ export class RandomColorTheme {
     // High-level: calls methods.
     if (numberOfColors) {
       this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-        maxValue: ArgumentLimits.RandomColorThemeMax,
-        minValue: ArgumentLimits.RandomColorThemeMin,
-        recievedArgument: numberOfColors
+        max: ArgumentLimits.RandomColorThemeMax,
+        min: ArgumentLimits.RandomColorThemeMin,
+        recieved: numberOfColors
       })
 
       return this.#getSingleColorTheme(numberOfColors)
     } else {
       const randomNumberOfColors = this.#generator.generateRandomNumber({
-        maxValue: ArgumentLimits.RandomColorThemeMax,
-        minValue: ArgumentLimits.RandomColorThemeMin
+        max: ArgumentLimits.RandomColorThemeMax,
+        min: ArgumentLimits.RandomColorThemeMin
       })
 
       return this.#getSingleColorTheme(randomNumberOfColors)
@@ -73,8 +73,8 @@ export class RandomColorTheme {
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
     const themes = this.#getThemesWithNColors(numberOfColors)
     const randomIndex = this.#generator.generateRandomNumber({
-      maxValue: themes.length - 1,
-      minValue: 0
+      max: themes.length - 1,
+      min: 0
     })
     const theme = themes[randomIndex]
 

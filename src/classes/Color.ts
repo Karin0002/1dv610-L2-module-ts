@@ -28,9 +28,9 @@ export class Color {
    */
   #manageHue (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.HueMax,
-      minValue: ArgumentLimits.HueMin,
-      recievedArgument: value
+      max: ArgumentLimits.HueMax,
+      min: ArgumentLimits.HueMin,
+      recieved: value
     })
 
     this.#setHue(value)
@@ -45,9 +45,9 @@ export class Color {
    */
   #manageSaturation (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.SaturationMax,
-      minValue: ArgumentLimits.SaturationMin,
-      recievedArgument: value
+      max: ArgumentLimits.SaturationMax,
+      min: ArgumentLimits.SaturationMin,
+      recieved: value
     })
 
     this.#setSaturation(value)
@@ -62,9 +62,9 @@ export class Color {
    */
   #manageLightness (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.LightnessMax,
-      minValue: ArgumentLimits.LightnessMin,
-      recievedArgument: value
+      max: ArgumentLimits.LightnessMax,
+      min: ArgumentLimits.LightnessMin,
+      recieved: value
     })
 
     this.#setLightness(value)
