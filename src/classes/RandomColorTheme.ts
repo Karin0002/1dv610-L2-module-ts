@@ -7,7 +7,7 @@ import { ColorTheme } from './ColorTheme.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { Calculator } from './Calculator.js'
+import { NumberGenerator } from './NumberGenerator.js'
 
 export class RandomColorTheme {
   /**
@@ -18,7 +18,7 @@ export class RandomColorTheme {
   /**
    * The object to use for generating random numbers.
    */
-  #numberCalculator: Calculator
+  #generator: NumberGenerator
 
   #analogous: AnalogousThemeMaker
 
@@ -32,7 +32,7 @@ export class RandomColorTheme {
 
   constructor () {
     this.#argumentGuard = new Guard()
-    this.#numberCalculator = new Calculator()
+    this.#generator = new NumberGenerator()
     this.#analogous = new AnalogousThemeMaker()
     this.#complementary = new Complementary()
     this.#monochrome = new Monochrome()
@@ -61,7 +61,10 @@ export class RandomColorTheme {
 
       return this.#getSingleColorTheme(numberOfColors)
     } else {
-      const randomNumberOfColors = this.#numberCalculator.generateRandomNumber(ArgumentLimits.RandomColorThemeMax, ArgumentLimits.RandomColorThemeMin)
+      const randomNumberOfColors = this.#generator.generateRandomNumber({
+        maxValue: ArgumentLimits.RandomColorThemeMax,
+        minValue: ArgumentLimits.RandomColorThemeMin
+      })
 
       return this.#getSingleColorTheme(randomNumberOfColors)
     }
@@ -69,7 +72,10 @@ export class RandomColorTheme {
 
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
     const themes = this.#getThemesWithNColors(numberOfColors)
-    const randomIndex = this.#numberCalculator.generateRandomNumber(themes.length - 1, 0)
+    const randomIndex = this.#generator.generateRandomNumber({
+      maxValue: themes.length - 1,
+      minValue: 0
+    })
     const theme = themes[randomIndex]
 
     return theme.generateColorTheme(numberOfColors)

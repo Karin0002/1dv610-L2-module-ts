@@ -72,7 +72,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
    */
   #generateMainColor (loopCount: number): Color {
     const hue = this.#calculateHueOfMainColor(loopCount)
-    const saturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
+    const saturation = this.generator.adjustNumberWithin10(this.saturation)
 
     return new Color(hue, saturation, this.lightness)
   }

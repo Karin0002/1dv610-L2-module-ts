@@ -63,7 +63,7 @@ export class SplitComplementary extends MultiHueColorTheme {
       // Hard to read due to long line.
       const calculatedHue = (((this.hue + hueIncrement) % numberOfHues) === 0) ? this.hue + hueIncrement : (this.hue + hueIncrement) % numberOfHues
       this.hues.push(calculatedHue)
-      const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
+      const calculatedSaturation = this.generator.adjustNumberWithin10(this.saturation)
 
       const color = new Color(calculatedHue, calculatedSaturation, this.lightness)
       colors.push(color)

@@ -1,7 +1,7 @@
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { Guard } from './Guard.js'
-import { Calculator } from './Calculator.js'
+import { NumberGenerator } from './NumberGenerator.js'
 
 export abstract class ColorTheme {
   /**
@@ -12,7 +12,7 @@ export abstract class ColorTheme {
   /**
    * The object to use for adjusting values and generating random numbers.
    */
-  protected numberCalculator: Calculator
+  protected generator: NumberGenerator
 
   protected hue: number
 
@@ -26,7 +26,7 @@ export abstract class ColorTheme {
   // The cons is that it is less versatile.
   constructor () {
     this.argumentGuard = new Guard()
-    this.numberCalculator = new Calculator()
+    this.generator = new NumberGenerator()
     this.#setHue(ColorValues.HueMax, ColorValues.HueMin)
     this.#setSaturation(ColorValues.SaturationMax, ColorValues.SaturationMin)
     this.#setMinLightness(ColorValues.MinLightness)
@@ -39,7 +39,7 @@ export abstract class ColorTheme {
   // Dyadic, two arguments, could perhaps be an object instead
   // with the current arguments as properties.
   #setHue (maxValue: number, minValue: number): void {
-    this.hue = this.numberCalculator.generateRandomNumber(maxValue, minValue)
+    this.hue = this.generator.generateRandomNumber({ maxValue, minValue })
   }
 
   /**
@@ -48,7 +48,7 @@ export abstract class ColorTheme {
   // Dyadic, two arguments, could perhaps be an object instead
   // with the current arguments as properties.
   #setSaturation (maxValue: number, minValue: number): void {
-    this.saturation = this.numberCalculator.generateRandomNumber(maxValue, minValue)
+    this.saturation = this.generator.generateRandomNumber({ maxValue, minValue })
   }
 
   #setMinLightness (value: number): void {

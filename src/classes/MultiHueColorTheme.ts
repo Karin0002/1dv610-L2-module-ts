@@ -19,7 +19,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
   // Dyadic, two arguments, could perhaps be an object instead
   // with the current arguments as properties.
   #setLightness (maxValue: number, minValue: number): void {
-    this.lightness = this.numberCalculator.generateRandomNumber(maxValue, minValue)
+    this.lightness = this.generator.generateRandomNumber(maxValue, minValue)
   }
 
   /**
@@ -31,7 +31,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
     // Mixed abstraction levels.
     // Low-level: variable.
     // High-level: calls methods.
-    const randomIndex = this.numberCalculator.generateRandomNumber(this.hues.length - 1, 0)
+    const randomIndex = this.generator.generateRandomNumber(this.hues.length - 1, 0)
 
     return this.hues[randomIndex]
   }
@@ -42,7 +42,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
    * @returns The generated color.
    */
   protected generateDarkColor (): Color {
-    const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
+    const calculatedSaturation = this.generator.adjustNumberWithin10(this.saturation)
 
     const color = new Color(this.pickRandomHue(), calculatedSaturation, this.minLightness)
     return color
@@ -54,7 +54,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
    * @returns The generated color.
    */
   protected generateLightColor (): Color {
-    const calculatedSaturation = this.numberCalculator.adjustNumberWithin10(this.saturation)
+    const calculatedSaturation = this.generator.adjustNumberWithin10(this.saturation)
 
     const color = new Color(this.pickRandomHue(), calculatedSaturation, this.maxLightness)
     return color
