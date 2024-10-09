@@ -4,37 +4,37 @@ import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 
-export class AnalogousThemeMaker extends MultiHueColorTheme {
+export class ComplementaryThemeMaker extends MultiHueColorTheme {
 
   constructor () {
     super()
     this.#setNumberOfMainColors()
   }
 
-  #setNumberOfMainColors() {
-    this.numberOfMainColors = 3
+  #setNumberOfMainColors () {
+    this.numberOfMainColors = 2
   }
 
   /**
-   * Generates an analogous color theme.
+   * Generates a complementary color theme.
    *
-   * @param numberOfColors - The number of colors to include ranging from 3 to 5.
-   * @returns  An object containing data about the generated color theme.
+   * @param numberOfColors - The number of colors to include ranging from 2 to 4.
+   * @returns An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
   */
   generateColorTheme (numberOfColors: number): ColorThemeData {
     this.#validateArgument(numberOfColors)
 
     const colors = this.#generateColors(numberOfColors)
-    const data = new ColorThemeData(ColorThemes.Analogous, colors)
+    const data = new ColorThemeData(ColorThemes.Complementary, colors)
 
     return data
   }
 
-  #validateArgument (numberOfColors: number): void {
+  #validateArgument(numberOfColors: number): void {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      maxValue: ArgumentLimits.AnalogousMax,
-      minValue: ArgumentLimits.AnalogousMin,
+      maxValue: ArgumentLimits.ComplementaryMax,
+      minValue: ArgumentLimits.ComplementaryMin,
       recievedArgument: numberOfColors
     })
   }
@@ -53,9 +53,9 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
   }
 
   /**
-   * Generates three analogous colors.
+   * Generates two complementary colors.
    *
-   * @returns An array containing the three generated colors.
+   * @returns An array containing the two generated colors.
    */
   #getMainColors (): Color[] {
     const colors: Color[] = []
@@ -69,16 +69,17 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
   /**
    * @param loopCount - The number of the current loop, used for calculating hue.
    */
-  #generateMainColor (loopCount: number): Color {
+  #generateMainColor(loopCount: number): Color {
     const hue = this.#calculateHueOfMainColor(loopCount)
     const saturation = this.generator.adjustNumberWithin10(this.saturation)
 
     return new Color(hue, saturation, this.lightness)
   }
 
-  #calculateHueOfMainColor (hueIncrementFactor: number): number {
+  #calculateHueOfMainColor(hueIncrementFactor: number): number {
     const numberOfHues = 360
-    const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
+    const hueIncrement = numberOfHues / this.numberOfMainColors
+
     if (((this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues) === 0) {
       return this.hue + (hueIncrement * hueIncrementFactor)
     } else {
@@ -94,7 +95,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
   }
 
   #shouldGenerateContrastColors (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForContrastColor = ArgumentLimits.AnalogousMax - 1
+    const numberOfColorsForContrastColor = ArgumentLimits.ComplementaryMax - 1
     if (numberOfColorsInTheme >= numberOfColorsForContrastColor) {
       return true
     }
@@ -110,7 +111,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
   }
 
   #shouldGenerateMultipleContrastColor (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForMultipleContrastColors = ArgumentLimits.AnalogousMax
+    const numberOfColorsForMultipleContrastColors = ArgumentLimits.ComplementaryMax
     if (numberOfColorsInTheme === numberOfColorsForMultipleContrastColors) {
       return true
     }
@@ -136,7 +137,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
       return true
     }
     return false
-  } 
+  }
 
   #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[],): Color[] {
     return [...mainColors, ...contrastColors]

@@ -4,13 +4,19 @@ import { Color } from './Color.js'
 
 export abstract class MultiHueColorTheme extends ColorThemeMaker {
   protected hues: number[]
-
+  
   protected lightness: number
+  
+  protected numberOfMainColors: number
 
   constructor () {
     super()
     this.hues = []
     this.#setLightness(ColorValues.LightnessMax, ColorValues.LightnessMin)
+  }
+
+  #setHues () {
+    this.hues = []
   }
 
   /**

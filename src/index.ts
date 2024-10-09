@@ -1,6 +1,6 @@
 export * from './classes/AnalogousThemeMaker.js'
 export * from './classes/ColorStyles.js'
-export * from './classes/Complementary.js'
+export * from './classes/ComplementaryThemeMaker.js'
 export * from './classes/Monochrome.js'
 export * from './classes/RandomColorTheme.js'
 export * from './classes/SplitComplementary.js'

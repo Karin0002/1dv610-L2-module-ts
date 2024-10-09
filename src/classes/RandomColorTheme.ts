@@ -1,6 +1,6 @@
 import { Triadic } from './Triadic.js'
 import { AnalogousThemeMaker } from './AnalogousThemeMaker.js'
-import { Complementary } from './Complementary.js'
+import { ComplementaryThemeMaker } from './ComplementaryThemeMaker.js'
 import { SplitComplementary } from './SplitComplementary.js'
 import { Monochrome } from './Monochrome.js'
 import { ColorThemeMaker } from './ColorThemeMaker.js'
@@ -22,7 +22,7 @@ export class RandomColorTheme {
 
   #analogous: AnalogousThemeMaker
 
-  #complementary: Complementary
+  #complementary: ComplementaryThemeMaker
 
   #monochrome: Monochrome
 
@@ -34,7 +34,7 @@ export class RandomColorTheme {
     this.#argumentGuard = new Guard()
     this.#generator = new NumberGenerator()
     this.#analogous = new AnalogousThemeMaker()
-    this.#complementary = new Complementary()
+    this.#complementary = new ComplementaryThemeMaker()
     this.#monochrome = new Monochrome()
     this.#splitComplementary = new SplitComplementary()
     this.#triadic = new Triadic()
