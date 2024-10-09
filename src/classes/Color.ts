@@ -1,5 +1,5 @@
-import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { Guard } from './Guard.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 
 export class Color {
   /**
@@ -15,63 +15,62 @@ export class Color {
 
   #hsl: string
 
-  // Triads, three arguments which is often to many but in this case I made
-  // the decision to accept it since it is a constructor.
   constructor (hue: number, saturation: number, lightness: number) {
     this.#argumentGuard = new Guard()
-
-    this.#setHue(hue)
-    this.#setSaturation(saturation)
-    this.#setLightness(lightness)
-
-    this.#setHSL(this.#generateHSLString())
+    this.#manageHue(hue)
+    this.#manageSaturation(saturation)
+    this.#manageLightness(lightness)
+    this.#setHSL(this.#generateHSL())
   }
 
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #setHue (value: number): void {
-    // Mixed abstraction level.
-    // Low-level: variables.
-    // High-level: calling validation method.
+  #manageHue (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.HueMax,
       minValue: ArgumentLimits.HueMin,
       recievedArgument: value
     })
 
+    this.#setHue(value)
+  }
+
+  #setHue(value: number): void {
     this.#hue = value
   }
 
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #setSaturation (value: number): void {
-    // Mixed abstraction level.
-    // Low-level: variables.
-    // High-level: calling validation method.
+  #manageSaturation (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.SaturationMax,
       minValue: ArgumentLimits.SaturationMin,
       recievedArgument: value
     })
 
+    this.#setSaturation(value)
+  }
+
+  #setSaturation (value: number): void {
     this.#saturation = value
   }
 
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #setLightness (value: number): void {
-    // Mixed abstraction level.
-    // Low-level: variables.
-    // High-level: calling validation method.
+  #manageLightness (value: number): void {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.LightnessMax,
       minValue: ArgumentLimits.LightnessMin,
       recievedArgument: value
     })
 
+    this.#setLightness(value)
+  }
+
+  #setLightness(value: number): void {
     this.#lightness = value
   }
 
@@ -84,22 +83,42 @@ export class Color {
    *
    * @returns A string formatted as a HSL color.
    */
-  #generateHSLString (): string {
+  #generateHSL (): string {
     return `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`
   }
 
+  /**
+   * The hue of the color.
+   *
+   * @returns Hue.
+   */
   get hue (): number {
     return this.#hue
   }
 
+  /**
+   * The saturation of the color.
+   *
+   * @returns Saturation.
+   */
   get saturation (): number {
     return this.#saturation
   }
 
+  /**
+   * The lightness of the color.
+   *
+   * @returns Lightness.
+   */
   get lightness (): number {
     return this.#lightness
   }
 
+  /**
+   * The hsl of the color.
+   *
+   * @returns HSL.
+   */
   get hsl (): string {
     return this.#hsl
   }

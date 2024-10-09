@@ -19,7 +19,7 @@ export abstract class MultiHueColorTheme extends ColorTheme {
   // Dyadic, two arguments, could perhaps be an object instead
   // with the current arguments as properties.
   #setLightness (maxValue: number, minValue: number): void {
-    this.lightness = this.generator.generateRandomNumber(maxValue, minValue)
+    this.lightness = this.generator.generateRandomNumber({ maxValue, minValue })
   }
 
   /**

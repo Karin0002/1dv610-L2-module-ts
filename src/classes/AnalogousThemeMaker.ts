@@ -32,7 +32,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
     return data
   }
 
-  #validateArgument (numberOfColors: number) {
+  #validateArgument (numberOfColors: number): void {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin({
       maxValue: ArgumentLimits.AnalogousMax,
       minValue: ArgumentLimits.AnalogousMin,
@@ -130,7 +130,7 @@ export class AnalogousThemeMaker extends MultiHueColorTheme {
     }
   }
 
-  #shouldGenerateDarkContrastColor (lightnessOfMainColors: number) {
+  #shouldGenerateDarkContrastColor (lightnessOfMainColors: number): boolean {
     const fullLightness = 100
     const halftLightness = fullLightness / 2
     if (lightnessOfMainColors > halftLightness) {
