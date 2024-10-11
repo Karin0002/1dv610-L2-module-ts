@@ -5,9 +5,9 @@ import { MaxMinObject } from './MaxMinObject.js'
 
 export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
   protected hues: number[]
-  
+
   protected lightness: number
-  
+
   protected numberOfMainColors: number
 
   constructor (numberOfMainColors: number) {
@@ -17,7 +17,7 @@ export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
     this.#setNumberOfMainColors(numberOfMainColors)
   }
 
-  #setHues () {
+  #setHues (): void {
     this.hues = []
   }
 
@@ -28,7 +28,7 @@ export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
     this.lightness = this.generator.generateRandomNumber(limits)
   }
 
-  #setNumberOfMainColors (value: number) {
+  #setNumberOfMainColors (value: number): void {
     this.numberOfMainColors = value
   }
 

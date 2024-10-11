@@ -39,7 +39,7 @@ export class Color {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
-  #setHue(value: number): void {
+  #setHue (value: number): void {
     this.#hue = value
   }
 
@@ -71,7 +71,7 @@ export class Color {
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
-  #setLightness(value: number): void {
+  #setLightness (value: number): void {
     this.#lightness = value
   }
 

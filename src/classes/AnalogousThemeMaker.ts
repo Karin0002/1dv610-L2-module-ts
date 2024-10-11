@@ -6,7 +6,6 @@ import { Color } from './Color.js'
 import { ValidationObject } from './ValidationObject.js'
 
 export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
-
   constructor () {
     super(ArgumentLimits.AnalogousMin)
   }
@@ -133,9 +132,9 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
       return true
     }
     return false
-  } 
+  }
 
-  #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[],): Color[] {
+  #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[]): Color[] {
     return [...mainColors, ...contrastColors]
   }
 }

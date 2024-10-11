@@ -21,15 +21,15 @@ export class ColorStyles {
     this.#setColorDisplayBorderRadius()
   }
 
-  #setColorDisplayWidth () {
+  #setColorDisplayWidth (): void {
     this.#colorDisplayWidth = '50px'
   }
 
-  #setColorDisplayHeight () {
+  #setColorDisplayHeight (): void {
     this.#colorDisplayHeight = '50px'
   }
 
-  #setColorDisplayBorderRadius () {
+  #setColorDisplayBorderRadius (): void {
     this.#colorDisplayBorderRadius = '50%'
   }
 
@@ -46,7 +46,7 @@ export class ColorStyles {
     return new Style('color', color.hsl)
   }
 
-  #validateColor (color: Color) {
+  #validateColor (color: Color): void {
     this.#argumentGuard.validateColorArgument(color)
   }
 
@@ -64,7 +64,7 @@ export class ColorStyles {
   }
 
   /**
-   * Creates a declaration for the CSS property border. 
+   * Creates a declaration for the CSS property border.
    The declaration uses border shorthand to set border-color and border-style.
    *
    * @param color - The color to use as value for the property border-color.
@@ -72,14 +72,14 @@ export class ColorStyles {
    * @returns An object containing the declaration.
    * @throws Error if the argument does not pass the validation.
    */
-   getBorderDeclaration (color: Color, borderStyle: string): Style {
+  getBorderDeclaration (color: Color, borderStyle: string): Style {
     this.#validateColor(color)
 
     return new Style('border', `${borderStyle} ${color.hsl}`)
   }
 
   /**
-   * Creates a declaration for the CSS property outline. 
+   * Creates a declaration for the CSS property outline.
    The declaration uses outline shorthand to set outline-color and outline-style.
    *
    * @param color - The color to use as value for the property outline-color.
@@ -87,14 +87,14 @@ export class ColorStyles {
    * @returns An object containing the declaration.
    * @throws Error if the argument does not pass the validation.
    */
-   getOutlineDeclaration (color: Color, outlineStyle: string): Style {
+  getOutlineDeclaration (color: Color, outlineStyle: string): Style {
     this.#validateColor(color)
 
     return new Style('outline', `${outlineStyle} ${color.hsl}`)
   }
 
   /**
-   * Creates a declaration for the CSS property text-decoration. 
+   * Creates a declaration for the CSS property text-decoration.
    The declaration uses text-decoration shorthand to set text-decoration-line and text-decoration-color.
    *
    * @param color - The color to use as the value for the property text-decoration-color.
@@ -102,7 +102,7 @@ export class ColorStyles {
    * @returns An object containing the declaration.
    * @throws Error if the argument does not pass the validation.
    */
-   getTextDecorationDeclaration (color: Color, textDecorationLine: string): Style {
+  getTextDecorationDeclaration (color: Color, textDecorationLine: string): Style {
     this.#validateColor(color)
 
     return new Style('text-decoration', `${textDecorationLine} ${color.hsl}`)

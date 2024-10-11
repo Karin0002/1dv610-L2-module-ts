@@ -8,7 +8,7 @@ export class MaxMinObject {
     this.#setMin(min)
   }
 
-  #setMax(value: number): void {
+  #setMax (value: number): void {
     this.#max = value
   }
 

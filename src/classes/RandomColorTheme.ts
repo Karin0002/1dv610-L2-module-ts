@@ -122,7 +122,7 @@ export class RandomColorTheme {
     return themes[index]
   }
 
-  #getRandomIndex (refrence: ColorThemeMaker[]) {
+  #getRandomIndex (refrence: ColorThemeMaker[]): number {
     const firstIndex = this.#getFirstIndex()
     const lastIndex = this.#getLastIndex(refrence)
     return this.#generator.generateRandomNumber(new MaxMinObject(lastIndex, firstIndex))

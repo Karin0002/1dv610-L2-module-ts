@@ -2,7 +2,7 @@ export class ValidationObject {
   #max: number
 
   #min: number
-  
+
   #recieved: number
 
   constructor (max: number, min: number, recieved: number) {
@@ -11,7 +11,7 @@ export class ValidationObject {
     this.#setRecieved(recieved)
   }
 
-  #setMax(value: number): void {
+  #setMax (value: number): void {
     this.#max = value
   }
 

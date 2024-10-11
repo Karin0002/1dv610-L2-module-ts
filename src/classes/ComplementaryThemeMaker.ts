@@ -6,7 +6,6 @@ import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 
 export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
-
   constructor () {
     super(ArgumentLimits.ComplementaryMin)
   }
@@ -27,7 +26,7 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
     return data
   }
 
-  #validateArgument(numberOfColors: number): void {
+  #validateArgument (numberOfColors: number): void {
     const validationValues = new ValidationObject(
       ArgumentLimits.ComplementaryMax,
       ArgumentLimits.ComplementaryMin,
@@ -66,14 +65,14 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   /**
    * @param loopCount - The number of the current loop, used for calculating hue.
    */
-  #generateMainColor(loopCount: number): Color {
+  #generateMainColor (loopCount: number): Color {
     const hue = this.#calculateHueOfMainColor(loopCount)
     const saturation = this.generator.adjustNumberWithin10(this.saturation)
 
     return new Color(hue, saturation, this.lightness)
   }
 
-  #calculateHueOfMainColor(hueIncrementFactor: number): number {
+  #calculateHueOfMainColor (hueIncrementFactor: number): number {
     const numberOfHues = 360
     const hueIncrement = numberOfHues / this.numberOfMainColors
 
@@ -136,7 +135,7 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
     return false
   }
 
-  #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[],): Color[] {
+  #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[]): Color[] {
     return [...mainColors, ...contrastColors]
   }
 }

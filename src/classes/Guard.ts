@@ -76,7 +76,7 @@ export class Guard {
     }
   }
 
-  #isRecievedNaN (recieved: number) {
+  #isRecievedNaN (recieved: number): boolean {
     return isNaN(recieved)
   }
 
@@ -152,7 +152,7 @@ export class Guard {
   #isRecievedNotColorArray (recieved: Color[]): boolean {
     const isNotArray = !Array.isArray(recieved)
     const isEmpty = recieved.length === 0
-    const includesInvalidElement = recieved.some((color) => this.#isRecievedNotColor(color))
+    const includesInvalidElement = recieved.some(color => this.#isRecievedNotColor(color))
     return isNotArray || isEmpty || includesInvalidElement
   }
 
