@@ -18,24 +18,25 @@ export class Color {
 
   constructor (hue: number, saturation: number, lightness: number) {
     this.#argumentGuard = new Guard()
-    this.#manageHue(hue)
-    this.#manageSaturation(saturation)
-    this.#manageLightness(lightness)
+    this.#validateHue(hue)
+    this.#setHue(hue)
+    this.#validateSaturation(saturation)
+    this.#setSaturation(saturation)
+    this.#validateLightness(lightness)
+    this.#setLightness(lightness)
     this.#setHSL(this.#generateHSL())
   }
 
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #manageHue (value: number): void {
+  #validateHue (value: number): void {
     const validationValues = new ValidationObject(
       ArgumentLimits.HueMax,
       ArgumentLimits.HueMin,
       value
     )
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
-
-    this.#setHue(value)
   }
 
   #setHue(value: number): void {
@@ -45,15 +46,13 @@ export class Color {
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #manageSaturation (value: number): void {
+  #validateSaturation (value: number): void {
     const validationValues = new ValidationObject(
       ArgumentLimits.SaturationMax,
       ArgumentLimits.SaturationMin,
       value
     )
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
-
-    this.#setSaturation(value)
   }
 
   #setSaturation (value: number): void {
@@ -63,15 +62,13 @@ export class Color {
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #manageLightness (value: number): void {
+  #validateLightness (value: number): void {
     const validationValues = new ValidationObject(
       ArgumentLimits.LightnessMax,
       ArgumentLimits.LightnessMin,
       value
     )
     this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
-
-    this.#setLightness(value)
   }
 
   #setLightness(value: number): void {

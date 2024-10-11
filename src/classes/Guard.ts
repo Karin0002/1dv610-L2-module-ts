@@ -81,7 +81,7 @@ export class Guard {
   }
 
   /**
-   * @param expectedType - The name of the wanted type to include in message.
+   * @param expectedType - The name of the expected type to include in message.
    */
   #getInvalidTypeMessage (expectedType: ExpectedTypes): string {
     return `The argument must be of type ${expectedType}.`

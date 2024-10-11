@@ -41,7 +41,8 @@ export default [
       "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "@stylistic/space-before-function-paren": ["error", "always"],
       "@stylistic/comma-dangle": ["error", "never"],
-      "tsdoc/syntax": ["warn"]
+      "tsdoc/syntax": ["warn"],
+      "max-len": ["error", { "code": 125 }]
     }
   }
 ]

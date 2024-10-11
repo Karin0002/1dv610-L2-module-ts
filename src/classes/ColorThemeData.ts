@@ -19,18 +19,18 @@ export class ColorThemeData {
 
   constructor (colorTheme: ColorThemes, colors: Color[]) {
     this.#argumentGuard = new Guard()
-    this.#manageColorTheme(colorTheme)
-    this.#manageColorsInTheme(colors)
+    this.#validateColorTheme(colorTheme)
+    this.#setColorTheme(colorTheme)
+    this.#validateColorsInTheme(colors)
+    this.#setColorsInTheme(colors)
     this.#setNumberOfColorsInTheme()
   }
 
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #manageColorTheme (theme: ColorThemes): void {
+  #validateColorTheme (theme: ColorThemes): void {
     this.#argumentGuard.validateColorThemesArgument(theme)
-
-    this.#setColorTheme(theme)
   }
 
   #setColorTheme (theme: ColorThemes): void {
@@ -40,10 +40,8 @@ export class ColorThemeData {
   /**
    * @throws Error if the arguments does not pass the validation.
    */
-  #manageColorsInTheme (colors: Color[]): void {
+  #validateColorsInTheme (colors: Color[]): void {
     this.#argumentGuard.validateColorArrayArgument(colors)
-
-    this.#setColorsInTheme(colors)
   }
 
   #setColorsInTheme (colors: Color[]): void {
