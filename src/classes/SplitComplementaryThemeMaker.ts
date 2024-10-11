@@ -99,7 +99,7 @@ export class SplitComplementaryThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #shouldGenerateContrastColors (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForContrastColor = ArgumentLimits.SplitComplementaryMax - 1
+    const numberOfColorsForContrastColor = this.numberOfMainColors + 1
     if (numberOfColorsInTheme >= numberOfColorsForContrastColor) {
       return true
     }
@@ -115,7 +115,7 @@ export class SplitComplementaryThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #shouldGenerateMultipleContrastColor (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForMultipleContrastColors = ArgumentLimits.SplitComplementaryMax
+    const numberOfColorsForMultipleContrastColors = this.numberOfMainColors + 2
     if (numberOfColorsInTheme === numberOfColorsForMultipleContrastColors) {
       return true
     }

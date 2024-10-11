@@ -95,7 +95,7 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #shouldGenerateContrastColors (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForContrastColor = ArgumentLimits.AnalogousMax - 1
+    const numberOfColorsForContrastColor = this.numberOfMainColors + 1
     if (numberOfColorsInTheme >= numberOfColorsForContrastColor) {
       return true
     }
@@ -111,7 +111,7 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #shouldGenerateMultipleContrastColor (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForMultipleContrastColors = ArgumentLimits.AnalogousMax
+    const numberOfColorsForMultipleContrastColors = this.numberOfMainColors + 2
     if (numberOfColorsInTheme === numberOfColorsForMultipleContrastColors) {
       return true
     }

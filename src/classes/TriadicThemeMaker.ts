@@ -1,35 +1,35 @@
-import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
-import { ValidationObject } from './ValidationObject.js'
-import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
+import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
+import { ColorThemeData } from './ColorThemeData.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ValidationObject } from './ValidationObject.js'
 
-export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
+export class TriadicThemeMaker extends MultiHueColorThemeMaker {
   constructor () {
-    super(ArgumentLimits.ComplementaryMin)
+    super(ArgumentLimits.TriadicMin)
   }
 
   /**
-   * Generates a complementary color theme.
+   * Generates an triadic color theme.
    *
-   * @param numberOfColors - The number of colors to include ranging from 2 to 4.
-   * @returns An object containing data about the generated color theme.
+   * @param numberOfColors - The number of colors to include ranging from 3 to 5.
+   * @returns  An object containing data about the generated color theme.
    * @throws Error if the arguments does not pass the validation.
   */
   generateColorTheme (numberOfColors: number): ColorThemeData {
     this.#validateArgument(numberOfColors)
 
     const colors = this.#generateColors(numberOfColors)
-    const data = new ColorThemeData(ColorThemes.Complementary, colors)
+    const data = new ColorThemeData(ColorThemes.Triadic, colors)
 
     return data
   }
 
   #validateArgument (numberOfColors: number): void {
     const validationValues = new ValidationObject(
-      ArgumentLimits.ComplementaryMax,
-      ArgumentLimits.ComplementaryMin,
+      ArgumentLimits.TriadicMax,
+      ArgumentLimits.TriadicMin,
       numberOfColors
     )
     this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
@@ -49,9 +49,9 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   }
 
   /**
-   * Generates two complementary colors.
+   * Generates three triadic colors.
    *
-   * @returns An array containing the two generated colors.
+   * @returns An array containing the three generated colors.
    */
   #getMainColors (): Color[] {
     const colors: Color[] = []
@@ -76,7 +76,6 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   #calculateHueOfMainColor (hueIncrementFactor: number): number {
     const numberOfHues = 360
     const hueIncrement = numberOfHues / this.numberOfMainColors
-
     if (((this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues) === 0) {
       return this.hue + (hueIncrement * hueIncrementFactor)
     } else {
