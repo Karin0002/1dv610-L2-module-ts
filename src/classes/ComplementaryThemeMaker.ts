@@ -3,11 +3,11 @@ import { ValidationObject } from './ValidationObject.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
-import { Color } from './Color.js'
 
 export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   constructor () {
     super(ArgumentLimits.ComplementaryMin)
+    this.setCalculateHueFunction(this.#calculateHueOfMainColor)
   }
 
   /**
@@ -20,7 +20,8 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   generateColorTheme (numberOfColors: number): ColorThemeData {
     this.#validateArgument(numberOfColors)
 
-    const colors = this.#generateColors(numberOfColors)
+    const colors = this.getColors(numberOfColors)
+    // const colors = this.#generateColors(numberOfColors)
     const data = new ColorThemeData(ColorThemes.Complementary, colors)
 
     return data
@@ -35,44 +36,6 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
     this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
-  /**
-   * Generates the colors in the theme.
-   */
-  #generateColors (numberOfColors: number): Color[] {
-    const mainColors = this.#getMainColors()
-    const contrastColors = this.#getContrastColors(numberOfColors)
-
-    if (contrastColors) {
-      return this.#mergeContrastColorsWithMainColors(contrastColors, mainColors)
-    }
-    return mainColors
-  }
-
-  /**
-   * Generates two complementary colors.
-   *
-   * @returns An array containing the two generated colors.
-   */
-  #getMainColors (): Color[] {
-    const colors: Color[] = []
-    for (let i = 0; i < this.numberOfMainColors; i++) {
-      colors.push(this.#generateMainColor(i))
-    }
-
-    return colors
-  }
-
-  /**
-   * @param loopCount - The number of the current loop, used for calculating hue.
-   */
-  #generateMainColor (loopCount: number): Color {
-    const hue = this.#calculateHueOfMainColor(loopCount)
-    this.#addHueToHues(hue)
-    const saturation = this.generator.adjustNumberWithin10(this.saturation)
-
-    return new Color(hue, saturation, this.lightness)
-  }
-
   #calculateHueOfMainColor (hueIncrementFactor: number): number {
     const numberOfHues = 360
     const hueIncrement = numberOfHues / this.numberOfMainColors
@@ -82,65 +45,5 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
     } else {
       return (this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues
     }
-  }
-
-  #addHueToHues (hue: number): void {
-    this.hues.push(hue)
-  }
-
-  #getContrastColors (numberOfColorsInTheme: number): Color[] {
-    if (this.#shouldGenerateContrastColors(numberOfColorsInTheme)) {
-      return this.#generateContrastColors(numberOfColorsInTheme)
-    }
-    return []
-  }
-
-  #shouldGenerateContrastColors (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForContrastColor = this.numberOfMainColors + 1
-    if (numberOfColorsInTheme >= numberOfColorsForContrastColor) {
-      return true
-    }
-    return false
-  }
-
-  #generateContrastColors (numberOfColorsInTheme: number): Color[] {
-    if (this.#shouldGenerateMultipleContrastColor(numberOfColorsInTheme)) {
-      return this.#generateMultipleContrastColors()
-    } else {
-      return this.#generateSingleContrastColor()
-    }
-  }
-
-  #shouldGenerateMultipleContrastColor (numberOfColorsInTheme: number): boolean {
-    const numberOfColorsForMultipleContrastColors = this.numberOfMainColors + 2
-    if (numberOfColorsInTheme === numberOfColorsForMultipleContrastColors) {
-      return true
-    }
-    return false
-  }
-
-  #generateMultipleContrastColors (): Color[] {
-    return [this.generateDarkColor(), this.generateLightColor()]
-  }
-
-  #generateSingleContrastColor (): Color[] {
-    if (this.#shouldGenerateDarkContrastColor(this.lightness)) {
-      return [this.generateDarkColor()]
-    } else {
-      return [this.generateLightColor()]
-    }
-  }
-
-  #shouldGenerateDarkContrastColor (lightnessOfMainColors: number): boolean {
-    const fullLightness = 100
-    const halftLightness = fullLightness / 2
-    if (lightnessOfMainColors > halftLightness) {
-      return true
-    }
-    return false
-  }
-
-  #mergeContrastColorsWithMainColors (contrastColors: Color[], mainColors: Color[]): Color[] {
-    return [...mainColors, ...contrastColors]
   }
 }
