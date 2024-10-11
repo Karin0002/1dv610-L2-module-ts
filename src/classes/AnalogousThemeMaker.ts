@@ -67,6 +67,7 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
    */
   #generateMainColor (loopCount: number): Color {
     const hue = this.#calculateHueOfMainColor(loopCount)
+    this.#addHueToHues(hue)
     const saturation = this.generator.adjustNumberWithin10(this.saturation)
 
     return new Color(hue, saturation, this.lightness)
@@ -80,6 +81,10 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
     } else {
       return (this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues
     }
+  }
+
+  #addHueToHues (hue: number): void {
+    this.hues.push(hue)
   }
 
   #getContrastColors (numberOfColorsInTheme: number): Color[] {
