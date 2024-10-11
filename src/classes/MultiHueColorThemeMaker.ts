@@ -1,6 +1,7 @@
 import { ColorThemeMaker } from './ColorThemeMaker.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { Color } from './Color.js'
+import { MaxMinObject } from './MaxMinObject.js'
 
 export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
   protected hues: number[]
@@ -12,10 +13,7 @@ export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
   constructor (numberOfMainColors: number) {
     super()
     this.#setHues()
-    this.#setLightness({
-      max: ColorValues.LightnessMax,
-      min: ColorValues.LightnessMin
-    })
+    this.#setLightness(new MaxMinObject(ColorValues.LightnessMax, ColorValues.LightnessMin))
     this.#setNumberOfMainColors(numberOfMainColors)
   }
 
@@ -26,7 +24,7 @@ export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  #setLightness (limits: { max: number, min: number }): void {
+  #setLightness (limits: MaxMinObject): void {
     this.lightness = this.generator.generateRandomNumber(limits)
   }
 
@@ -40,12 +38,19 @@ export abstract class MultiHueColorThemeMaker extends ColorThemeMaker {
    * @returns The hue that was picked.
    */
   protected pickRandomHue (): number {
-    const randomIndex = this.generator.generateRandomNumber({
-      max: this.hues.length - 1,
-      min: 0
-    })
+    const firstIndex = this.#getFirstIndex()
+    const lastIndex = this.#getLastIndex(this.hues)
+    const randomIndex = this.generator.generateRandomNumber(new MaxMinObject(lastIndex, firstIndex))
 
     return this.#getHueFromHues(randomIndex)
+  }
+
+  #getFirstIndex (): number {
+    return 0
+  }
+
+  #getLastIndex (refrence: number[]): number {
+    return refrence.length - 1
   }
 
   #getHueFromHues (index: number): number {

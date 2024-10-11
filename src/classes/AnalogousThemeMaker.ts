@@ -3,6 +3,7 @@ import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
 
@@ -27,11 +28,12 @@ export class AnalogousThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #validateArgument (numberOfColors: number): void {
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.AnalogousMax,
-      min: ArgumentLimits.AnalogousMin,
-      recieved: numberOfColors
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.AnalogousMax,
+      ArgumentLimits.AnalogousMin,
+      numberOfColors
+    )
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   /**

@@ -37,7 +37,7 @@ export default [
     rules: {
       "@typescript-eslint/explicit-function-return-type": ["error"],
       "@typescript-eslint/explicit-module-boundary-types": ["error"],
-      "@typescript-eslint/consistent-indexed-object-style": ["index-signature"],
+      "@typescript-eslint/consistent-indexed-object-style": ["error", "index-signature"],
       "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "@stylistic/space-before-function-paren": ["error", "always"],
       "@stylistic/comma-dangle": ["error", "never"],

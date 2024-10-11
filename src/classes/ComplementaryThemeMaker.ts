@@ -1,4 +1,5 @@
 import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
+import { ValidationObject } from './ValidationObject.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
@@ -27,11 +28,12 @@ export class ComplementaryThemeMaker extends MultiHueColorThemeMaker {
   }
 
   #validateArgument(numberOfColors: number): void {
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.ComplementaryMax,
-      min: ArgumentLimits.ComplementaryMin,
-      recieved: numberOfColors
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.ComplementaryMax,
+      ArgumentLimits.ComplementaryMin,
+      numberOfColors
+    )
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   /**

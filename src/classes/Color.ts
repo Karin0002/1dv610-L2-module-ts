@@ -1,5 +1,6 @@
 import { Guard } from './Guard.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class Color {
   /**
@@ -27,11 +28,12 @@ export class Color {
    * @throws Error if the arguments does not pass the validation.
    */
   #manageHue (value: number): void {
-    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.HueMax,
-      min: ArgumentLimits.HueMin,
-      recieved: value
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.HueMax,
+      ArgumentLimits.HueMin,
+      value
+    )
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
 
     this.#setHue(value)
   }
@@ -44,11 +46,12 @@ export class Color {
    * @throws Error if the arguments does not pass the validation.
    */
   #manageSaturation (value: number): void {
-    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.SaturationMax,
-      min: ArgumentLimits.SaturationMin,
-      recieved: value
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.SaturationMax,
+      ArgumentLimits.SaturationMin,
+      value
+    )
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
 
     this.#setSaturation(value)
   }
@@ -61,11 +64,12 @@ export class Color {
    * @throws Error if the arguments does not pass the validation.
    */
   #manageLightness (value: number): void {
-    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.LightnessMax,
-      min: ArgumentLimits.LightnessMin,
-      recieved: value
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.LightnessMax,
+      ArgumentLimits.LightnessMin,
+      value
+    )
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
 
     this.#setLightness(value)
   }

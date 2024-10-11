@@ -1,28 +1,30 @@
 import { Color } from './Color.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
+import { ValidationObject } from './ValidationObject.js'
+import { MaxMinObject } from './MaxMinObject.js'
+import { ExpectedTypes } from '../enums/ExpectedTypes.js'
 
 export class Guard {
-  // The description of method in comment does not add any new information but the param and throws does.
   /**
-   * Validates an argument of type number.
+   * Validates an argument of type number with a max and min value.
    *
-   * @param values - An object containing the properties max, min and recieved.
+   * @param values - A ValidationObject containing the values to validate.
    * @throws Error if a property is missing on the argument.
    * @throws Error if the argument does not pass the validation.
   */
-  validateNumberArgumentWithMaxAndMin (values: { max: number, min: number, recieved: number }): void {
+  validateNumberArgumentWithMaxAndMin (values: ValidationObject): void {
     this.#validatePropertiesIsPresent(values)
     this.#validateMaxAndMinTypes(values)
     this.#validateIsRecievedValid(values)
   }
 
-  #validatePropertiesIsPresent (values: { max: number, min: number, recieved: number }): void {
+  #validatePropertiesIsPresent (values: ValidationObject): void {
     if (this.#isAnyPropertyUndefined(values)) {
       this.#throwError(this.#getPropertyUndefinedMessage())
     }
   }
 
-  #isAnyPropertyUndefined (values: { max: number, min: number, recieved: number }): boolean {
+  #isAnyPropertyUndefined (values: ValidationObject): boolean {
     return this.#isUndefined(values.max) || this.#isUndefined(values.min) || this.#isUndefined(values.recieved)
   }
 
@@ -34,13 +36,13 @@ export class Guard {
     return 'Could not validate since at least one property is missing.'
   }
 
-  #validateMaxAndMinTypes (values: { max: number, min: number, recieved: number }): void {
-    if (this.#isMaxOrMinNaN({ max: values.max, min: values.min})) {
+  #validateMaxAndMinTypes (values: ValidationObject): void {
+    if (this.#isMaxOrMinNaN(new MaxMinObject(values.max, values.min))) {
       this.#throwError(this.#getMaxOrMinNaNMessage())
     }
   }
 
-  #isMaxOrMinNaN (values: { max: number, min: number }): boolean {
+  #isMaxOrMinNaN (values: MaxMinObject): boolean {
     return isNaN(values.max) || isNaN(values.min)
   }
 
@@ -48,22 +50,20 @@ export class Guard {
     return 'Could not validate since at least one of maxValue and minValue is not of type number.'
   }
 
-  #validateIsRecievedValid (values: { max: number, min: number, recieved: number }): void {
+  #validateIsRecievedValid (values: ValidationObject): void {
     if (this.#isRecievedInvalid(values)) {
-      this.#throwError(this.#getRecievedInvalidMessage({ max: values.max, min: values.min }))
+      this.#throwError(this.#getRecievedInvalidMessage(new MaxMinObject(values.max, values.min)))
     }
   }
 
-  #isRecievedInvalid (values: { max: number, min: number, recieved: number }): boolean {
+  #isRecievedInvalid (values: ValidationObject): boolean {
     return isNaN(values.recieved) || values.recieved > values.max || values.recieved < values.min
   }
 
-  #getRecievedInvalidMessage (limits: { max: number, min: number}): string {
+  #getRecievedInvalidMessage (limits: MaxMinObject): string {
     return `The argument cannot be greater than ${limits.max}, nor less than ${limits.min}.`
   }
 
-
-  // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type number.
    *
@@ -72,7 +72,7 @@ export class Guard {
    */
   validateNumberArgument (recieved: number): void {
     if (this.#isRecievedNaN(recieved)) {
-      this.#throwError(this.#getInvalidTypeMessage('Number'))
+      this.#throwError(this.#getInvalidTypeMessage(ExpectedTypes.NUMBER))
     }
   }
 
@@ -81,13 +81,12 @@ export class Guard {
   }
 
   /**
-   * @param type - The name of the wanted type to include in message.
+   * @param expectedType - The name of the wanted type to include in message.
    */
-  #getInvalidTypeMessage (type: string): string {
-    return `The argument must be of type ${type}.`
+  #getInvalidTypeMessage (expectedType: ExpectedTypes): string {
+    return `The argument must be of type ${expectedType}.`
   }
 
-  // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type Color.
    *
@@ -96,7 +95,7 @@ export class Guard {
    */
   validateColorArgument (recieved: Color): void {
     if (this.#isRecievedNotColor(recieved)) {
-      this.#throwError(this.#getInvalidTypeMessage('Color'))
+      this.#throwError(this.#getInvalidTypeMessage(ExpectedTypes.COLOR))
     }
   }
 
@@ -104,7 +103,6 @@ export class Guard {
     return !(recieved instanceof Color)
   }
 
-  // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type HTMLElement.
    *
@@ -112,11 +110,8 @@ export class Guard {
    * @throws Error if the arguments does not pass the validation.
    */
   validateHTMLElementArgument (recieved: HTMLElement): void {
-    // Mixed abstraction levels.
-    // Low-level: variables, control statements.
-    // High-level: calls methods.
     if (this.#isRecievedNotHTML(recieved)) {
-      this.#throwError(this.#getInvalidTypeMessage('HTMLElement'))
+      this.#throwError(this.#getInvalidTypeMessage(ExpectedTypes.HTMLELEMENT))
     }
   }
 
@@ -125,7 +120,6 @@ export class Guard {
     return recieved.nodeType !== 1
   }
 
-  // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type ColorThemes.
    *
@@ -134,7 +128,7 @@ export class Guard {
    */
   validateColorThemesArgument (recieved: ColorThemes): void {
     if (this.#isRecievedNotColorThemes(recieved)) {
-      this.#throwError(this.#getInvalidTypeMessage('ColorThemes'))
+      this.#throwError(this.#getInvalidTypeMessage(ExpectedTypes.COLORTHEMES))
     }
   }
 
@@ -143,7 +137,6 @@ export class Guard {
     return !values.includes(recieved)
   }
 
-  // The description of method and param in comment does not add any new information but the throws does.
   /**
    * Validates an argument of type Color[].
    *
@@ -152,7 +145,7 @@ export class Guard {
    */
   validateColorArrayArgument (recieved: Color[]): void {
     if (this.#isRecievedNotColorArray(recieved)) {
-      this.#throwError(this.#getInvalidTypeMessage('Color[]'))
+      this.#throwError(this.#getInvalidTypeMessage(ExpectedTypes.COLORARRAY))
     }
   }
 

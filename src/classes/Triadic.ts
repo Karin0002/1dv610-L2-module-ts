@@ -3,6 +3,7 @@ import { Color } from './Color.js'
 import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class Triadic extends MultiHueColorThemeMaker {
   /**
@@ -17,11 +18,12 @@ export class Triadic extends MultiHueColorThemeMaker {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
     // High-level: initiates objects, calls methods.
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.TriadicMax,
-      min: ArgumentLimits.TriadicMin,
-      recieved: numberOfColors
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.TriadicMax,
+      ArgumentLimits.TriadicMin,
+      numberOfColors
+    )
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
 
     const colors: Color[] = []
 

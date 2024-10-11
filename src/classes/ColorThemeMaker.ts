@@ -2,6 +2,7 @@ import { Guard } from './Guard.js'
 import { NumberGenerator } from './NumberGenerator.js'
 import { ColorValues } from '../enums/ColorValues.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { MaxMinObject } from './MaxMinObject.js'
 
 export abstract class ColorThemeMaker {
   /**
@@ -25,14 +26,8 @@ export abstract class ColorThemeMaker {
   constructor () {
     this.argumentGuard = new Guard()
     this.generator = new NumberGenerator()
-    this.#setHue({
-      max: ColorValues.HueMax,
-      min: ColorValues.HueMin
-    })
-    this.#setSaturation({
-      max: ColorValues.SaturationMax,
-      min: ColorValues.SaturationMin
-    })
+    this.#setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
+    this.#setSaturation(new MaxMinObject(ColorValues.SaturationMax, ColorValues.SaturationMin))
     this.#setMinLightness(ColorValues.MinLightness)
     this.#setMaxLightness(ColorValues.MaxLightness)
   }
@@ -40,14 +35,14 @@ export abstract class ColorThemeMaker {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  #setHue (limits: { max: number, min: number }): void {
+  #setHue (limits: MaxMinObject): void {
     this.hue = this.generator.generateRandomNumber(limits)
   }
 
   /**
    * Sets the saturation with a randomly generated number that is between the arguments.
    */
-  #setSaturation (limits: { max: number, min: number }): void {
+  #setSaturation (limits: MaxMinObject): void {
     this.saturation = this.generator.generateRandomNumber(limits)
   }
 

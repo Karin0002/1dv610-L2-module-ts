@@ -1,3 +1,4 @@
+import { ValidationObject } from './ValidationObject.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { MultiHueColorThemeMaker } from './MultiHueColorThemeMaker.js'
@@ -17,11 +18,12 @@ export class SplitComplementary extends MultiHueColorThemeMaker {
     // Mixed abstraction levels.
     // Low-level: variables, array.push, control statements.
     // High-level: initiates objects, calls methods.
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.SplitComplementaryMax,
-      min: ArgumentLimits.SplitComplementaryMin,
-      recieved: numberOfColors
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.SplitComplementaryMax,
+      ArgumentLimits.SplitComplementaryMin,
+      numberOfColors
+    )
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
 
     const colors: Color[] = []
 

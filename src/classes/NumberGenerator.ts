@@ -1,4 +1,5 @@
 import { Guard } from './Guard.js'
+import { MaxMinObject } from './MaxMinObject.js'
 
 export class NumberGenerator {
   /**
@@ -16,14 +17,14 @@ export class NumberGenerator {
    * @param limits - An object containing the properties max and min.
    * @returns The newly generated number.
    */
-  generateRandomNumber (limits: { max: number, min: number }): number {
+  generateRandomNumber (limits: MaxMinObject): number {
     this.#argumentGuard.validateNumberArgument(limits.max)
     this.#argumentGuard.validateNumberArgument(limits.min)
 
     return this.#generateNumber(limits)
   }
 
-  #generateNumber (limits: { max: number, min: number }): number {
+  #generateNumber (limits: MaxMinObject): number {
     return Math.round(Math.random() * (limits.max - limits.min) + limits.min)
   }
 
@@ -37,10 +38,10 @@ export class NumberGenerator {
   adjustNumberWithin10 (refrenceNumber: number): number {
     this.#argumentGuard.validateNumberArgument(refrenceNumber)
 
-    return this.#generateNumber({
-      max: this.#addDeviationToRefrence(refrenceNumber),
-      min: this.#subtractDeviationFromRefrence(refrenceNumber)
-    })
+    const maxLimit = this.#addDeviationToRefrence(refrenceNumber)
+    const minLimit = this.#subtractDeviationFromRefrence(refrenceNumber)
+
+    return this.#generateNumber(new MaxMinObject(maxLimit, minLimit))
   }
 
   #addDeviationToRefrence (refrence: number): number {

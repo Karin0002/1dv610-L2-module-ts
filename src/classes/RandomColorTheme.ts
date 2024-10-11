@@ -8,6 +8,8 @@ import { Triadic } from './Triadic.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemeMaker } from './ColorThemeMaker.js'
+import { MaxMinObject } from './MaxMinObject.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class RandomColorTheme {
   /**
@@ -67,39 +69,26 @@ export class RandomColorTheme {
   }
 
   #validateArgument (numberOfColors: number): void {
-    this.#argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.RandomColorThemeMax,
-      min: ArgumentLimits.RandomColorThemeMin,
-      recieved: numberOfColors
-    })
+    const validationValues = new ValidationObject(
+      ArgumentLimits.RandomColorThemeMax,
+      ArgumentLimits.RandomColorThemeMin,
+      numberOfColors
+    )
+    this.#argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   #getRandomNumber (): number {
-    return this.#generator.generateRandomNumber({
-      max: ArgumentLimits.RandomColorThemeMax,
-      min: ArgumentLimits.RandomColorThemeMin
-    })
+    return this.#generator.generateRandomNumber(new MaxMinObject(
+      ArgumentLimits.RandomColorThemeMax,
+      ArgumentLimits.RandomColorThemeMin
+    ))
   }
 
   #getSingleColorTheme (numberOfColors: number): ColorThemeData {
     const themes = this.#getThemes(numberOfColors)
-    const randomIndex = this.#generator.generateRandomNumber({
-      max: themes.length - 1,
-      min: 0
-    })
-    const theme = themes[randomIndex]
+    const theme = this.#getThemeFromThemes(themes, this.#getRandomIndex(themes))
 
     return theme.generateColorTheme(numberOfColors)
-  }
-
-  #getRandomThemeFromThemes (numberOfColors: number): ColorThemeMaker {
-    const themes = this.#getThemes(numberOfColors)
-    const indexLimits = this.#getFirstAndLastIndex(themes)
-    const randomIndex = this.#generator.generateRandomNumber({
-      max: indexLimits.lastIndex,
-      min: indexLimits.firstIndex
-    })
-    return this.#getTheme(themes, randomIndex)
   }
 
   /**
@@ -129,7 +118,21 @@ export class RandomColorTheme {
     return themes
   }
 
-  #getTheme (themes: ColorThemeMaker[], index: number): ColorThemeMaker {
+  #getThemeFromThemes (themes: ColorThemeMaker[], index: number): ColorThemeMaker {
     return themes[index]
+  }
+
+  #getRandomIndex (refrence: ColorThemeMaker[]) {
+    const firstIndex = this.#getFirstIndex()
+    const lastIndex = this.#getLastIndex(refrence)
+    return this.#generator.generateRandomNumber(new MaxMinObject(lastIndex, firstIndex))
+  }
+
+  #getFirstIndex (): number {
+    return 0
+  }
+
+  #getLastIndex (refrence: ColorThemeMaker[]): number {
+    return refrence.length - 1
   }
 }

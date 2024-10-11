@@ -3,6 +3,7 @@ import { ColorThemes } from '../enums/ColorThemes.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class MonochromeThemeMaker extends ColorThemeMaker {
   /**
@@ -21,12 +22,13 @@ export class MonochromeThemeMaker extends ColorThemeMaker {
     return data
   }
 
-  #validateArgument (numberOfColors: number) {
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin({
-      max: ArgumentLimits.MonochromeMax,
-      min: ArgumentLimits.MonochromeMin,
-      recieved: numberOfColors
-    })
+  #validateArgument (numberOfColors: number): void {
+    const validationValues = new ValidationObject(
+      ArgumentLimits.MonochromeMax,
+      ArgumentLimits.MonochromeMin,
+      numberOfColors
+    )
+    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   /**
