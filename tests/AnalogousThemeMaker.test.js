@@ -1,48 +1,48 @@
-import { Analogous } from '../src/classes/Analogous'
+import { AnalogousThemeMaker } from '../src/classes/AnalogousThemeMaker'
 import { ColorThemeData } from '../src/classes/ColorThemeData'
 import { ColorThemes } from '../src/enums/ColorThemes'
 import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('Analogous.ts', () => {
+describe('AnalogousThemeMaker.ts', () => {
   test('return type - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
   test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
   
   test('colorTheme must match class - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     expect(data.colorTheme).toEqual(ColorThemes.Analogous)
   })
   
   test('invlaid number of arguments - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
   
   test('invlaid value of arguments - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     expect(() => colorTheme.generateColorTheme(6)).toThrowError()
     expect(() => colorTheme.generateColorTheme(2)).toThrowError()
   })
   
   test('invlaid type of arguments - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
   test('adding one light or dark color - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     let expectedLightness
@@ -56,7 +56,7 @@ describe('Analogous.ts', () => {
   })
 
   test('adding a light and dark color - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const expectedLightness = ColorValues.MaxLightness
@@ -67,7 +67,7 @@ describe('Analogous.ts', () => {
   })
 
   test('hue of light or dark color should be included in main colors - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
@@ -79,7 +79,7 @@ describe('Analogous.ts', () => {
   })
 
   test('variation in saturation - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsBySaturation()
     const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
@@ -87,7 +87,7 @@ describe('Analogous.ts', () => {
   })
 
   test('hue must be between HueMax and HueMin - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
@@ -95,7 +95,7 @@ describe('Analogous.ts', () => {
   })
 
   test('lightness must be between LightnessMax and LightnessMin - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
@@ -103,7 +103,7 @@ describe('Analogous.ts', () => {
   })
 
   test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
@@ -112,7 +112,7 @@ describe('Analogous.ts', () => {
   })
 
   test('difference in hue - generateColorTheme', () => {
-    const colorTheme = new Analogous()
+    const colorTheme = new AnalogousThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     const hueOfSecondColor = (((data.colorsInTheme[0].hue + 30) % 360) === 0) ? data.colorsInTheme[0].hue + 30 : (data.colorsInTheme[0].hue + 30) % 360

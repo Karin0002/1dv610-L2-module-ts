@@ -1,52 +1,52 @@
-import { SplitComplementary } from '../src/classes/SplitComplementary'
+import { ComplementaryThemeMaker } from '../src/classes/ComplementaryThemeMaker'
 import { ColorThemeData } from '../src/classes/ColorThemeData'
 import { ColorThemes } from '../src/enums/ColorThemes'
 import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('SplitComplementary.ts', () => {
-  test('return type  - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
+describe('ComplementaryThemeMaker.ts', () => {
+  test('return type - generateColorTheme', () => {
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(4)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
   test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const numberOfColors = 5
+    const colorTheme = new ComplementaryThemeMaker()
+    const numberOfColors = 4
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
 
   test('colorTheme must match class - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
-    expect(data.colorTheme).toEqual(ColorThemes.SplitComplementary)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(4)
+    expect(data.colorTheme).toEqual(ColorThemes.Complementary)
   })
 
   test('invlaid number of arguments - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
+    const colorTheme = new ComplementaryThemeMaker()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
 
   test('invlaid value of arguments - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    expect(() => colorTheme.generateColorTheme(6)).toThrowError()
-    expect(() => colorTheme.generateColorTheme(2)).toThrowError()
+    const colorTheme = new ComplementaryThemeMaker()
+    expect(() => colorTheme.generateColorTheme(5)).toThrowError()
+    expect(() => colorTheme.generateColorTheme(1)).toThrowError()
   })
 
   test('invlaid type of arguments - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
+    const colorTheme = new ComplementaryThemeMaker()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
   test('adding one light or dark color - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(4)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(3)
     data.sortColorsByLightness()
     let expectedLightness
-    if (data.colorsInTheme[2].lightness < 50) {
+    if (data.colorsInTheme[1].lightness < 50) {
       expectedLightness = ColorValues.MaxLightness
     } else {
       expectedLightness = ColorValues.MinLightness
@@ -56,8 +56,8 @@ describe('SplitComplementary.ts', () => {
   })
 
   test('adding a light and dark color - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     const expectedLightness = ColorValues.MaxLightness
     const expectedDarkness = ColorValues.MinLightness
@@ -67,8 +67,8 @@ describe('SplitComplementary.ts', () => {
   })
 
   test('hue of light or dark color should be included in main colors - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
     const darkColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MinLightness)
@@ -78,32 +78,32 @@ describe('SplitComplementary.ts', () => {
     expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
   })
 
-  test('variation in saturation  - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(5)
+  test('variation in saturation - generateColorTheme', () => {
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(4)
     data.sortColorsBySaturation()
     const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
     expect(difference).toBeLessThanOrEqual(20)
   })
 
   test('hue must be between HueMax and HueMin - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(3)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(2)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
     expect(data.colorsInTheme[0].hue).toBeGreaterThanOrEqual(ColorValues.HueMin)
   })
 
   test('lightness must be between LightnessMax and LightnessMin - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(3)
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(2)
 
     expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
     expect(data.colorsInTheme[0].lightness).toBeGreaterThanOrEqual(ColorValues.LightnessMin)
   })
 
   test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
+    const colorTheme = new ComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
@@ -111,15 +111,13 @@ describe('SplitComplementary.ts', () => {
     expect(data.colorsInTheme[0].saturation).toBeGreaterThanOrEqual(ColorValues.SaturationMin - 10)
   })
 
-  test('difference in hue - generateColorTheme', () => {
-    const colorTheme = new SplitComplementary()
-    const data = colorTheme.generateColorTheme(3)
+  test('difference in hue', () => {
+    const colorTheme = new ComplementaryThemeMaker()
+    const data = colorTheme.generateColorTheme(2)
 
-    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 150) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 150) % 360
-    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 210) % 360) === 0) ? data.colorsInTheme[0].hue + 210 : (data.colorsInTheme[0].hue + 210) % 360
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 180) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 180) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)
-    expect(data.colorsInTheme[2].hue).toEqual(hueOfThirdColor)
   })
 })

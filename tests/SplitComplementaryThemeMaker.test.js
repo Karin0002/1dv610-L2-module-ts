@@ -1,48 +1,48 @@
-import { Triadic } from '../src/classes/Triadic'
+import { SplitComplementaryThemeMaker } from '../src/classes/SplitComplementaryThemeMaker'
 import { ColorThemeData } from '../src/classes/ColorThemeData'
 import { ColorThemes } from '../src/enums/ColorThemes'
 import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('Triadic.ts', () => {
-  test('return type - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+describe('SplitComplementaryThemeMaker.ts', () => {
+  test('return type  - generateColorTheme', () => {
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
   test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
 
   test('colorTheme must match class - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(5)
-    expect(data.colorTheme).toEqual(ColorThemes.Triadic)
+    expect(data.colorTheme).toEqual(ColorThemes.SplitComplementary)
   })
 
   test('invlaid number of arguments - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
 
   test('invlaid value of arguments - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     expect(() => colorTheme.generateColorTheme(6)).toThrowError()
     expect(() => colorTheme.generateColorTheme(2)).toThrowError()
   })
 
   test('invlaid type of arguments - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
   test('adding one light or dark color - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(4)
     data.sortColorsByLightness()
     let expectedLightness
@@ -56,7 +56,7 @@ describe('Triadic.ts', () => {
   })
 
   test('adding a light and dark color - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const expectedLightness = ColorValues.MaxLightness
@@ -67,7 +67,7 @@ describe('Triadic.ts', () => {
   })
 
   test('hue of light or dark color should be included in main colors - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme.filter(color => color.lightness === ColorValues.MaxLightness)
@@ -78,8 +78,8 @@ describe('Triadic.ts', () => {
     expect(() => mainColors.some(color => color.hue === darkColor.hue)).toBeTruthy()
   })
 
-  test('variation in saturation - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+  test('variation in saturation  - generateColorTheme', () => {
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsBySaturation()
     const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
@@ -87,7 +87,7 @@ describe('Triadic.ts', () => {
   })
 
   test('hue must be between HueMax and HueMin - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
@@ -95,7 +95,7 @@ describe('Triadic.ts', () => {
   })
 
   test('lightness must be between LightnessMax and LightnessMin - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].lightness).toBeLessThanOrEqual(ColorValues.LightnessMax)
@@ -103,7 +103,7 @@ describe('Triadic.ts', () => {
   })
 
   test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
@@ -112,11 +112,11 @@ describe('Triadic.ts', () => {
   })
 
   test('difference in hue - generateColorTheme', () => {
-    const colorTheme = new Triadic()
+    const colorTheme = new SplitComplementaryThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
-    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 120) % 360) === 0) ? data.colorsInTheme[0].hue + 120 : (data.colorsInTheme[0].hue + 120) % 360
-    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 240) % 360) === 0) ? data.colorsInTheme[0].hue + 240 : (data.colorsInTheme[0].hue + 240) % 360
+    const hueOfSecondColor = (((data.colorsInTheme[0].hue + 150) % 360) === 0) ? data.colorsInTheme[0].hue + 150 : (data.colorsInTheme[0].hue + 150) % 360
+    const hueOfThirdColor = (((data.colorsInTheme[0].hue + 210) % 360) === 0) ? data.colorsInTheme[0].hue + 210 : (data.colorsInTheme[0].hue + 210) % 360
 
     expect(data.colorsInTheme[0].hue).toEqual(data.colorsInTheme[0].hue)
     expect(data.colorsInTheme[1].hue).toEqual(hueOfSecondColor)

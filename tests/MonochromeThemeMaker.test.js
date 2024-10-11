@@ -1,48 +1,48 @@
-import { Monochrome } from '../src/classes/Monochrome'
+import { MonochromeThemeMaker } from '../src/classes/MonochromeThemeMaker'
 import { ColorThemeData } from '../src/classes/ColorThemeData'
 import { ColorThemes } from '../src/enums/ColorThemes'
 import { ColorValues } from '../src/enums/ColorValues'
 import { describe, expect, test } from 'vitest'
 
-describe('Monochrome.ts', () => {
+describe('MonochromeThemeMaker.ts', () => {
   test('return type - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     expect(data).toBeInstanceOf(ColorThemeData)
   })
 
   test('numbersOfColorsInTheme must match argument - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     expect(data.numberOfColorsInTheme).toEqual(numberOfColors)
   })
 
   test('colorTheme must match class - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     expect(data.colorTheme).toEqual(ColorThemes.Monochrome)
   })
 
   test('invlaid number of arguments - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     expect(() => colorTheme.generateColorTheme()).toThrowError()
   })
 
   test('invlaid value of arguments - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     expect(() => colorTheme.generateColorTheme(6)).toThrowError()
     expect(() => colorTheme.generateColorTheme(1)).toThrowError()
   })
 
   test('invlaid type of arguments - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const invalidArgument = 'test'
     expect(() => colorTheme.generateColorTheme(invalidArgument)).toThrowError()
   })
 
   test('value of lightness of lightest color - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const lightColor = data.colorsInTheme[data.colorsInTheme.length - 1]
@@ -51,7 +51,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('value of lightness of darkest color - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsByLightness()
     const darkColor = data.colorsInTheme[0]
@@ -60,7 +60,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('spreading of colors in lightness - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const numberOfColors = 5
     const data = colorTheme.generateColorTheme(numberOfColors)
     data.sortColorsByLightness()
@@ -76,7 +76,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('hue of all colors should be the same - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     const expectedHue = data.colorsInTheme[0].hue
 
@@ -84,7 +84,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('variation in saturation - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(5)
     data.sortColorsBySaturation()
     const difference = data.colorsInTheme[data.colorsInTheme.length - 1].saturation - data.colorsInTheme[0].saturation
@@ -92,7 +92,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('hue must be between HueMax and HueMin - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     expect(data.colorsInTheme[0].hue).toBeLessThanOrEqual(ColorValues.HueMax)
@@ -100,7 +100,7 @@ describe('Monochrome.ts', () => {
   })
 
   test('saturation must be between SaturationMax + 10 and SaturationMin - 10 - generateColorTheme', () => {
-    const colorTheme = new Monochrome()
+    const colorTheme = new MonochromeThemeMaker()
     const data = colorTheme.generateColorTheme(3)
 
     // +10 and -10 is due to satuartion being generated with a deviation.
