@@ -1,17 +1,17 @@
-import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ValidationObject } from './ValidationObject.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
-import { ValidationObject } from './ValidationObject.js'
 
-export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
+export class SplitComplementaryThemeFactory extends MultiHueColorThemeFactory {
   constructor () {
-    super(ArgumentLimits.AnalogousMin)
+    super(ArgumentLimits.SplitComplementaryMin)
     this.setCalculateHueFunction(this.#calculateHueOfMainColor)
   }
 
   /**
-   * Generates an analogous color theme.
+   * Generates an split complementary color theme.
    *
    * @param numberOfColors - The number of colors to include ranging from 3 to 5.
    * @returns  An object containing data about the generated color theme.
@@ -21,27 +21,31 @@ export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
     this.#validateArgument(numberOfColors)
 
     const colors = this.getColors(numberOfColors)
-    const data = new ColorThemeData(ColorThemes.Analogous, colors)
+    const data = new ColorThemeData(ColorThemes.SplitComplementary, colors)
 
     return data
   }
 
   #validateArgument (numberOfColors: number): void {
     const validationValues = new ValidationObject(
-      ArgumentLimits.AnalogousMax,
-      ArgumentLimits.AnalogousMin,
+      ArgumentLimits.SplitComplementaryMax,
+      ArgumentLimits.SplitComplementaryMin,
       numberOfColors
     )
     this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
+  /**
+   * {@link https://chatgpt.com/share/ef0f277c-e1b3-4859-8f24-430d0fed1bf5}
+   */
   #calculateHueOfMainColor (hueIncrementFactor: number): number {
     const numberOfHues = 360
-    const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
-    if (((this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues) === 0) {
-      return this.hue + (hueIncrement * hueIncrementFactor)
+    // Equation made with the help of chatGPT, see @link in comment.
+    const hueIncrement = 30 * (-(3 / 2) * (hueIncrementFactor ** 2) + (13 / 2) * hueIncrementFactor) // ** is "power of"
+    if (((this.hue + hueIncrement) % numberOfHues) === 0) {
+      return this.hue + hueIncrement
     } else {
-      return (this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues
+      return (this.hue + hueIncrement) % numberOfHues
     }
   }
 }

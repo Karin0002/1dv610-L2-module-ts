@@ -1,17 +1,17 @@
-import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { ColorThemeData } from './ColorThemeData.js'
-import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ValidationObject } from './ValidationObject.js'
+import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
 
-export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
+export class TriadicThemeFactory extends MultiHueColorThemeFactory {
   constructor () {
-    super(ArgumentLimits.AnalogousMin)
+    super(ArgumentLimits.TriadicMin)
     this.setCalculateHueFunction(this.#calculateHueOfMainColor)
   }
 
   /**
-   * Generates an analogous color theme.
+   * Generates an triadic color theme.
    *
    * @param numberOfColors - The number of colors to include ranging from 3 to 5.
    * @returns  An object containing data about the generated color theme.
@@ -21,15 +21,15 @@ export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
     this.#validateArgument(numberOfColors)
 
     const colors = this.getColors(numberOfColors)
-    const data = new ColorThemeData(ColorThemes.Analogous, colors)
+    const data = new ColorThemeData(ColorThemes.Triadic, colors)
 
     return data
   }
 
   #validateArgument (numberOfColors: number): void {
     const validationValues = new ValidationObject(
-      ArgumentLimits.AnalogousMax,
-      ArgumentLimits.AnalogousMin,
+      ArgumentLimits.TriadicMax,
+      ArgumentLimits.TriadicMin,
       numberOfColors
     )
     this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
@@ -37,7 +37,7 @@ export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
 
   #calculateHueOfMainColor (hueIncrementFactor: number): number {
     const numberOfHues = 360
-    const hueIncrement = 30 // 30 because each section of the colorwheel is 30 degrees.
+    const hueIncrement = numberOfHues / this.numberOfMainColors
     if (((this.hue + (hueIncrement * hueIncrementFactor)) % numberOfHues) === 0) {
       return this.hue + (hueIncrement * hueIncrementFactor)
     } else {
