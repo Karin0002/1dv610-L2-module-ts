@@ -4,7 +4,7 @@ import { ColorThemeData } from './ColorThemeData.js'
 import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
 import { ValidationObject } from './ValidationObject.js'
 
-export class ComplementaryThemeMaker extends MultiHueColorThemeFactory {
+export class ComplementaryThemeFactory extends MultiHueColorThemeFactory {
   constructor () {
     super(ArgumentLimits.ComplementaryMin)
     this.setCalculateHueFunction(this.#calculateHueOfMainColor)
