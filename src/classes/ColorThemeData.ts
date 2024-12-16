@@ -1,12 +1,12 @@
 import { ColorThemes } from '../enums/ColorThemes.js'
-import { Guard } from './Guard.js'
+import { Validator } from './Validator.js'
 import { Color } from './Color.js'
 
 export class ColorThemeData {
   /**
    * The object to validate arguments with.
    */
-  #argumentGuard: Guard
+  #argumentGuard: Validator
 
   #colorsInTheme: Color[]
 
@@ -18,7 +18,7 @@ export class ColorThemeData {
   #numberOfColorsInTheme: number
 
   constructor (colorTheme: ColorThemes, colors: Color[]) {
-    this.#argumentGuard = new Guard()
+    this.#argumentGuard = new Validator()
     this.#validateColorTheme(colorTheme)
     this.#setColorTheme(colorTheme)
     this.#validateColorsInTheme(colors)

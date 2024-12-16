@@ -1,4 +1,4 @@
-import { Guard } from './Guard.js'
+import { Validator } from './Validator.js'
 import { Color } from './Color.js'
 import { Style } from './Style.js'
 
@@ -6,10 +6,10 @@ export class ColorStyles {
   /**
    * The object to validate arguments with.
    */
-  #argumentGuard: Guard
+  #argumentGuard: Validator
 
   constructor () {
-    this.#argumentGuard = new Guard()
+    this.#argumentGuard = new Validator()
   }
 
   /**

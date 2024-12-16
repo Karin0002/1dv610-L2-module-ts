@@ -4,7 +4,7 @@ import { ValidationObject } from './ValidationObject.js'
 import { MaxMinObject } from './MaxMinObject.js'
 import { ExpectedTypes } from '../enums/ExpectedTypes.js'
 
-export class Guard {
+export class Validator {
   /**
    * Validates an argument of type number with a max and min value.
    *

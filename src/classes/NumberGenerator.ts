@@ -1,14 +1,14 @@
-import { Guard } from './Guard.js'
+import { Validator } from './Validator.js'
 import { MaxMinObject } from './MaxMinObject.js'
 
 export class NumberGenerator {
   /**
    * The object to validate arguments with.
    */
-  #argumentGuard: Guard
+  #argumentGuard: Validator
 
   constructor () {
-    this.#argumentGuard = new Guard()
+    this.#argumentGuard = new Validator()
   }
 
   /**

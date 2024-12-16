@@ -1,4 +1,4 @@
-import { Guard } from './Guard.js'
+import { Validator } from './Validator.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { ValidationObject } from './ValidationObject.js'
 
@@ -6,7 +6,7 @@ export class Color {
   /**
    * The object to validate arguments with.
    */
-  #argumentGuard: Guard
+  #argumentGuard: Validator
 
   #hue: number
 
@@ -17,7 +17,7 @@ export class Color {
   #hsl: string
 
   constructor (hue: number, saturation: number, lightness: number) {
-    this.#argumentGuard = new Guard()
+    this.#argumentGuard = new Validator()
     this.#validateHue(hue)
     this.#setHue(hue)
     this.#validateSaturation(saturation)
