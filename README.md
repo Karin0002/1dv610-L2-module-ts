@@ -1,6 +1,11 @@
 # color-theme-generator
 color-theme-generator is a module used for generating color themes that are based in color theory. The module can generate analogous, complementary, monochrome, split complementary and triadic themes. For explanation of these see [monchrome](https://en.wikipedia.org/wiki/Monochrome) and [others](https://en.wikipedia.org/wiki/Harmony_(color)). In addition it can set common CSS properties that affect the colors of HTMLElements. To visually test the colors in the browser the module can create color swatches, a HTMLElement with CSS properties that displays the color.
 
+## This package will no longer be updated or maintained!
+
+## Update 2.\*.\*
+This update has made significant changes to the user interface and in some cases the functionality. If you which to use the old one, then install version 1.\*.\*. 
+
 ## Installing
 ```bash
 npm install color-theme-generator
