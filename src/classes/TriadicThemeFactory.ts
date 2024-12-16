@@ -1,8 +1,8 @@
-import { ColorThemes } from '../enums/ColorThemes.js'
-import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { ValidationObject } from './ValidationObject.js'
+import { ColorThemeData } from './ColorThemeData.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class TriadicThemeFactory extends MultiHueColorThemeFactory {
   constructor () {
@@ -32,7 +32,7 @@ export class TriadicThemeFactory extends MultiHueColorThemeFactory {
       ArgumentLimits.TriadicMin,
       numberOfColors
     )
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
+    this.validator.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   #calculateHueOfMainColor (hueIncrementFactor: number): number {

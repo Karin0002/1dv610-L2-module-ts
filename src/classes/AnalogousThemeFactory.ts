@@ -32,7 +32,7 @@ export class AnalogousThemeFactory extends MultiHueColorThemeFactory {
       ArgumentLimits.AnalogousMin,
       numberOfColors
     )
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
+    this.validator.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   #calculateHueOfMainColor (hueIncrementFactor: number): number {

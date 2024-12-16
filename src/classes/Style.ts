@@ -23,8 +23,6 @@ export class Style {
 
   /**
    * The string that represents a CSS property.
-   *
-   * @returns The property.
    */
   get property (): string {
     return this.#property
@@ -32,8 +30,6 @@ export class Style {
 
   /**
    * The string that represents the value of the CSS property.
-   *
-   * @returns The value.
    */
   get value (): string {
     return this.#value

@@ -1,8 +1,6 @@
 export class ValidationObject {
   #max: number
-
   #min: number
-
   #recieved: number
 
   constructor (max: number, min: number, recieved: number) {

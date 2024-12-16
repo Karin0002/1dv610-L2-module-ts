@@ -1,9 +1,9 @@
-import { ColorThemes } from '../enums/ColorThemes.js'
+import { ArgumentLimits } from '../enums/ArgumentLimits.js'
 import { Color } from './Color.js'
 import { ColorThemeData } from './ColorThemeData.js'
-import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { ValidationObject } from './ValidationObject.js'
 import { ColorThemeFactory } from './ColorThemeFactory.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class MonochromeThemeFactory extends ColorThemeFactory {
   /**
@@ -28,7 +28,7 @@ export class MonochromeThemeFactory extends ColorThemeFactory {
       ArgumentLimits.MonochromeMin,
       numberOfColors
     )
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
+    this.validator.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   /**

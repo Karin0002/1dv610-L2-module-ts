@@ -1,15 +1,12 @@
-import { Validator } from './Validator.js'
 import { Color } from './Color.js'
 import { Style } from './Style.js'
+import { Validator } from './Validator.js'
 
 export class ColorStyles {
-  /**
-   * The object to validate arguments with.
-   */
-  #argumentGuard: Validator
+  #validator: Validator
 
   constructor () {
-    this.#argumentGuard = new Validator()
+    this.#validator = new Validator()
   }
 
   /**
@@ -26,7 +23,7 @@ export class ColorStyles {
   }
 
   #validateColor (color: Color): void {
-    this.#argumentGuard.validateColorArgument(color)
+    this.#validator.validateColorArgument(color)
   }
 
   /**
@@ -44,7 +41,7 @@ export class ColorStyles {
 
   /**
    * Creates a declaration for the CSS property border.
-   The declaration uses border shorthand to set border-color and border-style.
+   * The declaration uses border shorthand to set border-color and border-style.
    *
    * @param color - The color to use as value for the property border-color.
    * @param borderStyle - The value of the property border-style.
@@ -59,7 +56,7 @@ export class ColorStyles {
 
   /**
    * Creates a declaration for the CSS property outline.
-   The declaration uses outline shorthand to set outline-color and outline-style.
+   * The declaration uses outline shorthand to set outline-color and outline-style.
    *
    * @param color - The color to use as value for the property outline-color.
    * @param outlineStyle - The value of the property outline-style.
@@ -74,7 +71,7 @@ export class ColorStyles {
 
   /**
    * Creates a declaration for the CSS property text-decoration.
-   The declaration uses text-decoration shorthand to set text-decoration-line and text-decoration-color.
+   * The declaration uses text-decoration shorthand to set text-decoration-line and text-decoration-color.
    *
    * @param color - The color to use as the value for the property text-decoration-color.
    * @param textDecorationLine - The value of the property text-decoration-line.

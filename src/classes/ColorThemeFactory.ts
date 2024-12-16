@@ -1,14 +1,11 @@
-import { ColorValues } from '../enums/ColorValues.js'
 import { ColorThemeData } from './ColorThemeData.js'
-import { Validator } from './Validator.js'
+import { ColorValues } from '../enums/ColorValues.js'
 import { MaxMinObject } from './MaxMinObject.js'
 import { NumberGenerator } from './NumberGenerator.js'
+import { Validator } from './Validator.js'
 
 export abstract class ColorThemeFactory {
-  /**
-   * The object to validate arguments with.
-   */
-  protected argumentGuard: Validator
+  protected validator: Validator
 
   /**
    * The object to use for adjusting values and generating random numbers.
@@ -21,7 +18,7 @@ export abstract class ColorThemeFactory {
   protected maxLightness: number
 
   constructor () {
-    this.argumentGuard = new Validator()
+    this.validator = new Validator()
     this.generator = new NumberGenerator()
     this.#setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
     this.#setSaturation(new MaxMinObject(ColorValues.SaturationMax, ColorValues.SaturationMin))

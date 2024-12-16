@@ -1,6 +1,5 @@
 export class MaxMinObject {
   #max: number
-
   #min: number
 
   constructor (max: number, min: number) {

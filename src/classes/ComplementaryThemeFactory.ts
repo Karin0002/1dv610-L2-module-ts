@@ -1,6 +1,6 @@
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
-import { ColorThemes } from '../enums/ColorThemes.js'
 import { ColorThemeData } from './ColorThemeData.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
 import { ValidationObject } from './ValidationObject.js'
 
@@ -32,7 +32,7 @@ export class ComplementaryThemeFactory extends MultiHueColorThemeFactory {
       ArgumentLimits.ComplementaryMin,
       numberOfColors
     )
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
+    this.validator.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   #calculateHueOfMainColor (hueIncrementFactor: number): number {

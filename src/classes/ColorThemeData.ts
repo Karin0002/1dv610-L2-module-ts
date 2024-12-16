@@ -1,24 +1,19 @@
+import { Color } from './Color.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { Validator } from './Validator.js'
-import { Color } from './Color.js'
 
 export class ColorThemeData {
-  /**
-   * The object to validate arguments with.
-   */
-  #argumentGuard: Validator
-
-  #colorsInTheme: Color[]
+  #validator: Validator
 
   /**
    * The name of the color theme.
    */
   #colorTheme: ColorThemes
-
+  #colorsInTheme: Color[]
   #numberOfColorsInTheme: number
 
   constructor (colorTheme: ColorThemes, colors: Color[]) {
-    this.#argumentGuard = new Validator()
+    this.#validator = new Validator()
     this.#validateColorTheme(colorTheme)
     this.#setColorTheme(colorTheme)
     this.#validateColorsInTheme(colors)
@@ -26,22 +21,16 @@ export class ColorThemeData {
     this.#setNumberOfColorsInTheme()
   }
 
-  /**
-   * @throws Error if the arguments does not pass the validation.
-   */
   #validateColorTheme (theme: ColorThemes): void {
-    this.#argumentGuard.validateColorThemesArgument(theme)
+    this.#validator.validateColorThemesArgument(theme)
   }
 
   #setColorTheme (theme: ColorThemes): void {
     this.#colorTheme = theme
   }
 
-  /**
-   * @throws Error if the arguments does not pass the validation.
-   */
   #validateColorsInTheme (colors: Color[]): void {
-    this.#argumentGuard.validateColorArrayArgument(colors)
+    this.#validator.validateColorArrayArgument(colors)
   }
 
   #setColorsInTheme (colors: Color[]): void {
@@ -55,7 +44,7 @@ export class ColorThemeData {
   /**
    * The colors in the theme.
    *
-   * @returns A deep copied array of the colors.
+   * @returns An array of the colors.
    */
   get colorsInTheme (): Color[] {
     // Copies the colors since they are refrence types.
@@ -73,18 +62,11 @@ export class ColorThemeData {
 
   /**
    * The name of the theme.
-   *
-   * @returns The name.
    */
   get colorTheme (): ColorThemes {
     return this.#colorTheme
   }
 
-  /**
-   * The number of colors in the theme.
-   *
-   * @returns The number of colors.
-   */
   get numberOfColorsInTheme (): number {
     return this.#numberOfColorsInTheme
   }

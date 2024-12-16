@@ -1,7 +1,7 @@
-import { ColorValues } from '../enums/ColorValues.js'
 import { Color } from './Color.js'
-import { MaxMinObject } from './MaxMinObject.js'
 import { ColorThemeFactory } from './ColorThemeFactory.js'
+import { ColorValues } from '../enums/ColorValues.js'
+import { MaxMinObject } from './MaxMinObject.js'
 
 export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
   #hues: number[]
@@ -48,9 +48,6 @@ export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
     return this.#generateColors(numberOfColors)
   }
 
-  /**
-   * Generates the colors in the theme.
-   */
   #generateColors (numberOfColors: number): Color[] {
     const mainColors = this.#getMainColors()
     const contrastColors = this.#getContrastColors(numberOfColors)
@@ -61,11 +58,6 @@ export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
     return mainColors
   }
 
-  /**
-   * Generates the main colors.
-   *
-   * @returns An array containing the generated colors.
-   */
   #getMainColors (): Color[] {
     const colors: Color[] = []
     for (let i = 0; i < this.numberOfMainColors; i++) {
@@ -127,22 +119,18 @@ export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
 
   /**
    * Generates a dark color for the color theme with a random hue from hues.
-   *
-   * @returns The generated color.
    */
   #generateDarkColor (): Color {
     const calculatedSaturation = this.generator.adjustNumberWithin10(this.saturation)
 
-    const color = new Color(this.#pickRandomHue(), calculatedSaturation, this.minLightness)
+    const color = new Color(this.#getRandomHue(), calculatedSaturation, this.minLightness)
     return color
   }
 
   /**
-   * Picks a random hue from the array hues.
-   *
-   * @returns The hue that was picked.
+   * Gets a random hue from the array hues.
    */
-  #pickRandomHue (): number {
+  #getRandomHue (): number {
     const firstIndex = this.#getFirstIndex()
     const lastIndex = this.#getLastIndex(this.#hues)
     const randomIndex = this.generator.generateRandomNumber(new MaxMinObject(lastIndex, firstIndex))
@@ -164,13 +152,11 @@ export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
 
   /**
    * Generates a light color for the color theme with a random hue from hues.
-   *
-   * @returns The generated color.
    */
   #generateLightColor (): Color {
     const calculatedSaturation = this.generator.adjustNumberWithin10(this.saturation)
 
-    const color = new Color(this.#pickRandomHue(), calculatedSaturation, this.maxLightness)
+    const color = new Color(this.#getRandomHue(), calculatedSaturation, this.maxLightness)
     return color
   }
 

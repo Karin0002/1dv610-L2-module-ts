@@ -1,8 +1,8 @@
-import { ValidationObject } from './ValidationObject.js'
-import { ColorThemes } from '../enums/ColorThemes.js'
-import { ColorThemeData } from './ColorThemeData.js'
 import { ArgumentLimits } from '../enums/ArgumentLimits.js'
+import { ColorThemeData } from './ColorThemeData.js'
+import { ColorThemes } from '../enums/ColorThemes.js'
 import { MultiHueColorThemeFactory } from './MultiHueColorThemeFactory.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class SplitComplementaryThemeFactory extends MultiHueColorThemeFactory {
   constructor () {
@@ -32,7 +32,7 @@ export class SplitComplementaryThemeFactory extends MultiHueColorThemeFactory {
       ArgumentLimits.SplitComplementaryMin,
       numberOfColors
     )
-    this.argumentGuard.validateNumberArgumentWithMaxAndMin(validationValues)
+    this.validator.validateNumberArgumentWithMaxAndMin(validationValues)
   }
 
   /**

@@ -1,8 +1,8 @@
 import { Color } from './Color.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
-import { ValidationObject } from './ValidationObject.js'
-import { MaxMinObject } from './MaxMinObject.js'
 import { ExpectedTypes } from '../enums/ExpectedTypes.js'
+import { MaxMinObject } from './MaxMinObject.js'
+import { ValidationObject } from './ValidationObject.js'
 
 export class Validator {
   /**
@@ -11,7 +11,7 @@ export class Validator {
    * @param values - A ValidationObject containing the values to validate.
    * @throws Error if a property is missing on the argument.
    * @throws Error if the argument does not pass the validation.
-  */
+   */
   validateNumberArgumentWithMaxAndMin (values: ValidationObject): void {
     this.#validatePropertiesIsPresent(values)
     this.#validateMaxAndMinTypes(values)
