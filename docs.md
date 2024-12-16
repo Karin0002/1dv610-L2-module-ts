@@ -1,44 +1,44 @@
 # Objects, methods and properties
 
 ## Table of content
-1. [Analogous](#analogous)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors) 
-2. [Complementary](#complementary)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors-1) 
-3. [Monochrome](#monochrome)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors-2) 
-4. [SplitComplementary](#splitcomplementary)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors-3) 
-5. [Triadic](#triadic)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors-4) 
-6. [RandomColorTheme](#randomcolortheme)
-    1. [generateColorTheme()](#generatecolorthemenumberofcolors-5) 
-7. [Color](#color)
+1. [AnalogousThemeFactory](#analogousthemefactory)
+    1. [getColorTheme()](#getcolorthemenumberofcolors) 
+2. [ComplementaryThemeFactory](#complementarythemefactory)
+    1. [getColorTheme()](#getcolorthemenumberofcolors-1) 
+3. [MonochromeThemeFactory](#monochromethemefactory)
+    1. [getColorTheme()](#getcolorthemenumberofcolors-2) 
+4. [SplitComplementaryThemeFactory](#splitcomplementarythemefactory)
+    1. [getColorTheme()](#getcolorthemenumberofcolors-3) 
+5. [TriadicThemeFactory](#triadicthemefactory)
+    1. [getColorTheme()](#getcolorthemenumberofcolors-4) 
+6. [Color](#color)
     1. [hue](#hue)
     2. [saturation](#saturation)
     3. [lightness](#lightness)
     4. [hsl](#hsl)
-8. [ColorThemeData](#colorthemedata)
+7. [ColorThemeData](#colorthemedata)
     1. [colorTheme](#colortheme)
     2. [numberOfColorsInTheme](#numberofcolorsintheme)
     3. [colorsInTheme](#colorsintheme)
     4. [sortColorsByHue()](#sortcolorsbyhue)
     5. [sortColorsBySaturation()](#sortcolorsbysaturation)
     6. [sortColorsByLightness()](#sortcolorsbylightness)
-9. [CSSColorSetter](#csscolorsetter)
-    1. [setCSSColorPropertyOn()](#setcsscolorpropertyonhtmlelement-color)
-    2. [setCSSBackgroundColorPropertyOn()](#setcssbackgroundcolorpropertyonhtmlelement-color)
-    3. [setCSSBorderPropertyOn()](#setcssborderpropertyonhtmlelement-color)
-    4. [setCSSOutlinePropertyOn()](#setcssoutlinepropertyonhtmlelement-color)
-    5. [setCSSTextDecorationPropertyOn()](#setcsstextdecorationpropertyonhtmlelement-color)
-10. [HTMLColorSwatch](#htmlcolorswatch)
-    1. [turnElementIntoColorSwatch()](#turnelementintocolorswatchhtmlelement-color)
+8. [ColorStyles](#colorstyles)
+    1. [getColorDeclaration()](#getcolordeclarationcolor)
+    2. [getBackgroundColorDeclaration()](#getbackgroundcolordeclarationcolor)
+    3. [getBorderDeclaration()](#getborderdeclarationcolor-borderstyle)
+    4. [getOutlineDeclaration()](#getoutlinedeclarationcolor-outlinestyle)
+    5. [getTextDecorationDeclaration()](#gettextdecorationdeclarationcolor-textdecorationline)
+9. [Style](#style)
+    1. [property](#property)
+    2. [value](#value)
+    3. [declaration](#declaration)
 
 
 
-## Analogous
+## AnalogousThemeFactory
 
-### generateColorTheme(numberOfColors)
+### getColorTheme(numberOfColors)
 
 #### Description:
 Generates an analogous color theme with a certain amout of colors.
@@ -66,21 +66,21 @@ ColorThemeData{}
 #### Example usage
 
 ```js
-import { Analogous } from 'color-theme-generator'
+import { AnalogousThemeFactory } from 'color-theme-generator'
 
 try {
-  const analogousTheme = new Analogous()
+  const factory = new AnalogousThemeFactory()
   const requestedNumberOfColors = 3  // Argument can be 3 - 5.
-  const generatedColorTheme = analogousTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
 
-## Complementary
+## ComplementaryThemeFactory
 
-### generateColorTheme(numberOfColors)
+### getColorTheme(numberOfColors)
 
 #### Description:
 Generates a complementary color theme with a certain amout of colors.
@@ -108,21 +108,21 @@ ColorThemeData{}
 #### Example usage
 
 ```js
-import { Complementary } from 'color-theme-generator'
+import { ComplementaryThemeFactory } from 'color-theme-generator'
 
 try {
-  const complementaryTheme = new Complementary()
+  const factory = new ComplementaryThemeFactory()
   const requestedNumberOfColors = 2  // Argument can be 2 - 4.
-  const generatedColorTheme = complementaryTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
 
-## Monochrome
+## MonochromeThemeFactory
 
-### generateColorTheme(numberOfColors)
+### getColorTheme(numberOfColors)
 
 #### Description:
 Generates a monochrome color theme with a certain amout of colors.
@@ -147,21 +147,21 @@ ColorThemeData{}
 #### Example usage
 
 ```js
-import { Monochrome } from 'color-theme-generator'
+import { MonochromeThemeFactory } from 'color-theme-generator'
 
 try {
-  const monochromeTheme = new Monochrome()
+  const factory = new MonochromeThemeFactory()
   const requestedNumberOfColors = 5  // Argument can be 2 - 5.
-  const generatedColorTheme = monochromeTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
 
-## SplitComplementary
+## SplitComplementaryThemeFactory
 
-### generateColorTheme(numberOfColors)
+### getColorTheme(numberOfColors)
 
 #### Description:
 Generates a split complementary color theme with a certain amout of colors.
@@ -189,21 +189,21 @@ ColorThemeData{}
 #### Example usage
 
 ```js
-import { SplitComplementary } from 'color-theme-generator'
+import { SplitComplementaryThemeFactory } from 'color-theme-generator'
 
 try {
-  const splitComplementaryTheme = new SplitComplementary()
+  const factory = new SplitComplementaryThemeFactory()
   const requestedNumberOfColors = 3  // Argument can be 3 - 5.
-  const generatedColorTheme = splitComplementaryTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
 
-## Triadic
+## TriadicThemeFactory
 
-### generateColorTheme(numberOfColors)
+### getColorTheme(numberOfColors)
 
 #### Description:
 Generates a triadic color theme with a certain amout of colors.
@@ -231,52 +231,12 @@ ColorThemeData{}
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3  // Argument can be 3 - 5.
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
-} catch (e) {
-  console.log(e.message)
-}
-```
-
-
-## RandomColorTheme
-
-### generateColorTheme(numberOfColors)
-
-#### Description:
-Generates a color theme with a certain amout of colors. The color theme is picked pseudorandom from Analogous, Complementary, Monochrome, SplitComplementary, Triadic.
-
-#### Arguments:
-- numberOfColors
-
-##### numberOfColors:
-- Optional.
-- If present, must be of type number.
-- If present, value must be between 2 and 5.
-- Defaults to a pseudorandom number between 2 and 5 is picked.
-
-#### Returns
-ColorThemeData{}
-  - A ColorThemeData object containg the generated color theme.
-
-#### Throws error
-- If numberOfColors is present and has invalid type.
-- If numberOfColors is present and has invalid value.
-
-#### Example usage
-
-```js
-import { RandomColorTheme } from 'color-theme-generator'
-
-try {
-  const randomTheme = new RandomColorTheme()
-  const requestedNumberOfColors = 5  // Argument can be 2 - 5.
-  const generatedColorTheme = randomTheme.generateColorTheme() // Without argument.
-  const secondGeneratedColorTheme = randomTheme.generateColorTheme(requestedNumberOfColors) // With argument.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 } catch (e) {
   console.log(e.message)
 }
@@ -296,12 +256,12 @@ Number
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
   const hue = color.hue // For example 180
@@ -321,12 +281,12 @@ Number
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
   const saturation = color.saturation // For example 75.
@@ -346,12 +306,12 @@ Number
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
   const lightness = color.lightness // For example 50.
@@ -371,12 +331,12 @@ String
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0] // Color object.
   const hsl = color.hsl // For example hsl(180, 75%, 50%)
@@ -399,12 +359,12 @@ String
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const nameOfColorTheme = generatedColorTheme.colorTheme // 'TRIADIC'
 } catch (e) {
@@ -423,12 +383,12 @@ Number
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const numberOfColors = generatedColorTheme.numberOfColorsInTheme // 3
 } catch (e) {
@@ -448,12 +408,12 @@ Color[]
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const colors = generatedColorTheme.colorsInTheme // [Color{}, Color{}, Color{}]
 } catch (e) {
@@ -472,12 +432,12 @@ Undefined
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const unsortedColors = generatedColorTheme.colorsInTheme
   generatedColorTheme.sortColorsByHue()
@@ -498,12 +458,12 @@ Undefined
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const unsortedColors = generatedColorTheme.colorsInTheme
   generatedColorTheme.sortColorsBySaturation()
@@ -524,12 +484,12 @@ Undefined
 #### Example usage
 
 ```js
-import { Triadic } from 'color-theme-generator'
+import { TriadicThemeFactory } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
-  const requestedNumberOfColors = 5
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors) // ColorThemeData object.
+  const factory = new TriadicThemeFactory()
+  const requestedNumberOfColors = 3
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors) // ColorThemeData object.
 
   const unsortedColors = generatedColorTheme.colorsInTheme
   generatedColorTheme.sortColorsByLightness()
@@ -540,204 +500,188 @@ try {
 ```
 
 
-## CSSColorSetter
+## ColorStyles
 
-### setCSSColorPropertyOn(HTMLElement, color)
+### getColorDeclaration(color)
 
 #### Description:
-Sets the CSS property color on the first argument with the color in the second argument  using the style attribute.
+Gets a declaration of the CSS property color with the color in the argument.
 
 #### Arguments:
-- HTMLElement
 - color
-
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
 
 ##### color:
 - Requried.
 - Must be of type Color.
 
 #### Returns
-Undefined
+Style{}
+  - A Style object containg the CSS declaration.
 
 #### Throws error
-- If HTMLElement is not present.
 - If color is not present.
-- If HTMLElement has invalid type.
 - If color has invalid type.
 
 #### Example usage
 
 ```js
-import { Triadic, CSSColorSetter } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
 
-  const CSSSetter = new CSSColorSetter()
-  CSSSetter.setCSSColorPropertyOn(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getColorDeclaration(color)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
-### setCSSBackgroundColorPropertyOn(HTMLElement, color)
+### getBackgroundColorDeclaration(color)
 
 #### Description:
-Sets the CSS property background-color on the first argument with the color in the second argument using the style attribute.
+Gets a declaration of the CSS property background-color with the color in the argument.
 
 #### Arguments:
-- HTMLElement
 - color
-
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
 
 ##### color:
 - Requried.
 - Must be of type Color.
 
 #### Returns
-Undefined
+Style{}
+  - A Style object containg the CSS declaration.
 
 #### Throws error
-- If HTMLElement is not present.
 - If color is not present.
-- If HTMLElement has invalid type.
 - If color has invalid type.
 
 #### Example usage
 
 ```js
-import { Triadic, CSSColorSetter } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
 
-  const CSSSetter = new CSSColorSetter()
-  CSSSetter.setCSSBackgroundColorPropertyOn(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getBackgroundColorDeclaration(color)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
-### setCSSBorderPropertyOn(HTMLElement, color)
+### getBorderDeclaration(color, borderStyle)
 
 #### Description:
-Sets the CSS property border-style and border-color on the first argument with the color in the second argument using the style attribute. border-style is set to solid to make the color appear.
+Gets a declaration of the CSS property border with the arguments color and borderStyle.
 
 #### Arguments:
-- HTMLElement
 - color
+- borderStyle
 
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
+##### borderStyle:
+- Must be a valid value of the CSS property border-style.
+- If no border is visible you are likely to have excluded or sent an invalid value.
 
 ##### color:
 - Requried.
 - Must be of type Color.
 
 #### Returns
-Undefined
+Style{}
+  - A Style object containg the CSS declaration.
 
 #### Throws error
-- If HTMLElement is not present.
 - If color is not present.
-- If HTMLElement has invalid type.
 - If color has invalid type.
 
 #### Example usage
 
 ```js
-import { Triadic, CSSColorSetter } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
+  const borderStyle = 'dotted'
 
-  const CSSSetter = new CSSColorSetter()
-  CSSSetter.setCSSBorderPropertyOn(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getBorderDeclaration(color, borderStyle)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
-### setCSSOutlinePropertyOn(HTMLElement, color)
+### getOutlineDeclaration(color, outlineStyle)
 
 #### Description:
-Sets the CSS property outline-style and outline-color on the first argument with the color in the second argument using the style attribute. outline-style is set to solid to make the color appear.
+Gets a declaration of the CSS property outline with the arguments color and outlineStyle.
 
 #### Arguments:
-- HTMLElement
 - color
+- outlineStyle
 
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
+##### outlineStyle:
+- Must be a valid value of the CSS property outline-style.
+- If no outline is visible you are likely to have excluded or sent an invalid value.
 
 ##### color:
 - Requried.
 - Must be of type Color.
 
 #### Returns
-Undefined
+Style{}
+  - A Style object containg the CSS declaration.
 
 #### Throws error
-- If HTMLElement is not present.
 - If color is not present.
-- If HTMLElement has invalid type.
 - If color has invalid type.
 
 #### Example usage
 
 ```js
-import { Triadic, CSSColorSetter } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
+  const outlineStyle = 'groove'
 
-  const CSSSetter = new CSSColorSetter()
-  CSSSetter.setCSSOutlinePropertyOn(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getOutlineDeclaration(color, outlineStyle)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
-### setCSSTextDecorationPropertyOn(HTMLElement, color)
+### getTextDecorationDeclaration(color, textDecorationLine)
 
 #### Description:
-Sets the CSS property text-decoration-line and text-decoration-color on the first argument with the color in the second argument using the style attribute. text-decoration-line is set to underline to make the color appear.
+Gets a declaration of the CSS property text-decoration with the arguments color and text-decoration-line.
 
 #### Arguments:
-- HTMLElement
 - color
+- textDecorationLine
 
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
+##### textDecorationLine:
+- Must be a valid value of the CSS property text-decoration-line.
+- If no text-decoration is visible you are likely to have excluded or sent an invalid value.
 
 ##### color:
 - Requried.
@@ -747,75 +691,115 @@ Sets the CSS property text-decoration-line and text-decoration-color on the firs
 Undefined
 
 #### Throws error
-- If HTMLElement is not present.
 - If color is not present.
-- If HTMLElement has invalid type.
 - If color has invalid type.
 
 #### Example usage
 
 ```js
-import { Triadic, CSSColorSetter } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
+  const textDecorationLine = 'underline'
 
-  const CSSSetter = new CSSColorSetter()
-  CSSSetter.setCSSTextDecorationPropertyOn(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getTextDecorationDeclaration(color, textDecorationLine)
 } catch (e) {
   console.log(e.message)
 }
 ```
 
 
-## HTMLColorSwatch
+## Style
 
-### turnElementIntoColorSwatch(HTMLElement, color)
+### property
 
 #### Description:
-Sets the CSS properties on the first argument using the style attribute to make it display the color in the second argument. 
+A property containing the CSS property that the object represents.
 
-#### Arguments:
-- HTMLElement
-- color
-
-##### HTMLElement:
-- Requried.
-- Must be of type HTMLElement.
-
-##### color:
-- Requried.
-- Must be of type Color.
-
-#### Returns
-Undefined
-
-#### Throws error
-- If HTMLElement is not present.
-- If color is not present.
-- If HTMLElement has invalid type.
-- If color has invalid type.
+#### Type
+String
 
 #### Example usage
 
 ```js
-import { Triadic, HTMLColorSwatch } from 'color-theme-generator'
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
 
 try {
-  const triadicTheme = new Triadic()
+  const factory = new TriadicThemeFactory()
   const requestedNumberOfColors = 3
-  const generatedColorTheme = triadicTheme.generateColorTheme(requestedNumberOfColors)
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
 
   const color = generatedColorTheme.colorsInTheme[0]
-  const element = document.createElement('div')
+  const textDecorationLine = 'underline'
 
-  const swatch = new HTMLColorSwatch()
-  swatch.turnElementIntoColorSwatch(element, color)
+  const styler = new ColorStyles()
+  const style = styler.getTextDecorationDeclaration(color, textDecorationLine)
+
+  const property = style.property // "text-decoration"
+} catch (e) {
+  console.log(e.message)
+}
+```
+
+### value
+
+#### Description:
+A property containing the value of the CSS property that the object represents.
+
+#### Type
+String
+
+#### Example usage
+
+```js
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
+
+try {
+  const factory = new TriadicThemeFactory()
+  const requestedNumberOfColors = 3
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
+
+  const color = generatedColorTheme.colorsInTheme[0]
+
+  const styler = new ColorStyles()
+  const style = styler.getColorDeclaration(color)
+
+  const value = style.value // For example hsl(180, 75%, 50%)
+} catch (e) {
+  console.log(e.message)
+}
+```
+
+### declaration
+
+#### Description:
+A property containing the full CSS declaration that the object represents.
+
+#### Type
+String
+
+#### Example usage
+
+```js
+import { TriadicThemeFactory, ColorStyles } from 'color-theme-generator'
+
+try {
+  const factory = new TriadicThemeFactory()
+  const requestedNumberOfColors = 3
+  const generatedColorTheme = factory.getColorTheme(requestedNumberOfColors)
+
+  const color = generatedColorTheme.colorsInTheme[0]
+
+  const styler = new ColorStyles()
+  const style = styler.getColorDeclaration(color)
+
+  const value = style.declaration // For example "color: hsl(180, 75%, 50%)"
 } catch (e) {
   console.log(e.message)
 }
