@@ -43,3 +43,7 @@ Triadic test report:
 
 Coverage test report:
 ![Test report coverage](./doc-images/coverage-test-report.png "Coverage test report")
+
+
+Coverage test report 2024-12-16:
+![Test report coverage](./doc-images/coverage-test-report-2.png "Coverage test report")

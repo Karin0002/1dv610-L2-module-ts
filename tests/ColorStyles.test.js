@@ -2,8 +2,9 @@ import { ColorStyles } from '../src/classes/ColorStyles'
 import { beforeAll, describe, expect, test } from 'vitest'
 import { JSDOM } from 'jsdom'
 import { Color } from '../src/classes/Color'
+import { Style } from '../src/classes/Style'
 
-describe('CSSColorSetter.ts', () => {
+describe('ColorStyles.ts', () => {
   let document
 
   beforeAll(() => {
@@ -12,188 +13,133 @@ describe('CSSColorSetter.ts', () => {
     document = window.document
   })
 
-  test('invalid number of arguments - setCSSColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
+  test('invalid number of arguments - getColorDeclaration', () => {
+    const styler = new ColorStyles()
 
-    expect(() => CSSSetter.setCSSColorPropertyOn()).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(color)).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(undefined, color)).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(element)).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(element, undefined)).toThrowError()
+    expect(() => styler.getColorDeclaration()).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
-    const invalidArgument = 'test'
+  test('invalid type of arguments - getColorDeclaration', () => {
+    const styler = new ColorStyles()
+    const invalidInput = 'test'
 
-    expect(() => CSSSetter.setCSSColorPropertyOn(invalidArgument, invalidArgument)).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(invalidArgument, color)).toThrowError()
-    expect(() => CSSSetter.setCSSColorPropertyOn(element, invalidArgument)).toThrowError()
+    expect(() => styler.getColorDeclaration(invalidInput)).toThrowError()
   })
 
-  test('CSS color is set and has correct value - setCSSColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('returns a style object with correct values - getColorDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const expectedValueOfColorProperty = 'rgb(0, 255, 255)'
-    const element = document.createElement('div')
-    CSSSetter.setCSSColorPropertyOn(element, color)
+    const actual = styler.getColorDeclaration(color)
 
-    const stylesSet = element.style
-    const colorProperty = stylesSet.color
-
-    expect(colorProperty).toBeTruthy()
-    expect(colorProperty).toEqual(expectedValueOfColorProperty)
+    expect(actual).toBeInstanceOf(Style)
+    expect(actual.property).toBe('color')
+    expect(actual.value).toBe(color.hsl)
   })
 
-  test('invalid number of arguments - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
+  test('invalid number of arguments - getBackgroundColorDeclaration', () => {
+    const styler = new ColorStyles()
 
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn()).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(color)).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(undefined, color)).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(element)).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(element, undefined)).toThrowError()
+    expect(() => styler.getBackgroundColorDeclaration()).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
-    const invalidArgument = 'test'
+  test('invalid type of arguments - getBackgroundColorDeclaration', () => {
+    const styler = new ColorStyles()
+    const invalidInput = 'test'
 
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(invalidArgument, invalidArgument)).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(invalidArgument, color)).toThrowError()
-    expect(() => CSSSetter.setCSSBackgroundColorPropertyOn(element, invalidArgument)).toThrowError()
+    expect(() => styler.getBackgroundColorDeclaration(invalidInput)).toThrowError()
   })
 
-  test('CSS background-color is set and has correct value - setCSSBackgroundColorPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('returns a style object with correct values - getBackgroundColorDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const expectedValueOfColorProperty = 'rgb(0, 255, 255)'
-    const element = document.createElement('div')
-    CSSSetter.setCSSBackgroundColorPropertyOn(element, color)
+    const actual = styler.getBackgroundColorDeclaration(color)
 
-    const stylesSet = element.style
-    const colorProperty = stylesSet.backgroundColor
-
-    expect(colorProperty).toBeTruthy()
-    expect(colorProperty).toEqual(expectedValueOfColorProperty)
+    expect(actual).toBeInstanceOf(Style)
+    expect(actual.property).toBe('background-color')
+    expect(actual.value).toBe(color.hsl)
   })
 
-  test('invalid number of arguments - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('invalid number of arguments - getBorderDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
+    const style = 'dotted'
 
-    expect(() => CSSSetter.setCSSBorderPropertyOn()).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(color)).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(undefined, color)).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(element)).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(element, undefined)).toThrowError()
+    expect(() => styler.getBorderDeclaration()).toThrowError()
+    expect(() => styler.getBorderDeclaration(undefined, style)).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
-    const invalidArgument = 'test'
+  test('invalid type of arguments - getBorderDeclaration', () => {
+    const styler = new ColorStyles()
+    const invalidInput = 'test'
+    const style = 'dotted'
 
-    expect(() => CSSSetter.setCSSBorderPropertyOn(invalidArgument, invalidArgument)).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(invalidArgument, color)).toThrowError()
-    expect(() => CSSSetter.setCSSBorderPropertyOn(element, invalidArgument)).toThrowError()
+    expect(() => styler.getBorderDeclaration(invalidInput, style)).toThrowError()
   })
 
-  test('CSS border-color is set and has correct value - setCSSBorderPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('returns a style object with correct values - getBorderDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const expectedValueOfBorderProperty = `solid ${color.hsl}`
-    const element = document.createElement('div')
-    CSSSetter.setCSSBorderPropertyOn(element, color)
+    const style = 'dotted'
+    const actual = styler.getBorderDeclaration(color, style)
 
-    const stylesSet = element.style
-    const colorProperty = stylesSet.border
-
-    expect(colorProperty).toBeTruthy()
-    expect(colorProperty).toEqual(expectedValueOfBorderProperty)
+    expect(actual).toBeInstanceOf(Style)
+    expect(actual.property).toBe('border')
+    expect(actual.value).toBe(`${style} ${color.hsl}`)
   })
 
-  test('invalid number of arguments - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('invalid number of arguments - getOutlineDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
+    const style = 'dotted'
 
-    expect(() => CSSSetter.setCSSOutlinePropertyOn()).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(color)).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(undefined, color)).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(element)).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(element, undefined)).toThrowError()
+    expect(() => styler.getOutlineDeclaration()).toThrowError()
+    expect(() => styler.getOutlineDeclaration(undefined, style)).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
-    const invalidArgument = 'test'
+  test('invalid type of arguments - getOutlineDeclaration', () => {
+    const styler = new ColorStyles()
+    const invalidInput = 'test'
+    const style = 'dotted'
 
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(invalidArgument, invalidArgument)).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(invalidArgument, color)).toThrowError()
-    expect(() => CSSSetter.setCSSOutlinePropertyOn(element, invalidArgument)).toThrowError()
+    expect(() => styler.getOutlineDeclaration(invalidInput, style)).toThrowError()
   })
 
-  test('CSS outline-color is set and has correct value - setCSSOutlinePropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('returns a style object with correct values - getOutlineDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const expectedValueOfOutlineProperty = `solid ${color.hsl}`
-    const element = document.createElement('div')
-    CSSSetter.setCSSOutlinePropertyOn(element, color)
+    const style = 'dotted'
+    const actual = styler.getOutlineDeclaration(color, style)
 
-    const stylesSet = element.style
-    const colorProperty = stylesSet.outline
-
-    expect(colorProperty).toBeTruthy()
-    expect(colorProperty).toEqual(expectedValueOfOutlineProperty)
+    expect(actual).toBeInstanceOf(Style)
+    expect(actual.property).toBe('outline')
+    expect(actual.value).toBe(`${style} ${color.hsl}`)
   })
 
-  test('invalid number of arguments - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('invalid number of arguments - getTextDecorationDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
+    const style = 'solid'
 
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn()).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(color)).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(undefined, color)).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(element)).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(element, undefined)).toThrowError()
+    expect(() => styler.getTextDecorationDeclaration()).toThrowError()
+    expect(() => styler.getTextDecorationDeclaration(undefined, style)).toThrowError()
   })
 
-  test('invalid type of arguments - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
-    const color = new Color(180, 100, 50)
-    const element = document.createElement('div')
-    const invalidArgument = 'test'
+  test('invalid type of arguments - getTextDecorationDeclaration', () => {
+    const styler = new ColorStyles()
+    const invalidInput = 'test'
+    const style = 'solid'
 
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(invalidArgument, invalidArgument)).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(invalidArgument, color)).toThrowError()
-    expect(() => CSSSetter.setCSSTextDecorationPropertyOn(element, invalidArgument)).toThrowError()
+    expect(() => styler.getTextDecorationDeclaration(invalidInput, style)).toThrowError()
   })
 
-  test('CSS text-decoration is set and has correct value - setCSSTextDecorationPropertyOn', () => {
-    const CSSSetter = new ColorStyles()
+  test('returns a style object with correct values - getTextDecorationDeclaration', () => {
+    const styler = new ColorStyles()
     const color = new Color(180, 100, 50)
-    const expectedValueOfTextDecorationProperty = `underline ${color.hsl}`
-    const element = document.createElement('div')
-    CSSSetter.setCSSTextDecorationPropertyOn(element, color)
+    const style = 'solid'
+    const actual = styler.getTextDecorationDeclaration(color, style)
 
-    const stylesSet = element.style
-    const colorProperty = stylesSet.textDecoration
-
-    expect(colorProperty).toBeTruthy()
-    expect(colorProperty).toEqual(expectedValueOfTextDecorationProperty)
+    expect(actual).toBeInstanceOf(Style)
+    expect(actual.property).toBe('text-decoration')
+    expect(actual.value).toBe(`${style} ${color.hsl}`)
   })
 })
