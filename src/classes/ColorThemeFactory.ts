@@ -20,7 +20,7 @@ export abstract class ColorThemeFactory {
   constructor () {
     this.validator = new Validator()
     this.generator = new NumberGenerator()
-    this.#setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
+    this.setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
     this.#setSaturation(new MaxMinObject(ColorValues.SaturationMax, ColorValues.SaturationMin))
     this.#setMinLightness(ColorValues.MinLightness)
     this.#setMaxLightness(ColorValues.MaxLightness)
@@ -31,7 +31,7 @@ export abstract class ColorThemeFactory {
   /**
    * Sets the hue with a randomly generated number that is between the arguments.
    */
-  #setHue (limits: MaxMinObject): void {
+  protected setHue (limits: MaxMinObject): void {
     this.hue = this.generator.generateRandomNumber(limits)
   }
 

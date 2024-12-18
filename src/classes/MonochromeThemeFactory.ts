@@ -4,6 +4,8 @@ import { ColorThemeData } from './ColorThemeData.js'
 import { ColorThemeFactory } from './ColorThemeFactory.js'
 import { ColorThemes } from '../enums/ColorThemes.js'
 import { ValidationObject } from './ValidationObject.js'
+import { ColorValues } from '../enums/ColorValues.js'
+import { MaxMinObject } from './MaxMinObject.js'
 
 export class MonochromeThemeFactory extends ColorThemeFactory {
   /**
@@ -35,6 +37,8 @@ export class MonochromeThemeFactory extends ColorThemeFactory {
    * Generates monochrome colors.
    */
   #generateColors (numberOfColors: number): Color[] {
+    this.setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
+
     const colors: Color[] = []
     for (let i = 0; i < numberOfColors; i++) {
       colors.push(this.#generateColor(numberOfColors, i))

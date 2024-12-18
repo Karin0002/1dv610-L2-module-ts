@@ -45,6 +45,8 @@ export abstract class MultiHueColorThemeFactory extends ColorThemeFactory {
    * @returns An array containing the colors as Color objects.
    */
   protected getColors (numberOfColors: number): Color[] {
+    this.setHue(new MaxMinObject(ColorValues.HueMax, ColorValues.HueMin))
+
     return this.#generateColors(numberOfColors)
   }
 
